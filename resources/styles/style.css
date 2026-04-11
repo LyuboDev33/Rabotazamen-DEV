@@ -6765,7 +6765,7 @@ button.scroltop span {
     color: #17171d;
     position: relative;
     min-height: 75px;
-    margin-bottom: 90px;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 991px) {
@@ -9910,6 +9910,9 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 .twm-explore-content .twm-title-large h2 {
     color: #fff;
     text-align: center;
+    font-size: 34px;
+    width: 80%;
+    margin: 0 auto;
 }
 
 @media (max-width: 768px) {
@@ -17761,7 +17764,7 @@ strong {
 
 .twm-log-reg-form-wrap .twm-log-reg-inner .twm-tabs-style-2 .nav-tabs {
     border: none;
-    margin: 0px auto 30px;
+    margin: 0px auto 15px;
     display: inline-flex;
 }
 

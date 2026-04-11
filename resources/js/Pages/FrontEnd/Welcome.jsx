@@ -222,24 +222,41 @@ export default function Welcome({ articles }) {
             <section className="p-t90 p-50">
                 <div className="auto-container">
                     <div className="row wow fadeInUp animated" style={{ visibility: 'visible', animationName: 'fadeInUp' }}>
+                        {/* РАБОТОДАТЕЛИ */}
                         <div className="banner-style-one -type-2 col-lg-6 col-md-12 col-sm-12">
                             <div className="inner-box">
                                 <div className="content">
-                                    <h3>Employers</h3>
-                                    <p className="text-white">Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Labore et dolore nostrud exercitation.</p>
-                                    <a href="#" className="theme-btn btn-style-five">Register Account</a>
+                                    <h2 className='text-black'>Работодатели</h2>
+                                    <p className="text-white pb-2 text-p">Осигурете си стратегическо предимство на пазара на труда, като откриете идеалните таланти чрез прецизна технология и безкомпромисно качество на подбора.</p>
+                                    <a
+                                        href="/how-it-works-employers"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="theme-btn btn-style-five"
+                                    >
+                                        Вижте как оптимизираме наемането
+                                    </a>
                                 </div>
-                                <figure className="image"><img src="/assets/images/employ.png" alt="#" /></figure>
+                                <figure className="image"><img src="/assets/images/employ.png" alt="Employers" /></figure>
                             </div>
                         </div>
+
+                        {/* КАНДИДАТИ */}
                         <div className="banner-style-two -type-2 col-lg-6 col-md-12 col-sm-12">
                             <div className="inner-box">
                                 <div className="content">
-                                    <h3 className="color-dark-1">Candidate</h3>
-                                    <p className="color-dark-2">Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Labore et dolore nostrud exercitation.</p>
-                                    <a href="#" className="theme-btn btn-style-five color-dark-1">Register Account</a>
+                                    <h2 className="text-black">Кандидати</h2>
+                                    <p className="text-white pb-2 text-p">Поеми контрол над кариерата си: изгради впечатляващ профил и позволи на топ работодатели да те открият, предлагайки ти възможности, които напълно отговарят на твоя потенциал.</p>
+                                    <a
+                                        href="/how-it-works-candidates"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="theme-btn btn-style-five color-dark-1"
+                                    >
+                                        Разбери как работи за теб
+                                    </a>
                                 </div>
-                                <figure className="image"><img src="/assets/images/candidate.png" alt="#" /></figure>
+                                <figure className="image"><img src="/assets/images/candidate.png" alt="Candidates" /></figure>
                             </div>
                         </div>
                     </div>
@@ -518,13 +535,11 @@ export default function Welcome({ articles }) {
                                             className="side-image right-image"
                                         />
 
-                                        {/* TITLE */}
-                                        <div className="twm-title-small">Кариерно развитие</div>
 
                                         <div className="twm-title-large">
                                             <h2>
-                                                Не просто търси работа – бъди открит.
-                                                Представи се пред правилните работодатели.
+                                                Свързваме правилните хора с правилните възможности. <br />
+                                                Покажи своя потенциал или открий точния талант – всичко започва тук.
                                             </h2>
                                         </div>
 
@@ -532,16 +547,16 @@ export default function Welcome({ articles }) {
                                         <div className="split-container two-columns">
 
                                             {/* LEFT */}
-                                            <div className="split-box left-box">
+                                            <div className="split-box">
                                                 <h3>За Кандидати</h3>
-                                                <p>
+                                                <p className='welcome-effect'>
                                                     Създай професионално CV, подобри уменията си и
                                                     се представи пред работодатели, които търсят точно теб.
                                                 </p>
 
-                                                <button className="site-button">
-                                                    Създай CV
-                                                </button>
+                                                <a className="site-button">
+                                                    Регистрирай се
+                                                </a>
                                             </div>
 
                                             {/* DIVIDER */}
@@ -550,14 +565,14 @@ export default function Welcome({ articles }) {
                                             {/* RIGHT */}
                                             <div className="split-box right-box">
                                                 <h3>За Работодатели</h3>
-                                                <p>
+                                                <p className='welcome-effect'>
                                                     Намери подходящите кандидати бързо и ефективно.
                                                     Управлявай процеса по подбор и изгради силен екип.
                                                 </p>
 
-                                                <button className="site-button">
+                                                <a className="site-button">
                                                     Регистрирай компания
-                                                </button>
+                                                </a>
                                             </div>
 
                                         </div>

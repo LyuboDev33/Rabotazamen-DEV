@@ -13,7 +13,7 @@ Route::fallback(function () {
 });
 
 
-Route::get('/auth/redirect/{access?}', [GoogleAuthController::class, 'index'])->name('google');
+Route::get('/auth/redirect/{access?}', [GoogleAuthController::class, 'index'])->name('google.auth.register');
 Route::get('/auth/callback', [GoogleAuthController::class, 'redirectURL']);
 
 Route::get('/', [FrontendController::class, 'home']);
