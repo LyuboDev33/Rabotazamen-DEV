@@ -69,7 +69,8 @@ class HandleInertiaRequests extends Middleware
                 'profilePic' => static::profilePicture(),
                 'permissions' => $permissions ?? null,
             ],
-            'csrf_token' => csrf_token(), 
+            'recaptchaSiteKey' => config('services.google_recaptcha.site_key'),
+            'csrf_token' => csrf_token(),
         ];
     }
 }

@@ -1,5 +1,6 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import { useEffect } from 'react';
 
 import "../../../styles/bootstrap.min.css";
 import "../../../styles/style.css";
@@ -9,7 +10,31 @@ import '../../../styles/flaticon.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export default function RegisterEmployer() {
-    const { errors, csrf_token } = usePage().props;
+    const { errors, csrf_token, recaptchaSiteKey } = usePage().props;
+
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`;
+        script.async = true;
+        document.body.appendChild(script);
+    }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!window.grecaptcha) {
+            console.error("reCAPTCHA not loaded");
+            return;
+        }
+
+        const token = await window.grecaptcha.execute(recaptchaSiteKey, {
+            action: 'register',
+        });
+
+        document.getElementById('recaptcha_token').value = token;
+        e.target.submit();
+    };
 
     return (
         <>
@@ -84,12 +109,21 @@ export default function RegisterEmployer() {
                                             </ul>
 
                                             <div className="tab-content" id="myTab2Content">
+                                                <div className="col-12 mb-4">
+                                                    <div className="alert-info py-2 px-3 mb-2 rounded-4" role="alert">
+                                                        <i className="fas fa-info-circle me-2"></i>
+                                                            <strong>Важно:</strong> След регистрация ще можете да попълните вашите фирмени данни,
+                                                            както и ще намерите допълнителни инструкции за използване на платформата.
+                                                    </div>
+                                                </div>
+
                                                 {/* Employer Registration */}
                                                 <div className="tab-pane fade show active">
                                                     <form
-                                                        action={route('register.employer')}
+                                                        action={route('register')}
                                                         method="post">
                                                         <input type="hidden" name="_token" value={csrf_token} />
+                                                        <input type="hidden" name="recaptcha_token" id="recaptcha_token" />
 
                                                         {/* Row container with centered smaller form */}
                                                         <div className="row justify-content-center">
@@ -130,7 +164,7 @@ export default function RegisterEmployer() {
                                                                     </div>
 
                                                                     {/* Телефон */}
-                                                                    <div className="col-lg-6 col-xl-4">
+                                                                    <div className="col-lg-12 col-xl-4">
                                                                         <div className="form-group mb-2">
                                                                             <label className="form-label small mb-1">Телефон <span className="text-danger">*</span></label>
                                                                             <input
@@ -149,7 +183,7 @@ export default function RegisterEmployer() {
                                                                     {/* Служебен имейл */}
                                                                     <div className="col-12">
                                                                         <div className="form-group mb-2">
-                                                                            <label className="form-label small mb-1">Имейл <span className="text-danger">*</span></label>
+                                                                            <label className="form-label small mb-1">Имейл адрес <span className="text-danger">*</span></label>
                                                                             <input
                                                                                 name="email"
                                                                                 type="email"
@@ -199,21 +233,8 @@ export default function RegisterEmployer() {
 
 
 
-
-                                                                    {/* Important Notice */}
-                                                                    <div className="col-12 mt-2 mb-2">
-                                                                        <div className="alert-info py-2 px-3 mb-2" role="alert">
-                                                                            <i className="fas fa-info-circle me-2"></i>
-                                                                            <small>
-                                                                                <strong>Важно:</strong> След регистрация ще можете да попълните вашите фирмени данни,
-                                                                                както и ще намерите допълнителни инструкции за използване на платформата.
-                                                                            </small>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    {/* Submit Button */}
-                                                                    <div className="col-12">
-                                                                        <div className="form-group">
+                                                                    <div className="col-12 mt-3">
+                                                                        <div>
                                                                             <button type="submit" className="site-button">
                                                                                 Регистрация
                                                                             </button>
@@ -222,30 +243,29 @@ export default function RegisterEmployer() {
 
 
                                                                     <div className="col-12">
-                                                                        <div className="form-group mb-1 mt-2">
+                                                                        <div className="mb-1 mt-2">
                                                                             <span className="center-text-or">или</span>
                                                                         </div>
                                                                     </div>
-
-                                                                    {/* Google Registration */}
-                                                                    <form
-                                                                        action={route('google', { access: 'employer' })}
-                                                                        method="get"
-                                                                        className="col-12">
-                                                                        <div className="form-group mb-2">
-                                                                            <button type="button" className="log_with_google">
-                                                                                <img src="/assets/images/google-icon.png" alt="" />
-                                                                                Регистрация с Google
-                                                                            </button>
-                                                                        </div>
-                                                                    </form>
-
-
 
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </form>
+
+                                                    <form
+                                                        action={route('google.auth.register', { access: 'employer' })}
+                                                        method="get"
+                                                        className="col-12">
+                                                        <div className="form-group mb-2">
+                                                            <button type="button" className="log_with_google">
+                                                                <img src="/assets/images/google-icon.png" alt="" />
+                                                                Регистрация с Google
+                                                            </button>
+                                                        </div>
+                                                    </form>
+
+
                                                 </div>
                                             </div>
                                         </div>
