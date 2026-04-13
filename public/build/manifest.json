@@ -1,0 +1,621 @@
+{
+  "_DashboardLayout-CbflUq85.js": {
+    "file": "assets/DashboardLayout-CbflUq85.js",
+    "name": "DashboardLayout",
+    "imports": [
+      "resources/js/app.jsx",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "_FrontEndLayout-CWB4YUqg.js": {
+    "file": "assets/FrontEndLayout-CWB4YUqg.js",
+    "name": "FrontEndLayout",
+    "imports": [
+      "resources/js/app.jsx",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/FrontEndLayout-Doz5KnUv.css",
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "_FrontEndLayout-Doz5KnUv.css": {
+    "file": "assets/FrontEndLayout-Doz5KnUv.css",
+    "src": "_FrontEndLayout-Doz5KnUv.css"
+  },
+  "_Modal-BrkyqcXy.js": {
+    "file": "assets/Modal-BrkyqcXy.js",
+    "name": "Modal",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_all-CAEDjLzJ.css": {
+    "file": "assets/all-CAEDjLzJ.css",
+    "src": "_all-CAEDjLzJ.css"
+  },
+  "_all.min-Bpa6NGn7.js": {
+    "file": "assets/all.min-Bpa6NGn7.js",
+    "name": "all.min",
+    "imports": [
+      "resources/js/app.jsx"
+    ],
+    "css": [
+      "assets/all-CAEDjLzJ.css"
+    ],
+    "assets": [
+      "assets/fa-brands-400-BP5tdqmh.woff2",
+      "assets/fa-regular-400-nyy7hhHF.woff2",
+      "assets/fa-solid-900-DRAAbZTg.woff2",
+      "assets/fa-v4compatibility-DD84SGiu.woff2"
+    ]
+  },
+  "_animate-DmuyVQv5.css": {
+    "file": "assets/animate-DmuyVQv5.css",
+    "src": "_animate-DmuyVQv5.css"
+  },
+  "_can-BHKL6lUV.js": {
+    "file": "assets/can-BHKL6lUV.js",
+    "name": "can",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_react-splide.esm-B9wG_gz8.js": {
+    "file": "assets/react-splide.esm-B9wG_gz8.js",
+    "name": "react-splide.esm",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-BP5tdqmh.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-nyy7hhHF.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-DRAAbZTg.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2": {
+    "file": "assets/fa-v4compatibility-DD84SGiu.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
+  },
+  "resources/js/Pages/404.jsx": {
+    "file": "assets/404-zzkxuZxD.js",
+    "name": "404",
+    "src": "resources/js/Pages/404.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_FrontEndLayout-CWB4YUqg.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/Auth/Login.jsx": {
+    "file": "assets/Login-DYpevKCd.js",
+    "name": "Login",
+    "src": "resources/js/Pages/Auth/Login.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_all.min-Bpa6NGn7.js"
+    ]
+  },
+  "resources/js/Pages/Auth/RegisterCandidate.jsx": {
+    "file": "assets/RegisterCandidate-DblPtcf4.js",
+    "name": "RegisterCandidate",
+    "src": "resources/js/Pages/Auth/RegisterCandidate.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_all.min-Bpa6NGn7.js"
+    ]
+  },
+  "resources/js/Pages/Auth/RegisterEmployer.jsx": {
+    "file": "assets/RegisterEmployer-v9-oA2AU.js",
+    "name": "RegisterEmployer",
+    "src": "resources/js/Pages/Auth/RegisterEmployer.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_all.min-Bpa6NGn7.js"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/Blog/AddBlog.jsx": {
+    "file": "assets/AddBlog-DdU6oZ55.js",
+    "name": "AddBlog",
+    "src": "resources/js/Pages/BackEnd/Admin/Blog/AddBlog.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/Blog/Index.jsx": {
+    "file": "assets/Index-CLPR5KUS.js",
+    "name": "Index",
+    "src": "resources/js/Pages/BackEnd/Admin/Blog/Index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_Modal-BrkyqcXy.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/Blog/Show.jsx": {
+    "file": "assets/Show-Dd5A_XI1.js",
+    "name": "Show",
+    "src": "resources/js/Pages/BackEnd/Admin/Blog/Show.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/City/Index.jsx": {
+    "file": "assets/Index-Cj6L4Icc.js",
+    "name": "Index",
+    "src": "resources/js/Pages/BackEnd/Admin/City/Index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_Modal-BrkyqcXy.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/Dashboard.jsx": {
+    "file": "assets/Dashboard-BNUeYwUY.js",
+    "name": "Dashboard",
+    "src": "resources/js/Pages/BackEnd/Admin/Dashboard.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/JobCategoriesAndRoles/CreateJobCategoriesView.jsx": {
+    "file": "assets/CreateJobCategoriesView-hRSeK8-4.js",
+    "name": "CreateJobCategoriesView",
+    "src": "resources/js/Pages/BackEnd/Admin/JobCategoriesAndRoles/CreateJobCategoriesView.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/JobCategoriesAndRoles/JobCategories.jsx": {
+    "file": "assets/JobCategories-KcImtnHD.js",
+    "name": "JobCategories",
+    "src": "resources/js/Pages/BackEnd/Admin/JobCategoriesAndRoles/JobCategories.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_Modal-BrkyqcXy.js",
+      "_can-BHKL6lUV.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/JobCategoriesAndRoles/JobCategoryEdit.jsx": {
+    "file": "assets/JobCategoryEdit-DKRNOewX.js",
+    "name": "JobCategoryEdit",
+    "src": "resources/js/Pages/BackEnd/Admin/JobCategoriesAndRoles/JobCategoryEdit.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_Modal-BrkyqcXy.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/Roles/Index.jsx": {
+    "file": "assets/Index-Vy03KGY9.js",
+    "name": "Index",
+    "src": "resources/js/Pages/BackEnd/Admin/Roles/Index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/Roles/Permissions.jsx": {
+    "file": "assets/Permissions-C15LUgOw.js",
+    "name": "Permissions",
+    "src": "resources/js/Pages/BackEnd/Admin/Roles/Permissions.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/SupportTickets/Index.jsx": {
+    "file": "assets/Index-D8nwrSXP.js",
+    "name": "Index",
+    "src": "resources/js/Pages/BackEnd/Admin/SupportTickets/Index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/Users/GrantAccess.jsx": {
+    "file": "assets/GrantAccess-DXTkCGak.js",
+    "name": "GrantAccess",
+    "src": "resources/js/Pages/BackEnd/Admin/Users/GrantAccess.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/Users/Index.jsx": {
+    "file": "assets/Index-CpkyHdkQ.js",
+    "name": "Index",
+    "src": "resources/js/Pages/BackEnd/Admin/Users/Index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_Modal-BrkyqcXy.js",
+      "_can-BHKL6lUV.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Admin/Users/Show.jsx": {
+    "file": "assets/Show-D2_zsGNM.js",
+    "name": "Show",
+    "src": "resources/js/Pages/BackEnd/Admin/Users/Show.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Candidate/DocumentsCV.jsx": {
+    "file": "assets/DocumentsCV-XRXY31q7.js",
+    "name": "DocumentsCV",
+    "src": "resources/js/Pages/BackEnd/Candidate/DocumentsCV.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Dashboard.jsx": {
+    "file": "assets/Dashboard-WQgred0y.js",
+    "name": "Dashboard",
+    "src": "resources/js/Pages/BackEnd/Dashboard.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/Profile.jsx": {
+    "file": "assets/Profile-DvfuKsMr.js",
+    "name": "Profile",
+    "src": "resources/js/Pages/BackEnd/Profile.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_Modal-BrkyqcXy.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/SupportTickets/CreateTicket.jsx": {
+    "file": "assets/CreateTicket-Di0tDAwd.js",
+    "name": "CreateTicket",
+    "src": "resources/js/Pages/BackEnd/SupportTickets/CreateTicket.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/BackEnd/SupportTickets/Index.jsx": {
+    "file": "assets/Index-JcdlUDVG.js",
+    "name": "Index",
+    "src": "resources/js/Pages/BackEnd/SupportTickets/Index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/Errors/NotFoundJobCategory.jsx": {
+    "file": "assets/NotFoundJobCategory-DQTFmAdp.js",
+    "name": "NotFoundJobCategory",
+    "src": "resources/js/Pages/Errors/NotFoundJobCategory.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/FrontEnd/About.jsx": {
+    "file": "assets/About-DK7Sdfpa.js",
+    "name": "About",
+    "src": "resources/js/Pages/FrontEnd/About.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_FrontEndLayout-CWB4YUqg.js",
+      "_react-splide.esm-B9wG_gz8.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/FrontEnd/Blog/Blog.jsx": {
+    "file": "assets/Blog-DQG4pczJ.js",
+    "name": "Blog",
+    "src": "resources/js/Pages/FrontEnd/Blog/Blog.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_FrontEndLayout-CWB4YUqg.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/FrontEnd/Blog/Show.jsx": {
+    "file": "assets/Show-BcXsRlRj.js",
+    "name": "Show",
+    "src": "resources/js/Pages/FrontEnd/Blog/Show.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_FrontEndLayout-CWB4YUqg.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/FrontEnd/Calculator.jsx": {
+    "file": "assets/Calculator-BO0Qak3z.js",
+    "name": "Calculator",
+    "src": "resources/js/Pages/FrontEnd/Calculator.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_FrontEndLayout-CWB4YUqg.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/FrontEnd/Contact.jsx": {
+    "file": "assets/Contact-2ZbgDboh.js",
+    "name": "Contact",
+    "src": "resources/js/Pages/FrontEnd/Contact.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_FrontEndLayout-CWB4YUqg.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/FrontEnd/Welcome.jsx": {
+    "file": "assets/Welcome-D2Veme9e.js",
+    "name": "Welcome",
+    "src": "resources/js/Pages/FrontEnd/Welcome.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_FrontEndLayout-CWB4YUqg.js",
+      "_react-splide.esm-B9wG_gz8.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/NoAccess.jsx": {
+    "file": "assets/NoAccess-C85ZWbt_.js",
+    "name": "NoAccess",
+    "src": "resources/js/Pages/NoAccess.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/NotFoundBlog.jsx": {
+    "file": "assets/NotFoundBlog-SP8rBDCs.js",
+    "name": "NotFoundBlog",
+    "src": "resources/js/Pages/NotFoundBlog.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/NotFoundBlogFrontEnd.jsx": {
+    "file": "assets/NotFoundBlogFrontEnd-Di2II3yW.js",
+    "name": "NotFoundBlogFrontEnd",
+    "src": "resources/js/Pages/NotFoundBlogFrontEnd.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_FrontEndLayout-CWB4YUqg.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/NotFoundRole.jsx": {
+    "file": "assets/NotFoundRole-R-CBgXn7.js",
+    "name": "NotFoundRole",
+    "src": "resources/js/Pages/NotFoundRole.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/Pages/NotFoundUser.jsx": {
+    "file": "assets/NotFoundUser-CQ0ekHT7.js",
+    "name": "NotFoundUser",
+    "src": "resources/js/Pages/NotFoundUser.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_DashboardLayout-CbflUq85.js",
+      "_all.min-Bpa6NGn7.js"
+    ],
+    "css": [
+      "assets/animate-DmuyVQv5.css"
+    ]
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-DMmfCkaC.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/404.jsx",
+      "resources/js/Pages/Auth/Login.jsx",
+      "resources/js/Pages/Auth/RegisterCandidate.jsx",
+      "resources/js/Pages/Auth/RegisterEmployer.jsx",
+      "resources/js/Pages/BackEnd/Admin/Blog/AddBlog.jsx",
+      "resources/js/Pages/BackEnd/Admin/Blog/Index.jsx",
+      "resources/js/Pages/BackEnd/Admin/Blog/Show.jsx",
+      "resources/js/Pages/BackEnd/Admin/City/Index.jsx",
+      "resources/js/Pages/BackEnd/Admin/Dashboard.jsx",
+      "resources/js/Pages/BackEnd/Admin/JobCategoriesAndRoles/CreateJobCategoriesView.jsx",
+      "resources/js/Pages/BackEnd/Admin/JobCategoriesAndRoles/JobCategories.jsx",
+      "resources/js/Pages/BackEnd/Admin/JobCategoriesAndRoles/JobCategoryEdit.jsx",
+      "resources/js/Pages/BackEnd/Admin/Roles/Index.jsx",
+      "resources/js/Pages/BackEnd/Admin/Roles/Permissions.jsx",
+      "resources/js/Pages/BackEnd/Admin/SupportTickets/Index.jsx",
+      "resources/js/Pages/BackEnd/Admin/Users/GrantAccess.jsx",
+      "resources/js/Pages/BackEnd/Admin/Users/Index.jsx",
+      "resources/js/Pages/BackEnd/Admin/Users/Show.jsx",
+      "resources/js/Pages/BackEnd/Candidate/DocumentsCV.jsx",
+      "resources/js/Pages/BackEnd/Dashboard.jsx",
+      "resources/js/Pages/BackEnd/Profile.jsx",
+      "resources/js/Pages/BackEnd/SupportTickets/CreateTicket.jsx",
+      "resources/js/Pages/BackEnd/SupportTickets/Index.jsx",
+      "resources/js/Pages/Errors/NotFoundJobCategory.jsx",
+      "resources/js/Pages/FrontEnd/About.jsx",
+      "resources/js/Pages/FrontEnd/Blog/Blog.jsx",
+      "resources/js/Pages/FrontEnd/Blog/Show.jsx",
+      "resources/js/Pages/FrontEnd/Calculator.jsx",
+      "resources/js/Pages/FrontEnd/Contact.jsx",
+      "resources/js/Pages/FrontEnd/Welcome.jsx",
+      "resources/js/Pages/NoAccess.jsx",
+      "resources/js/Pages/NotFoundBlog.jsx",
+      "resources/js/Pages/NotFoundBlogFrontEnd.jsx",
+      "resources/js/Pages/NotFoundRole.jsx",
+      "resources/js/Pages/NotFoundUser.jsx"
+    ]
+  }
+}
