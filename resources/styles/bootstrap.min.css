@@ -6338,11 +6338,12 @@ fieldset:disabled .btn {
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 1rem 1rem;
     border-bottom: 1px solid #dee2e6;
     border-top-left-radius: calc(.3rem - 1px);
-    border-top-right-radius: calc(.3rem - 1px)
+    border-top-right-radius: calc(.3rem - 1px);
+
 }
 
 .modal-header .btn-close {

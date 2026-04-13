@@ -73,6 +73,8 @@ class RegisteredUserController extends Controller
 
         $result = $response->json();
 
+        return $result;
+
         return $result['success'] && ($result['action'] ?? '') === $expectedAction
             && ($result['score'] ?? 0) >= 0.5;
     }
@@ -131,5 +133,5 @@ class RegisteredUserController extends Controller
         return redirect(route('dashboard', absolute: false));
     }
 
-    
+
 }

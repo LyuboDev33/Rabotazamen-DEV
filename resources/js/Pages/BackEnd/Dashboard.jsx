@@ -38,7 +38,7 @@ export default function Dashboard() {
                         </div>
 
 
-                        <div className="col-lg-12 col-md-12 mb-4">
+                        {/* <div className="col-lg-12 col-md-12 mb-4">
                             <div className="panel panel-default">
                                 <div className="panel-heading wt-panel-heading p-a20">
                                     <h4 className="panel-tittle m-a0">Recent Applicants</h4>
@@ -250,7 +250,7 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
