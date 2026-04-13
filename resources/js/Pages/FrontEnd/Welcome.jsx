@@ -1017,16 +1017,16 @@ export default function Welcome({ articles }) {
                 </div>
             </section>
 
-            <section className="section-full p-t120 p-b90 site-bg-gray twm-testimonial-2-area">
+            {/* <section className="section-full p-t120 p-b90 site-bg-gray twm-testimonial-2-area">
 
-                {/* TITLE START */}
+
                 <div className="section-head center wt-small-separator-outer">
                     <div className="wt-small-separator site-text-primary">
                         <div>Clients Testimonials</div>
                     </div>
                     <h2 className="wt-title">What Our Customers Say About Us</h2>
                 </div>
-                {/* TITLE END */}
+
 
                 <div className="container">
                     <div className="section-content">
@@ -1050,13 +1050,12 @@ export default function Welcome({ articles }) {
                             aria-label="Testimonials"
                         >
 
-                            {/* Testimonial 1 */}
                             <SplideSlide>
                                 <div className="twm-testimonial-2">
                                     <div className="twm-testimonial-2-content">
-                                        {/* <div className="twm-testi-media">
+                                        <div className="twm-testi-media">
                                             <img src="/images/testimonials/pic-1.png" alt="Nikola Tesla" />
-                                        </div> */}
+                                        </div>
                                         <div className="twm-testi-content">
                                             <div className="twm-quote">
                                                 <img src="/images/quote-dark.png" alt="quote" />
@@ -1073,13 +1072,12 @@ export default function Welcome({ articles }) {
                                 </div>
                             </SplideSlide>
 
-                            {/* Testimonial 2 */}
                             <SplideSlide>
                                 <div className="twm-testimonial-2">
                                     <div className="twm-testimonial-2-content">
-                                        {/* <div className="twm-testi-media">
+                                        <div className="twm-testi-media">
                                             <img src="/images/testimonials/pic-2.png" alt="Collis Pong" />
-                                        </div> */}
+                                        </div>
                                         <div className="twm-testi-content">
                                             <div className="twm-quote">
                                                 <img src="/images/quote-dark.png" alt="quote" />
@@ -1096,13 +1094,12 @@ export default function Welcome({ articles }) {
                                 </div>
                             </SplideSlide>
 
-                            {/* Testimonial 3 */}
                             <SplideSlide>
                                 <div className="twm-testimonial-2">
                                     <div className="twm-testimonial-2-content">
-                                        {/* <div className="twm-testi-media">
+                                        <div className="twm-testi-media">
                                             <img src="/images/testimonials/pic-3.png" alt="Nikola Tesla" />
-                                        </div> */}
+                                        </div>
                                         <div className="twm-testi-content">
                                             <div className="twm-quote">
                                                 <img src="/images/quote-dark.png" alt="quote" />
@@ -1119,13 +1116,12 @@ export default function Welcome({ articles }) {
                                 </div>
                             </SplideSlide>
 
-                            {/* Testimonial 4 */}
                             <SplideSlide>
                                 <div className="twm-testimonial-2">
                                     <div className="twm-testimonial-2-content">
-                                        {/* <div className="twm-testi-media">
+                                        <div className="twm-testi-media">
                                             <img src="/images/testimonials/pic-4.png" alt="Collis Pong" />
-                                        </div> */}
+                                        </div>
                                         <div className="twm-testi-content">
                                             <div className="twm-quote">
                                                 <img src="/images/quote-dark.png" alt="quote" />
@@ -1146,7 +1142,7 @@ export default function Welcome({ articles }) {
 
                     </div>
                 </div>
-            </section>
+            </section> */}
 
 
 
