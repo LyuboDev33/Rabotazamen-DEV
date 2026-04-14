@@ -26,7 +26,7 @@ export default function ForgotPassword({ status }) {
                     <div className="section-content">
                         <div className="container">
 
-                            <div className="contact-one-inner">
+                            <div className="pt-120 pb-120">
                                 <div className="row justify-content-center">
 
                                     <div className="col-lg-6 col-md-12">

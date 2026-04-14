@@ -1,1 +1,0 @@
-import{j as r}from"./app-C8vvepqx.js";function i({className:o="",width:s="",height:t=""}){return r.jsx("img",{src:"/assets/images/logo-dark.png",alt:"Logo",className:o,width:s,height:t})}export{i as A};
