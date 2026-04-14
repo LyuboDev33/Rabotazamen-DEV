@@ -37,7 +37,7 @@ class GoogleAuthController extends Controller
 
             $fullName = explode(' ', $googleUser->name);
             $firstName = $fullName[0];
-            $lastName = $fullName[1];
+            $lastName = $fullName[1] ?? "";
 
             $user = User::create([
                 'first_name' => $firstName,

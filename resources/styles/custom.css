@@ -327,6 +327,10 @@
     color: black ! IMPORTANT;
 }
 
+.split-box a:hover {
+    color: white;
+}
+
 
 @media screen and (min-width: 767px) {
     .go-back-button {
