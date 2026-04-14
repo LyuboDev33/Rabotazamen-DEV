@@ -31,12 +31,14 @@ class GoogleAuthController extends Controller
             abort(500);
         }
 
-        $user = User::where('google_id', $googleUser->id)->first();
-        $fullName = explode(' ', $googleUser->name);
-        $firstName = $fullName[0];
-        $lastName = $fullName[1];
+        $user = User::where('email', $googleUser->email)->first();
 
         if (!$user) {
+
+            $fullName = explode(' ', $googleUser->name);
+            $firstName = $fullName[0];
+            $lastName = $fullName[1] ?? "";
+
             $user = User::create([
                 'first_name' => $firstName,
                 'last_name' => $lastName,
@@ -48,7 +50,6 @@ class GoogleAuthController extends Controller
             ]);
 
             $user->roles()->attach($role->id);
-
         } else {
 
             $user->update([

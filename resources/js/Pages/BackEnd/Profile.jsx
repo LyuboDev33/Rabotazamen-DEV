@@ -1,12 +1,15 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import { Head, usePage, Form } from '@inertiajs/react';
 import { useState } from 'react';
+import Modal from '@/Components/Modal';
 
 export default function Profile() {
     const [file, setFile] = useState(null);
     const { csrf_token, auth, errors } = usePage().props;
     const [flashKey, setFlashKey] = useState(Date.now());
     const { flash } = usePage();
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const user = auth.user;
 
     const profilePic = auth.profilePic;
 
@@ -46,7 +49,7 @@ export default function Profile() {
                                 <div className="dashboard-profile-section clearfix">
                                     <div className="dashboard-profile-pic d-flex gap-4">
                                         <div className="dashboard-profile-photo">
-                                            <img src={profilePic} alt="" />
+                                            <img src={profilePic} alt="Профилна снимка" />
 
                                             <div className="upload-btn-wrapper">
                                                 <div id="upload-image-grid" />
@@ -281,8 +284,91 @@ export default function Profile() {
                         </div>
                     </div>
 
+                    <div className="panel panel-default">
+                        <div className="panel-heading wt-panel-heading p-a20">
+                            <h4 className="panel-tittle m-a0 text-danger">
+                                Изтрий акаунт
+                            </h4>
+                        </div>
+
+                        <div className="panel-body wt-panel-body p-a20 m-b30">
+                            <p className="text-muted">
+                                Това действие е необратимо. Моля, потвърдете паролата си,
+                                за да изтриете акаунта.
+                            </p>
+
+                            <button
+                                className="site-button bg-danger"
+                                onClick={() => setShowDeleteModal(true)}
+                            >
+                                Изтрий акаунта
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
+            {/* Modal */}
+            <Modal
+                show={showDeleteModal}
+                method="delete"
+                action={route("profile.destroy")}
+                onSuccess={() => setShowDeleteModal(false)}
+                onClose={() => setShowDeleteModal(false)}
+            >
+                <div className="modal-header">
+                    <h3 className="modal-title mb-0">Внимание!</h3>
+                </div>
+
+                <div className="modal-body text-center">
+                    {user.google_id ?
+                        <p>
+                           С изтриването на акаунта си, ще загубите всичко до него? <br />
+                           Сигурни ли сте, че искате да го изтриете?
+                        </p>
+                        :
+                        <p>
+                            Въведете паролата си, за да потвърдите изтриването на
+                            акаунта.
+                        </p>
+                    }
+
+                    {!user.google_id ?
+                        <div className="form-group">
+                            <label htmlFor="password">Парола</label>
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                className="form-control"
+                            />
+
+                            {errors?.deleteAccountBag?.password && (
+                                <p className="text-danger mt-1">
+                                    {errors.deleteAccountBag.password}
+                                </p>
+                            )}
+                        </div>
+                        : ''}
+
+                </div>
+
+                <div className="modal-footer">
+
+                    <button type="submit" className="site-button bg-danger">
+                        Потвърди изтриването
+                    </button>
+
+                    <button
+                        type="button"
+                        className="site-button"
+                        onClick={() => setShowDeleteModal(false)}
+                    >
+                        Затвори
+                    </button>
+                </div>
+            </Modal>
 
             {flash.editSuccess && (
                 <div

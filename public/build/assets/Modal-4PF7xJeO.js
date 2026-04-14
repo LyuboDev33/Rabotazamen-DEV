@@ -1,0 +1,1 @@
+import{j as o,F as t}from"./app-C8vvepqx.js";function n({show:e,method:l,onSuccess:s,action:a,children:r,onClose:d}){return e?o.jsx(t,{method:l,action:a,onSuccess:s,options:{preserveScroll:!0},className:`modal twm-model-popup d-flex ${e?"show":""}`,children:o.jsx("div",{className:"modal-dialog",children:o.jsx("div",{className:"modal-content",children:r})})}):null}export{n as M};

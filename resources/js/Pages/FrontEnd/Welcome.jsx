@@ -226,16 +226,18 @@ export default function Welcome({ articles }) {
                         <div className="banner-style-one -type-2 col-lg-6 col-md-12 col-sm-12">
                             <div className="inner-box">
                                 <div className="content">
-                                    <h2 className='text-black'>Работодатели</h2>
-                                    <p className="text-white pb-2 text-p">Осигурете си стратегическо предимство на пазара на труда, като откриете идеалните таланти чрез прецизна технология и безкомпромисно качество на подбора.</p>
-                                    <a
-                                        href="/how-it-works-employers"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="theme-btn btn-style-five"
-                                    >
-                                        Вижте как оптимизираме наемането
-                                    </a>
+                                    <h2 className='text-black text-end'>Работодатели</h2>
+                                    <p className="text-white pb-2 text-p text-end">Осигурете си стратегическо предимство на пазара на труда, като откриете идеалните таланти чрез прецизна технология и безкомпромисно качество на подбора.</p>
+                                    <div className='d-flex justify-content-end'>
+                                        <a
+                                            href="/how-it-works-employers"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="theme-btn btn-style-five text-right"
+                                        >
+                                            Разбери повече
+                                        </a>
+                                    </div>
                                 </div>
                                 <figure className="image"><img src="/assets/images/employ.png" alt="Employers" /></figure>
                             </div>
@@ -538,18 +540,23 @@ export default function Welcome({ articles }) {
 
                                         <div className="twm-title-large">
                                             <h2>
-                                                Свързваме правилните хора с правилните възможности. <br />
+                                                Свързваме правилните хора с правилните възможности.
+                                            </h2>
+                                            <h2 className='mt-3'>
                                                 Покажи своя потенциал или открий точния талант – всичко започва тук.
                                             </h2>
                                         </div>
+
+                                        <hr className='mt-0 mb-3 text-white d-md-none' />
+
 
                                         {/* SPLIT CONTENT */}
                                         <div className="split-container two-columns">
 
                                             {/* LEFT */}
-                                            <div className="split-box">
-                                                <h3>За Кандидати</h3>
-                                                <p className='welcome-effect'>
+                                            <div className="split-box left-box">
+                                                <h3 className='text-white'>За Кандидати</h3>
+                                                <p className='welcome-effect text-end'>
                                                     Създай професионално CV, подобри уменията си и
                                                     се представи пред работодатели, които търсят точно теб.
                                                 </p>
@@ -561,10 +568,11 @@ export default function Welcome({ articles }) {
 
                                             {/* DIVIDER */}
                                             <div className="split-divider"></div>
+                                            <hr className='mt-0 mb-3 text-white d-md-none' />
 
                                             {/* RIGHT */}
                                             <div className="split-box right-box">
-                                                <h3>За Работодатели</h3>
+                                                <h3 className='text-white'>За Работодатели</h3>
                                                 <p className='welcome-effect'>
                                                     Намери подходящите кандидати бързо и ефективно.
                                                     Управлявай процеса по подбор и изгради силен екип.
@@ -581,7 +589,7 @@ export default function Welcome({ articles }) {
 
                                     {/* DECOR CIRCLES */}
                                     <div className="twm-bold-circle-right" />
-                                    <div className="twm-bold-circle-left" />
+                                    {/* <div className="twm-bold-circle-left" /> */}
                                 </div>
                             </div>
 
@@ -1009,16 +1017,16 @@ export default function Welcome({ articles }) {
                 </div>
             </section>
 
-            <section className="section-full p-t120 p-b90 site-bg-gray twm-testimonial-2-area">
+            {/* <section className="section-full p-t120 p-b90 site-bg-gray twm-testimonial-2-area">
 
-                {/* TITLE START */}
+
                 <div className="section-head center wt-small-separator-outer">
                     <div className="wt-small-separator site-text-primary">
                         <div>Clients Testimonials</div>
                     </div>
                     <h2 className="wt-title">What Our Customers Say About Us</h2>
                 </div>
-                {/* TITLE END */}
+
 
                 <div className="container">
                     <div className="section-content">
@@ -1042,13 +1050,12 @@ export default function Welcome({ articles }) {
                             aria-label="Testimonials"
                         >
 
-                            {/* Testimonial 1 */}
                             <SplideSlide>
                                 <div className="twm-testimonial-2">
                                     <div className="twm-testimonial-2-content">
-                                        {/* <div className="twm-testi-media">
+                                        <div className="twm-testi-media">
                                             <img src="/images/testimonials/pic-1.png" alt="Nikola Tesla" />
-                                        </div> */}
+                                        </div>
                                         <div className="twm-testi-content">
                                             <div className="twm-quote">
                                                 <img src="/images/quote-dark.png" alt="quote" />
@@ -1065,13 +1072,12 @@ export default function Welcome({ articles }) {
                                 </div>
                             </SplideSlide>
 
-                            {/* Testimonial 2 */}
                             <SplideSlide>
                                 <div className="twm-testimonial-2">
                                     <div className="twm-testimonial-2-content">
-                                        {/* <div className="twm-testi-media">
+                                        <div className="twm-testi-media">
                                             <img src="/images/testimonials/pic-2.png" alt="Collis Pong" />
-                                        </div> */}
+                                        </div>
                                         <div className="twm-testi-content">
                                             <div className="twm-quote">
                                                 <img src="/images/quote-dark.png" alt="quote" />
@@ -1088,13 +1094,12 @@ export default function Welcome({ articles }) {
                                 </div>
                             </SplideSlide>
 
-                            {/* Testimonial 3 */}
                             <SplideSlide>
                                 <div className="twm-testimonial-2">
                                     <div className="twm-testimonial-2-content">
-                                        {/* <div className="twm-testi-media">
+                                        <div className="twm-testi-media">
                                             <img src="/images/testimonials/pic-3.png" alt="Nikola Tesla" />
-                                        </div> */}
+                                        </div>
                                         <div className="twm-testi-content">
                                             <div className="twm-quote">
                                                 <img src="/images/quote-dark.png" alt="quote" />
@@ -1111,13 +1116,12 @@ export default function Welcome({ articles }) {
                                 </div>
                             </SplideSlide>
 
-                            {/* Testimonial 4 */}
                             <SplideSlide>
                                 <div className="twm-testimonial-2">
                                     <div className="twm-testimonial-2-content">
-                                        {/* <div className="twm-testi-media">
+                                        <div className="twm-testi-media">
                                             <img src="/images/testimonials/pic-4.png" alt="Collis Pong" />
-                                        </div> */}
+                                        </div>
                                         <div className="twm-testi-content">
                                             <div className="twm-quote">
                                                 <img src="/images/quote-dark.png" alt="quote" />
@@ -1138,7 +1142,7 @@ export default function Welcome({ articles }) {
 
                     </div>
                 </div>
-            </section>
+            </section> */}
 
 
 

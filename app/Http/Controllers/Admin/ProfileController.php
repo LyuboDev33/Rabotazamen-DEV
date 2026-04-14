@@ -79,11 +79,13 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('deleteAccountBag', [
-            'password' => ['required', 'current_password'],
-        ]);
-
         $user = $request->user();
+
+        if ($user->password) {
+            $request->validateWithBag('deleteAccountBag', [
+                'password' => ['required', 'current_password'],
+            ]);
+        }
 
         Auth::logout();
 
@@ -95,7 +97,7 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-     /**
+    /**
      * Download the XML audit file
      */
     public function downloadStaticXML()
@@ -145,7 +147,7 @@ class ProfileController extends Controller
                 'vatPercent' => $vatPercent,
             ])
             ->header('Content-Type', 'application/xml; charset=Windows-1251');
-            // ->header('Content-Disposition', 'attachment; filename="Softex-audit.xml"'); // enable for download
+        // ->header('Content-Disposition', 'attachment; filename="Softex-audit.xml"'); // enable for download
 
     }
 }

@@ -3415,7 +3415,7 @@ ol li {
     }
 
     .header-style-3.mobile-sider-drawer-menu .icon-bar {
-        transition: all 0.5s linear;
+        transition: all 0.2s linear;
         position: relative;
     }
 
@@ -7755,7 +7755,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     .section-full.p-t120,
     .section-full.p-b90,
     .section-full.p-tb120 {
-        padding-top: 120px;
+        padding-top: 50px;
         padding-bottom: 10px;
     }
 }
@@ -8593,7 +8593,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    box-shadow: -5px 10px 25px rgba(56, 152, 226, 0.4);
+    box-shadow: -3px 3px 25px rgba(56, 152, 226, 0.4);
 }
 
 .twm-w-process-steps .twm-w-pro-top .twm-title {
@@ -9749,9 +9749,6 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     background: linear-gradient(to bottom, transparent, #ffffff70, transparent);
 }
 
-.left-box {
-    padding-right: 40px;
-}
 
 .right-box {
     padding-left: 40px;
@@ -9910,7 +9907,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 .twm-explore-content .twm-title-large h2 {
     color: #fff;
     text-align: center;
-    font-size: 34px;
+    font-size: 26px;
     width: 80%;
     margin: 0 auto;
 }
@@ -9918,6 +9915,11 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 @media (max-width: 768px) {
     .twm-explore-content .twm-title-large h2 {
         font-size: 30px;
+    }
+
+    .twm-explore-content .twm-title-large h2  {
+        width: 100%;
+        font-size: 22px;
     }
 }
 
@@ -12335,7 +12337,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 @media (max-width: 992px) {
     .twm-home1-banner-section {
         position: relative;
-        padding-top: 120px;
+        padding-top: 50px;
         overflow: hidden;
     }
 }
@@ -13480,6 +13482,7 @@ strong {
 .content-admin-main .panel.panel-default {
     border-radius: 10px;
     background: #fff;
+    box-shadow: -3px 3px 25px #0000000f;
 }
 
 .wt-panel-heading {
@@ -15213,9 +15216,6 @@ strong {
     justify-content: center;
 }
 
-.twm-model-popup .modal-content .modal-footer .site-button {
-    padding: 4px 20px;
-}
 
 .twm-msg-noti {
     background-color: #1967d2;
@@ -17739,7 +17739,11 @@ strong {
   }
 } */
 .twm-log-reg-form-wrap .twm-log-reg-inner {
-    padding: 20px 20px;
+   padding: 20px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 @media (max-width: 575px) {
