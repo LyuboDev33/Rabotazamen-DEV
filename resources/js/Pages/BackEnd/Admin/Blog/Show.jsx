@@ -98,7 +98,7 @@ export default function UpdateBlog() {
                                         <label>Съдържание на статията</label>
 
                                         <TinyMCETextEditor
-                                            value={blogContent}
+                                            initialValue={blogContent}
                                             onChange={setBlogContent}
                                         />
 
