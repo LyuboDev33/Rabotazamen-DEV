@@ -106,7 +106,7 @@ export default function ShowUser() {
                                 <div className="form-group">
                                     <h3>Информация за потребителя</h3>
 
-                                    <p><strong>Име:</strong> {user.name}</p>
+                                    <p><strong>Име:</strong> {user.first_name + " " + user.last_name}</p>
                                     <p><strong>Имейл:</strong> {user.email}</p>
                                     <p><strong>ID:</strong> {user.id}</p>
                                 </div>

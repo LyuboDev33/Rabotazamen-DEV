@@ -1,11 +1,13 @@
 import React from "react";
 import FrontEndLayout from "@/Layouts/FrontEndLayout";
 import { Head, Link } from "@inertiajs/react";
+import DOMPurify from "dompurify";
+
 
 export default function Blog({ article }) {
 
     console.log(article);
-    
+
 
     return (
         <>
@@ -38,34 +40,27 @@ export default function Blog({ article }) {
                                             </div>
                                             <div className="wt-post-title ">
                                                 <div className="wt-post-meta-list">
-                                                    <div className="wt-list-content post-date">April 05, 2023</div>
-                                                    <div className="wt-list-content post-author">By Mark Petter</div>
+                                                    <div className="wt-list-content post-date">
+                                                        {new Date(article.created_at).toLocaleDateString("bg-BG", {
+                                                            day: "2-digit",
+                                                            month: "long",
+                                                            year: "numeric",
+                                                        })}</div>
+                                                    <div className="wt-list-content post-author">
+                                                        {article.author.first_name + " " + article.author.last_name}
+                                                    </div>
                                                 </div>
-                                                <h3 className="post-title">How to convince recruiters and get your dream job</h3>
+                                                <h3 className="post-title">{article.blog_name}</h3>
                                             </div>
-                                            <div className="wt-post-discription">
-                                                {article.blog_content}
+                                            <div dangerouslySetInnerHTML={{
+                                                __html: DOMPurify.sanitize(article.blog_content),
+                                            }} className="wt-post-discription">
                                             </div>
-                                            <div className="post-single-list">
-                                                <ul className="description-list-2">
-                                                    <li>
-                                                        <i className="feather-check" />
-                                                        You need to create an account to find the best and preferred job.
-                                                    </li>
-                                                    <li>
-                                                        <i className="feather-check" />
-                                                        After creating the account, you have to apply for the desired job.
-                                                    </li>
-                                                    <li>
-                                                        <i className="feather-check" />
-                                                        After filling all the relevant information you have to upload your resume.
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                          
+
+
                                         </div>
                                     </div>
-                                    <div className="post-area-tags-wrap">
+                                    {/* <div className="post-area-tags-wrap">
                                         <div className="post-social-icons-wrap">
                                             <h4 className="mb-4">Share</h4>
                                             <ul className="post-social-icons">
@@ -73,12 +68,12 @@ export default function Blog({ article }) {
                                                 <li><a href=";" className="fab fa-linkedin-in" /></li>
                                             </ul>
                                         </div>
-                                    </div>
-                            
-                            
+                                    </div> */}
+
+
                                 </div>
                             </div>
-                        
+
                         </div>
                     </div>
                 </div>
