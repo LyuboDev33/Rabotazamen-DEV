@@ -6,9 +6,6 @@ import DOMPurify from "dompurify";
 
 export default function Blog({ article }) {
 
-    console.log(article);
-
-
     return (
         <>
             {/* SEO */}
