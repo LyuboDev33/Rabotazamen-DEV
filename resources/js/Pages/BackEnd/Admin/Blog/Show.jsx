@@ -5,7 +5,8 @@ import TinyMCETextEditor from '@/Components/TinyMCETextEditor';
 
 export default function UpdateBlog() {
 
-    const { flash, blog, errors } = usePage().props;
+    const { blog, errors } = usePage().props;
+    const { flash } = usePage();
     const [blogContent, setBlogContent] = useState(blog.blog_content || "");
 
     return (
