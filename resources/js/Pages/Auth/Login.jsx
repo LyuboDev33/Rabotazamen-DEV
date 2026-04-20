@@ -17,7 +17,7 @@ export default function Login({ canResetPassword }) {
     return (
         <>
             <Head>
-                <title>Вход | Lunara - Магазин за детска мода</title>
+                <title>Вход | Rabotazamen</title>
                 <link rel="icon" href="/assets/images/favicon.ico"></link>
 
             </Head>

@@ -50,6 +50,9 @@ class GoogleAuthController extends Controller
             ]);
 
             $user->roles()->attach($role->id);
+
+            $user->sendEmailVerificationNotification();
+
         } else {
 
             $user->update([

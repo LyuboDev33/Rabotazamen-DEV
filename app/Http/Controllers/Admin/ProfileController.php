@@ -44,7 +44,7 @@ class ProfileController extends Controller
             'email.email' => 'Моля въведете валиден имейл',
             'profile_pic.image' => 'Файлът трябва да е изображение',
             'profile_pic.mimes' => 'Файлът трябва да е jpg, jpeg или png',
-            'uploaded' => 'Изображението не може да надвишава 2MB!',
+            'profile_pic.uploaded' => 'Изображението не може да надвишава 2MB!',
             'phone.max' => 'Максимално разрешена дължина е 50 символа',
 
         ]);
@@ -80,12 +80,6 @@ class ProfileController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $user = $request->user();
-
-        if ($user->password) {
-            $request->validateWithBag('deleteAccountBag', [
-                'password' => ['required', 'current_password'],
-            ]);
-        }
 
         Auth::logout();
 

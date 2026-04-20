@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class TicketMessage extends Model
 {
     protected $fillable = [
-        'ticket_id',          // which ticket this message belongs to
-        'message_content',    // text of the message
-        'sender_name',        // name of the sender
-        'sender_role',        // user or admin
-        'user_id',            // nullable if admin sent
-        'admin_id',           // nullable if user sent
-        'ticket_is_seen',     // boolean for notifications
+        'ticket_id',
+        'message_content',
+        'sender_name',
+        'sender_role',
+        'user_id',
+        'admin_id',
+        'ticket_is_seen', 
         'created_at',
         'updated_at',
     ];

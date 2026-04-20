@@ -322,36 +322,10 @@ export default function Profile() {
                 </div>
 
                 <div className="modal-body text-center">
-                    {user.google_id ?
-                        <p>
-                           С изтриването на акаунта си, ще загубите всичко до него? <br />
-                           Сигурни ли сте, че искате да го изтриете?
-                        </p>
-                        :
-                        <p>
-                            Въведете паролата си, за да потвърдите изтриването на
-                            акаунта.
-                        </p>
-                    }
-
-                    {!user.google_id ?
-                        <div className="form-group">
-                            <label htmlFor="password">Парола</label>
-                            <input
-                                type="password"
-                                name="password"
-                                id="password"
-                                className="form-control"
-                            />
-
-                            {errors?.deleteAccountBag?.password && (
-                                <p className="text-danger mt-1">
-                                    {errors.deleteAccountBag.password}
-                                </p>
-                            )}
-                        </div>
-                        : ''}
-
+                    <p>
+                        С изтриването на акаунта си, ще загубите всичко до него? <br />
+                        Сигурни ли сте, че искате да го изтриете?
+                    </p>
                 </div>
 
                 <div className="modal-footer">

@@ -2,18 +2,21 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Backend\Company;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
 use App\Notifications\ResetPasswordNotification;
+use App\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, Billable;
@@ -97,11 +100,41 @@ class User extends Authenticatable
         return $this->hasMany(Blog::class, 'author_id');
     }
 
+    /**
+     * Get a candidate
+     */
     public function candidate()
     {
         return $this->hasOne(Candidate::class);
     }
 
+    /**
+     * Many-to-many: User can have many Companies
+     */
+    public function companies(): BelongsToMany
+    {
+        return $this->belongsToMany(Company::class);
+    }
+
+    /**
+     * One to many: 1 User can have multiple tickets
+     * All tickets belong to 1 User only
+     */
+    public function tickets(): HasMany {
+        return $this->hasMany(Ticket::class);
+    }
+
+    /** Email notifications */
+    /** -------------------------------------------------------------------- **/
+    /** Email notifications */
+
+    /** Send an email verification once a user registers */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail());
+    }
+
+    /** Send an email when a user requests password reset */
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));

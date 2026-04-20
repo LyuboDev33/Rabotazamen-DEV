@@ -9823,7 +9823,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .twm-explore-content {
-    background-color: #1967d2;
+    background-color: #738298;
     border-radius: 30px;
     padding: 30px 121px;
     position: relative;
@@ -13341,7 +13341,7 @@ strong {
 }
 
 .listing-user .dropdown-toggle {
-    padding-right: 20px;
+    padding-right: 5px;
     display: block;
 }
 

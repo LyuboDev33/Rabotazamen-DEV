@@ -24,14 +24,14 @@ export default function JobCategories() {
                     <div className="panel-heading wt-panel-heading p-a15 d-flex">
                         <h4 className="panel-tittle m-a0">Категории и роли в системата</h4>
                         <hr className='hr-users' />
-                        {can('jobcategory.create') && (
+                        {/* {can('jobcategory.create') && ( */}
                             <Link
                                 className='btn btn-primary text-white rounded-pill w-fit-content'
                                 href='/dashboard/admin/job-categories/create-view'
                             >
                                 Създай категория
                             </Link>
-                        )}
+                        {/* )} */}
                     </div>
 
                     <div className="panel-body wt-panel-body">
@@ -66,7 +66,7 @@ export default function JobCategories() {
                                                 </td>
 
                                                 <td className='d-flex last-td-edit'>
-                                                    {can('jobcategory.edit') && (
+                                                    {/* {can('jobcategory.edit') && ( */}
                                                         <Link
                                                             href={`/dashboard/admin/job-category/edit/${category.id}`}
                                                             className='site-button pt-2 pb-2 pe-1 rounded-pill me-1'
@@ -74,9 +74,9 @@ export default function JobCategories() {
                                                             Редактирай
                                                             <i className="fa fa-edit ms-1" />
                                                         </Link>
-                                                    )}
+                                                    {/* )} */}
 
-                                                    {can('jobcategory.delete') && (
+                                                    {/* {can('jobcategory.delete') && ( */}
                                                         <button
                                                             onClick={() => {
                                                                 setDeleteModal(true);
@@ -87,7 +87,7 @@ export default function JobCategories() {
                                                             Изтрий
                                                             <i className="fa fa-trash-alt ms-1" />
                                                         </button>
-                                                    )}
+                                                    {/* )} */}
                                                 </td>
                                             </tr>
                                         ))

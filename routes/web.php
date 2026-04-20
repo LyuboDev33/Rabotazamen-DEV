@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Backend\SupportTicketController;
 use App\Http\Controllers\Backend\CandidateController;
+use App\Http\Controllers\Backend\EmployerController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,7 @@ Route::get('/blog/{slug}', [FrontendController::class, 'blogShow']);
 
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
 
     Route::get('/dashboard', function () {
@@ -33,8 +34,9 @@ Route::middleware('auth')->group(function () {
 
     /** ALL COMMON ROUTES FOR THE DASHBOARD (DOESN'T MATTER THE ACCESS TYPE) */
 
-       /** Support Tickets */
+    /** Support Tickets */
     Route::get('/support/tickets', [SupportTicketController::class,  'index'])->name('user.tickets');
+
     Route::get('/support/tickets/create-ticket', [SupportTicketController::class,  'createTicketView']);
     Route::post('/support/tickets/create', [SupportTicketController::class,  'create'])->name('ticket.create');
 
@@ -53,21 +55,20 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/cv-documents', [CandidateController::class, 'documentsCV']);
             Route::post('/cv-documents/create-or-update', [CandidateController::class, 'createOrUpdateCandidate'])
-                    ->name('candidate.create.or.update');
-
-    });
+                ->name('candidate.create.or.update');
+        });
     /** END OF CANDIDATE MIDDLEWARE  */
 
 
-    Route::middleware('employer')->group(function () {
+    Route::middleware('employer')
+        ->prefix('dashboard/employer')
+        ->group(function () {
 
-
-    });
-
-
-
+            Route::get('/company-details', [EmployerController::class, 'company']);
+            Route::post('/company-details', [EmployerController::class, 'store'])->name('employer.store');
+            Route::put('/company-details/{company}', [EmployerController::class, 'update'])->name('employer.update');
+        });
 });
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
-

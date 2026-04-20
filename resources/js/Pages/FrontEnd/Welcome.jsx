@@ -219,52 +219,105 @@ export default function Welcome({ articles }) {
                 </div>
             </section>
 
-            <section className="p-t90 p-50">
-                <div className="auto-container">
-                    <div className="row wow fadeInUp animated" style={{ visibility: 'visible', animationName: 'fadeInUp' }}>
-                        {/* РАБОТОДАТЕЛИ */}
-                        <div className="banner-style-one -type-2 col-lg-6 col-md-12 col-sm-12">
-                            <div className="inner-box">
-                                <div className="content">
-                                    <h2 className='text-black text-end'>Работодатели</h2>
-                                    <p className="text-white pb-2 text-p text-end">Осигурете си стратегическо предимство на пазара на труда, като откриете идеалните таланти чрез прецизна технология и безкомпромисно качество на подбора.</p>
-                                    <div className='d-flex justify-content-end'>
-                                        <a
-                                            href="/how-it-works-employers"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="theme-btn btn-style-five text-right"
-                                        >
-                                            Разбери повече
-                                        </a>
+
+            <section className="section-full p-t120 p-b120 twm-explore-area bg-cover">
+                <div className="container">
+                    <div className="section-content">
+                        <div className="row">
+
+                            {/* CONTENT FULL WIDTH */}
+                            <div className="col-lg-12">
+                                <div className="twm-explore-content-outer">
+
+                                    <div className="twm-explore-content custom-split">
+
+                                        {/* DECOR ELEMENTS */}
+                                        <div className="twm-l-line-1" />
+                                        <div className="twm-l-line-2" />
+                                        <div className="twm-r-circle-1" />
+                                        <div className="twm-r-circle-2" />
+
+                                        {/* 🔥 SIDE IMAGES */}
+                                        <img
+                                            src="/assets/images/pic2.png"
+                                            alt="Candidate"
+                                            className="side-image left-image"
+                                        />
+
+                                        <img
+                                            src="/assets/images/pic1.png"
+                                            alt="Employer"
+                                            className="side-image right-image"
+                                        />
+
+
+                                        <div className="twm-title-large">
+                                            <h2>
+                                                Свързваме правилните хора с правилните възможности.
+                                            </h2>
+                                            <h2 className='mt-3'>
+                                                Покажи своя потенциал или открий точния талант – всичко започва тук.
+                                            </h2>
+                                        </div>
+
+                                        <hr className='mt-0 mb-3 text-white d-md-none' />
+
+
+                                        {/* SPLIT CONTENT */}
+                                        <div className="split-container two-columns">
+
+                                            {/* LEFT */}
+                                            <div className="split-box left-box">
+                                                <h3 className='text-white'>За Кандидати</h3>
+                                                <p className='welcome-effect text-end'>
+                                                    Създай професионално CV, подобри уменията си и
+                                                    се представи пред работодатели, които търсят точно теб.
+                                                </p>
+
+                                                <a className="site-button">
+                                                    Регистрирай се
+                                                </a>
+                                            </div>
+
+                                            {/* DIVIDER */}
+                                            <div className="split-divider"></div>
+                                            <hr className='mt-0 mb-3 text-white d-md-none' />
+
+                                            {/* RIGHT */}
+                                            <div className="split-box right-box">
+                                                <h3 className='text-white'>За Работодатели</h3>
+                                                <p className='welcome-effect'>
+                                                    Намери подходящите кандидати бързо и ефективно.
+                                                    Управлявай процеса по подбор и изгради силен екип.
+                                                </p>
+
+                                                <a className="site-button">
+                                                    Регистрирай компания
+                                                </a>
+                                            </div>
+
+                                        </div>
+
                                     </div>
+
+                                    {/* DECOR CIRCLES */}
+                                    <div className="twm-bold-circle-right" />
+                                    {/* <div className="twm-bold-circle-left" /> */}
                                 </div>
-                                <figure className="image"><img src="/assets/images/employ.png" alt="Employers" /></figure>
                             </div>
+
                         </div>
 
-                        {/* КАНДИДАТИ */}
-                        <div className="banner-style-two -type-2 col-lg-6 col-md-12 col-sm-12">
-                            <div className="inner-box">
-                                <div className="content">
-                                    <h2 className="text-black">Кандидати</h2>
-                                    <p className="text-white pb-2 text-p">Поеми контрол над кариерата си: изгради впечатляващ профил и позволи на топ работодатели да те открият, предлагайки ти възможности, които напълно отговарят на твоя потенциал.</p>
-                                    <a
-                                        href="/how-it-works-candidates"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="theme-btn btn-style-five color-dark-1"
-                                    >
-                                        Разбери как работи за теб
-                                    </a>
-                                </div>
-                                <figure className="image"><img src="/assets/images/candidate.png" alt="Candidates" /></figure>
-                            </div>
+                        {/* CTA */}
+                        <div className="text-center job-categories-btn pt-30">
+                            <a href="#" className="site-button">
+                                Заяви услуга
+                            </a>
                         </div>
+
                     </div>
                 </div>
             </section>
-
 
 
             <section className="section-full p-t20 p-b20 site-bg-white twm-how-it-work-area">
@@ -345,6 +398,53 @@ export default function Welcome({ articles }) {
                     </div>
                 </div>
             </section>
+
+                  <section className="p-t40 p-50 pb-40">
+                <div className="auto-container">
+                    <div className="row wow fadeInUp animated" style={{ visibility: 'visible', animationName: 'fadeInUp' }}>
+                        {/* РАБОТОДАТЕЛИ */}
+                        <div className="banner-style-one -type-2 col-lg-6 col-md-12 col-sm-12">
+                            <div className="inner-box">
+                                <div className="content">
+                                    <h2 className='text-black text-end'>Работодатели</h2>
+                                    <p className="text-white pb-2 text-p text-end">Осигурете си стратегическо предимство на пазара на труда, като откриете идеалните таланти чрез прецизна технология и безкомпромисно качество на подбора.</p>
+                                    <div className='d-flex justify-content-end'>
+                                        <a
+                                            href="/how-it-works-employers"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="theme-btn btn-style-five text-right"
+                                        >
+                                            Разбери повече
+                                        </a>
+                                    </div>
+                                </div>
+                                <figure className="image"><img src="/assets/images/employ.png" alt="Employers" /></figure>
+                            </div>
+                        </div>
+
+                        {/* КАНДИДАТИ */}
+                        <div className="banner-style-two -type-2 col-lg-6 col-md-12 col-sm-12">
+                            <div className="inner-box">
+                                <div className="content">
+                                    <h2 className="text-black">Кандидати</h2>
+                                    <p className="text-white pb-2 text-p">Поеми контрол над кариерата си: изгради впечатляващ профил и позволи на топ работодатели да те открият, предлагайки ти възможности, които напълно отговарят на твоя потенциал.</p>
+                                    <a
+                                        href="/how-it-works-candidates"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="theme-btn btn-style-five color-dark-1"
+                                    >
+                                        Разбери как работи за теб
+                                    </a>
+                                </div>
+                                <figure className="image"><img src="/assets/images/candidate.png" alt="Candidates" /></figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
 
             <section className="twm-blog-post-h-page6-wrap section-full p-t60 p-b60 site-bg-white twm-job-categories-hpage-6-area">
@@ -503,105 +603,6 @@ export default function Welcome({ articles }) {
                         <div className="text-center job-categories-btn">
                             <a href="#" className="site-button">Всички категории</a>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <section className="section-full p-t120 p-b120 twm-explore-area bg-cover">
-                <div className="container">
-                    <div className="section-content">
-                        <div className="row">
-
-                            {/* CONTENT FULL WIDTH */}
-                            <div className="col-lg-12">
-                                <div className="twm-explore-content-outer">
-
-                                    <div className="twm-explore-content custom-split">
-
-                                        {/* DECOR ELEMENTS */}
-                                        <div className="twm-l-line-1" />
-                                        <div className="twm-l-line-2" />
-                                        <div className="twm-r-circle-1" />
-                                        <div className="twm-r-circle-2" />
-
-                                        {/* 🔥 SIDE IMAGES */}
-                                        <img
-                                            src="/assets/images/pic2.png"
-                                            alt="Candidate"
-                                            className="side-image left-image"
-                                        />
-
-                                        <img
-                                            src="/assets/images/pic1.png"
-                                            alt="Employer"
-                                            className="side-image right-image"
-                                        />
-
-
-                                        <div className="twm-title-large">
-                                            <h2>
-                                                Свързваме правилните хора с правилните възможности.
-                                            </h2>
-                                            <h2 className='mt-3'>
-                                                Покажи своя потенциал или открий точния талант – всичко започва тук.
-                                            </h2>
-                                        </div>
-
-                                        <hr className='mt-0 mb-3 text-white d-md-none' />
-
-
-                                        {/* SPLIT CONTENT */}
-                                        <div className="split-container two-columns">
-
-                                            {/* LEFT */}
-                                            <div className="split-box left-box">
-                                                <h3 className='text-white'>За Кандидати</h3>
-                                                <p className='welcome-effect text-end'>
-                                                    Създай професионално CV, подобри уменията си и
-                                                    се представи пред работодатели, които търсят точно теб.
-                                                </p>
-
-                                                <a className="site-button">
-                                                    Регистрирай се
-                                                </a>
-                                            </div>
-
-                                            {/* DIVIDER */}
-                                            <div className="split-divider"></div>
-                                            <hr className='mt-0 mb-3 text-white d-md-none' />
-
-                                            {/* RIGHT */}
-                                            <div className="split-box right-box">
-                                                <h3 className='text-white'>За Работодатели</h3>
-                                                <p className='welcome-effect'>
-                                                    Намери подходящите кандидати бързо и ефективно.
-                                                    Управлявай процеса по подбор и изгради силен екип.
-                                                </p>
-
-                                                <a className="site-button">
-                                                    Регистрирай компания
-                                                </a>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    {/* DECOR CIRCLES */}
-                                    <div className="twm-bold-circle-right" />
-                                    {/* <div className="twm-bold-circle-left" /> */}
-                                </div>
-                            </div>
-
-                        </div>
-
-                        {/* CTA */}
-                        <div className="text-center job-categories-btn pt-30">
-                            <a href="#" className="site-button">
-                                Заяви услуга
-                            </a>
-                        </div>
-
                     </div>
                 </div>
             </section>

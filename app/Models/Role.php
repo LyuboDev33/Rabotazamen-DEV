@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Role extends Model
 {
 
+    const SUPER_ADMIN = 'super_admin';
+    const ADMIN = 'admin';
+    const EMPLOYER = 'employer';
+    const CANDIDATE = 'candidate';
+
        /**
      * The attributes that are mass assignable.
      *

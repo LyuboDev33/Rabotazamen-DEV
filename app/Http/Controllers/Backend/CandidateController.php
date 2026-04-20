@@ -22,7 +22,7 @@ class CandidateController extends Controller
      */
     public function createOrUpdateCandidate (Request $request) {
 
-        
+
 
     }
 

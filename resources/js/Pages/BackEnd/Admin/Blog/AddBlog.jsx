@@ -1,9 +1,11 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import { Head, Form, usePage } from '@inertiajs/react';
+import TinyMCETextEditor from '@/Components/TinyMCETextEditor';
+import { useState } from 'react';
 
 export default function AddBlogView() {
 
-
+    const [blogContent, setBlogContent] = useState('');
     const { errors } = usePage().props;
 
     return (
@@ -90,12 +92,12 @@ export default function AddBlogView() {
 
                                         <label>Съдържание на статията</label>
 
-                                        <textarea
-                                            className="form-control"
-                                            name="blog_content"
-                                            rows={10}
-                                            placeholder="Напишете съдържанието на статията..."
-                                        />
+                                             <TinyMCETextEditor
+                                                value={blogContent}
+                                                onChange={setBlogContent}
+                                            />
+                                            <input type="hidden" name="blog_content" value={blogContent} />
+
 
                                         {errors.blog_content && (
                                             <div className="text-danger mt-1">

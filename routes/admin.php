@@ -6,15 +6,14 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Backend\CompaniesController;
 use App\Http\Controllers\Backend\SupportTicketController;
 use App\Models\JobCategory;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-Route::middleware('auth')->group(function () {
-
-
+Route::middleware(['auth', 'verified'])->group(function () {
 
     /** All Admin Routing and middleware */
     Route::middleware('admin')
@@ -51,6 +50,12 @@ Route::middleware('auth')->group(function () {
                 /** All Users Routing */
                 Route::get('/users', [UsersController::class, 'index'])->name('users.all');
                 Route::get('/users/{user_id}/edit', [UsersController::class, 'show'])->name('user.show');
+
+                /** All routes for the companies */
+                Route::get('/companies', [CompaniesController::class, 'index']);
+                Route::get('/companies/{company_eik}', [CompaniesController::class, 'show']);
+                Route::patch('/company/update-status', [CompaniesController::class, 'updateCompanyStatus']);
+                Route::delete('/company/delete', [CompaniesController::class, 'delete'])->name('company.delete');
 
                 /** All cities routes */
                 Route::get('/cities', [CityController::class, 'index']);

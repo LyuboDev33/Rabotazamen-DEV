@@ -73,8 +73,6 @@ class RegisteredUserController extends Controller
 
         $result = $response->json();
 
-        return $result;
-
         return $result['success'] && ($result['action'] ?? '') === $expectedAction
             && ($result['score'] ?? 0) >= 0.5;
     }
@@ -123,9 +121,7 @@ class RegisteredUserController extends Controller
         ]);
 
 
-        $user->roles()->attach(
-            Role::where('role_name', $role)->first()
-        );
+        $user->roles()->attach(Role::where('role_name', $role)->first());
 
         event(new Registered($user));
         Auth::login($user);

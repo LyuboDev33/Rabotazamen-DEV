@@ -46,6 +46,7 @@ class ResetPasswordNotification extends Notification
             ->from('admin@rabotazamen.bg', 'Rabotazamen')
             ->view('emails.reset-password', [
                 'url' => $url,
+                'appURL' => env('APP_URL'),
                 'user' => $notifiable,
             ]);
     }

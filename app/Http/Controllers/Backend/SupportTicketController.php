@@ -15,7 +15,6 @@ class SupportTicketController extends Controller
     /** Return all the tickets to the Admins */
     public function indexAdmin()
     {
-
         return Inertia::render('BackEnd/Admin/SupportTickets/Index');
     }
 
@@ -30,6 +29,21 @@ class SupportTicketController extends Controller
             'supportTickets' => $tickets
         ]);
     }
+
+    /** Show the ticket with the communication
+     * @param int $ticket_id
+    */
+    public function show ($ticket_id) {
+        $ticket = Ticket::where('id', $ticket_id)->first();
+
+        if(!$ticket) {
+            return Inertia::render('Errors/NoTicketFound');
+        }
+
+        return Inertia::render('');
+
+    }
+
     /** Create the support ticket */
     public function createTicketView()
     {
@@ -48,23 +62,11 @@ class SupportTicketController extends Controller
             'ticket_content' => ['required', 'string'],
         ]);
 
-
-        $ticket = Ticket::create([
+        Ticket::create([
             'ticket_name' => $validated['ticket_name'],
             'ticket_reason' => $validated['ticket_reason'],
             'user_id' => Auth::id(),
-            'status' => 'open'
-        ]);
-
-        TicketMessage::create([
-            'ticket_id' => $ticket->id,
-            'ticket_content' => $validated['ticket_content'],
-
-            'ticket_sender_name' => Auth::user()->name,
-            'ticket_sender_role' => 'user',
-
-            'user_id' => Auth::id(),
-            'admin_id' => null
+            'status' => Ticket::OPEN
         ]);
 
         Inertia::flash([

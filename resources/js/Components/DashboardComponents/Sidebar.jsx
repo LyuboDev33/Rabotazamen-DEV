@@ -58,7 +58,7 @@ export default function Sidebar() {
                                 <Link href="/dashboard/admin/cities">
                                     <i className="fa fa-city" />
                                     <span className="admin-nav-text">
-                                       Градове
+                                        Градове
                                     </span>
                                 </Link>
                             </li>
@@ -84,8 +84,17 @@ export default function Sidebar() {
                                 </Link>
                             </li>
 
-                              <li className={isActive('/dashboard/admin/job-categories') ||
-                              isActive('/dashboard/admin/job-category/edit')
+                            <li className={isActive('/dashboard/admin/companies') ? 'active' : ''}>
+                                <Link href="/dashboard/admin/companies">
+                                    <i className="fa-solid fa-building"></i>
+                                    <span className="admin-nav-text">
+                                        Фирми
+                                    </span>
+                                </Link>
+                            </li>
+
+                            <li className={isActive('/dashboard/admin/job-categories') ||
+                                isActive('/dashboard/admin/job-category/edit')
                                 ? 'active' : ''}>
                                 <Link href="/dashboard/admin/job-categories">
                                     <i className="fa fa-briefcase" />
@@ -169,7 +178,7 @@ export default function Sidebar() {
                                 <li className={isActive('/dashboard/candidate/cv-documents') ? 'active' : ''}>
                                     <Link href="/dashboard/candidate/cv-documents">
                                         <i className="fa fa-file-alt" />
-                                        <span className="admin-nav-text">CV и документи</span>
+                                        <span className="admin-nav-text">CV и Документи</span>
                                     </Link>
                                 </li>
 
@@ -302,8 +311,8 @@ export default function Sidebar() {
                                     </Link>
                                 </li>
 
-                                <li className={isActive('/dashboard/employer/company') ? 'active' : ''}>
-                                    <Link href="/dashboard/employer/company">
+                                <li className={isActive('/dashboard/employer/company-details') ? 'active' : ''}>
+                                    <Link href="/dashboard/employer/company-details">
                                         <i className="fa fa-building" />
                                         <span className="admin-nav-text">Компания</span>
                                     </Link>
