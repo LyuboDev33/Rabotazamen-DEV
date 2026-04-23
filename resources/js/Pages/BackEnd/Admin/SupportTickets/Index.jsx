@@ -1,77 +1,129 @@
 import React from "react";
 import DashboardLayout from "@/Layouts/DashboardLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 
 export default function SupportTicket() {
+
+    const { flash } = usePage();
+    const { supportTickets } = usePage().props;
+
+    const renderStatus = (status) => {
+        switch (status) {
+            case 'open':
+                return <span className="badge bg-success rounded-pill p-2">Отворен</span>;
+
+            case 'pending':
+                return <span className="badge bg-warning text-dark rounded-pill p-2">В изчакване</span>;
+
+            case 'closed':
+                return <span className="badge bg-danger rounded-pill p-2">Затворен</span>;
+
+            default:
+                return <span className="badge bg-secondary rounded-pill p-2">Неизвестен</span>;
+        }
+    };
 
     return (
         <>
             <Head>
-                <title>Админ | Създай статия</title>
+                <title>Моите тикети</title>
             </Head>
 
-             <div className="content-admin-main">
-          
-                <div className="panel panel-default">
-                    <div className="panel-heading wt-panel-heading p-a20">
-                        <h4 className="panel-tittle m-a0"><i className="far fa-envelope" />Всички тикети</h4>
+            <div className="content-admin-main">
+
+                <div className="panel panel-default site-bg-white">
+                    <div className="panel-heading wt-panel-heading p-a20 d-flex justify-content-between">
+                        <h4 className="panel-tittle m-a0">
+                            <i className="fa fa-ticket-alt me-2"></i>
+                            Вашите тикети
+                        </h4>
+
+                        <Link
+                            className="btn btn-info text-white rounded-pill"
+                            href="/support/tickets/create-ticket"
+                        >
+                            Създай тикет
+                        </Link>
                     </div>
-                    <div className="panel-body wt-panel-body bg-white">
-                        <div className="dashboard-messages-box">
-                            <div className="dashboard-message-avtar"><img src="images/user-avtar/pic1.jpg" alt /></div>
-                            <div className="dashboard-message-area">
-                                <h5>Lucy Smith - <span>24 April 2023</span></h5>
-                                <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop. Bring to the table win-win survival strategies to ensure proactive domination.</p>
-                                <div className="dropdown">
-                                    <a href="" className="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Reply
-                                    </a>
-                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <div className="dashboard-message-reply-textarea p-a20">
-                                            <div className="form-group wt-input-icon">
-                                                <div className="input-group">
-                                                    <i className="input-group-addon fa fa-pencil v-align-t " />
-                                                    <textarea aria-required="true" rows={4} cols={45} name="comment" className="form-control" placeholder="Message *" defaultValue={""} />
-                                                </div>
-                                            </div>
-                                            <div className="form-submit m-t10">
-                                                <button className="site-button" type="submit">Submit</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                    <div className="panel-body wt-panel-body">
+
+                        <div className="p-a20 table-responsive">
+
+                            <table className="table twm-table table-striped table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Заглавие</th>
+                                        <th>Причина</th>
+                                        <th>Статус</th>
+                                        <th>Дата</th>
+                                        <th>Действие</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    {supportTickets.length > 0 ? (
+                                        supportTickets.map(ticket => (
+                                            <tr key={ticket.id}>
+
+                                                <td>#{ticket.id}</td>
+
+                                                <td>
+                                                    <span className="site-text-primary">
+                                                        {ticket.ticket_name}
+                                                    </span>
+                                                </td>
+
+                                                <td>{ticket.ticket_reason}</td>
+
+                                                <td>
+                                                    {renderStatus(ticket.status)}
+                                                </td>
+
+                                                <td>
+                                                    {new Date(ticket.created_at).toLocaleDateString()}
+                                                </td>
+
+                                                <td>
+                                                    <Link
+                                                        href={route('tickets.show', ticket.id)}
+                                                        className="site-button-link site-text-primary"
+                                                    >
+                                                        Отвори
+                                                    </Link>
+                                                </td>
+
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan="6" className="text-center">
+                                                Нямате създадени тикети.
+                                            </td>
+                                        </tr>
+                                    )}
+
+                                </tbody>
+
+                            </table>
+
                         </div>
-                        <div className="dashboard-messages-box">
-                            <div className="dashboard-message-avtar"><img src="images/user-avtar/pic3.jpg" alt /></div>
-                            <div className="dashboard-message-area">
-                                <h5>Richred paul - <span>30 April 2023</span></h5>
-                                <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation is on the runway heading towards a streamlined cloud solution user generated content. Capitalize on low hanging fruit to identify a ballpark value added activity to beta test.</p>
-                            </div>
-                        </div>
-                        <div className="dashboard-messages-box">
-                            <div className="dashboard-message-avtar"><img src="images/user-avtar/pic4.jpg" alt /></div>
-                            <div className="dashboard-message-area">
-                                <h5>Jon Doe - <span>01 June 2023</span></h5>
-                                <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop. Bring to the table win-win survival strategies to ensure proactive domination.</p>
-                            </div>
-                        </div>
-                        <div className="dashboard-messages-box">
-                            <div className="dashboard-message-avtar"><img src="images/user-avtar/pic1.jpg" alt /></div>
-                            <div className="dashboard-message-area">
-                                <h5>Thomas Smith - <span>05 June 2023</span></h5>
-                                <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation is on the runway heading towards a streamlined cloud solution user generated content. Capitalize on low hanging fruit to identify a ballpark value added activity to beta test.</p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
+
             </div>
 
+            {flash.ticketSuccesCreation && (
+                <div className="alert alert-success animate__animated animate__fadeInUp">
+                    {flash.ticketSuccesCreation}
+                </div>
+            )}
 
         </>
-    )
-
+    );
 }
-
 
 SupportTicket.layout = page => <DashboardLayout children={page} />;

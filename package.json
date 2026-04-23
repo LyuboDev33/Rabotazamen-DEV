@@ -31,6 +31,7 @@
         "animate.css": "^4.1.1",
         "dompurify": "^3.4.0",
         "file-upload-with-preview": "^6.1.2",
+        "react-datepicker": "^9.1.0",
         "react-feather": "^2.0.10",
         "react-google-recaptcha-v3": "^1.11.0",
         "react-owl-carousel": "^2.3.3",

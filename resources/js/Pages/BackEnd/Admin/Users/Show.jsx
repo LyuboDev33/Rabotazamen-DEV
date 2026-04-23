@@ -23,7 +23,7 @@ export default function ShowUser() {
                         </Link>
 
                         <h4 className="panel-tittle m-a0">
-                            <i className="fa fa-user" /> Управление на роли за: {user.name}
+                            <i className="fa fa-user" /> Управление на роли за: {user.first_name + " " + user.last_name}
                         </h4>
                     </div>
 

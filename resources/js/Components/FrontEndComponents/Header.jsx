@@ -73,6 +73,9 @@ export default function Header() {
                                                 <li>
                                                     <Link href="/platform/candidate">За кандидати</Link>
                                                 </li>
+                                                <li>
+                                                    <Link href="/calculator">Калкулатор на заплатa</Link>
+                                                </li>
                                             </ul>
                                         </li>
 

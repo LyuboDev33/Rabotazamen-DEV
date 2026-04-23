@@ -10172,7 +10172,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     background-color: #fff;
     box-shadow: 0px 0px 40px rgba(56, 152, 226, 0.3);
     border-radius: 10px;
-    padding: 55px 70px;
+    padding: 20px 25px;
     position: relative;
     margin-top: 70px;
     margin-left: 30px;
@@ -13483,6 +13483,7 @@ strong {
     border-radius: 10px;
     background: #fff;
     box-shadow: -3px 3px 25px #0000000f;
+    position: relative;
 }
 
 .wt-panel-heading {

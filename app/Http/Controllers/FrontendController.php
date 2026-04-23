@@ -58,7 +58,10 @@ class FrontendController extends Controller
     }
 
 
-
+    /** Show the calculator view */
+    public function calculator () {
+        return Inertia::render('FrontEnd/Calculator');
+    }
 
 
 }

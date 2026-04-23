@@ -88,7 +88,7 @@ export default function SupportTicket() {
 
                                                 <td>
                                                     <Link
-                                                        // href={route('tickets.show', ticket.id)}
+                                                        href={route('tickets.show', ticket.id)}
                                                         className="site-button-link site-text-primary"
                                                     >
                                                         Отвори

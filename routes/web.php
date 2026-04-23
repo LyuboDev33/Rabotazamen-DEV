@@ -23,6 +23,8 @@ Route::get('/contact', [FrontendController::class, 'contact']);
 Route::get('/blog', [FrontendController::class, 'blog']);
 Route::get('/blog/{slug}', [FrontendController::class, 'blogShow']);
 
+Route::get('/calculator', [FrontendController::class, 'calculator']);
+
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -36,9 +38,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     /** Support Tickets */
     Route::get('/support/tickets', [SupportTicketController::class,  'index'])->name('user.tickets');
+    Route::get('/support/tickets/{ticket_id}', [SupportTicketController::class,  'show'])->name('tickets.show');
+
 
     Route::get('/support/tickets/create-ticket', [SupportTicketController::class,  'createTicketView']);
     Route::post('/support/tickets/create', [SupportTicketController::class,  'create'])->name('ticket.create');
+    Route::post('/support/message/reply', [SupportTicketController::class,  'reply'])->name('ticket.reply');
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

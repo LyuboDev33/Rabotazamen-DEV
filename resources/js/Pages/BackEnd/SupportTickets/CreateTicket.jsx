@@ -10,7 +10,7 @@ export default function CreateTicket() {
         <>
             <div className="content-admin-main">
 
-        
+
                 {/*Basic Information*/}
                 <div className="panel panel-default">
                     <div className="panel-heading wt-panel-heading p-a20">
@@ -75,7 +75,7 @@ export default function CreateTicket() {
                                     </div>
                                 </div>
 
-                             
+
 
                                 {/* Ticket Content */}
                                 <div className="col-md-12">

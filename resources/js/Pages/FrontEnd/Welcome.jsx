@@ -3,6 +3,7 @@ import { Head, Link } from '@inertiajs/react';
 import GetHiredCompanies from '@/Components/FrontEndComponents/GetHiredCompanies';
 import React from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import DOMPurify from "dompurify";
 
 
 
@@ -308,13 +309,6 @@ export default function Welcome({ articles }) {
 
                         </div>
 
-                        {/* CTA */}
-                        <div className="text-center job-categories-btn pt-30">
-                            <a href="#" className="site-button">
-                                Заяви услуга
-                            </a>
-                        </div>
-
                     </div>
                 </div>
             </section>
@@ -399,7 +393,7 @@ export default function Welcome({ articles }) {
                 </div>
             </section>
 
-                  <section className="p-t40 p-50 pb-40">
+            <section className="p-t40 p-50 pb-40">
                 <div className="auto-container">
                     <div className="row wow fadeInUp animated" style={{ visibility: 'visible', animationName: 'fadeInUp' }}>
                         {/* РАБОТОДАТЕЛИ */}
@@ -1248,7 +1242,7 @@ export default function Welcome({ articles }) {
 
                                                             <li className="post-author">
                                                                 <span>
-                                                                    {article.author ? article.author.name : 'Админ'}
+                                                                    {article.author ? article.author.first_name + " " + article.author.last_name : 'Админ'}
                                                                 </span>
                                                             </li>
                                                         </ul>
@@ -1265,11 +1259,11 @@ export default function Welcome({ articles }) {
 
                                                     {/* DESCRIPTION */}
                                                     <div className="wt-post-text">
-                                                        <p>
-                                                            {article.blog_content
-                                                                ? article.blog_content.slice(0, 100) + '...'
-                                                                : 'Няма описание'}
-                                                        </p>
+                                                        <p
+                                                            dangerouslySetInnerHTML={{
+                                                                __html: DOMPurify.sanitize(article.blog_content).slice(0, 80) + "...",
+                                                            }}
+                                                        />
                                                     </div>
 
                                                     {/* READ MORE */}

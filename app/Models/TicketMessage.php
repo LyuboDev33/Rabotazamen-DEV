@@ -9,12 +9,12 @@ class TicketMessage extends Model
 {
     protected $fillable = [
         'ticket_id',
-        'message_content',
-        'sender_name',
-        'sender_role',
-        'user_id',
+        'ticket_content',
+        'ticket_sender_name',
+        'ticket_sender_role',
+        'ticket_is_seen',
         'admin_id',
-        'ticket_is_seen', 
+        'user_id',
         'created_at',
         'updated_at',
     ];
