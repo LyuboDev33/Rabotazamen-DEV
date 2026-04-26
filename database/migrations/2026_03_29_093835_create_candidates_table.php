@@ -14,20 +14,17 @@ return new class extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('user_id')->unique()->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->cascadeOnDelete();
 
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('phone');
-            $table->string('city');
-
-            $table->text('cv')->nullable();
-            $table->text('experience')->nullable();
-            $table->text('skills')->nullable();
+            $table->string('profile_status')->nullable();
+            $table->string('professional_title')->nullable();
+            $table->json('skills')->nullable();
+            $table->json('work_model')->nullable();
+            $table->string('work_status')->nullable();
 
             $table->timestamps();
         });

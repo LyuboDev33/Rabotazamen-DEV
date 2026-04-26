@@ -22,9 +22,6 @@ export default function City() {
         });
     };
 
-    console.log(flash);
-
-
     return (
         <>
             <Head>
@@ -109,7 +106,7 @@ export default function City() {
             <Modal
                 show={deleteModal}
                 method="delete"
-                action={route('cities.destroy')} // ✅ NO PARAM HERE
+                action={route('cities.destroy')}
                 onSuccess={() => setDeleteModal(false)}
             >
                 <div className="modal-header">

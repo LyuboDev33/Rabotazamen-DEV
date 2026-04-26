@@ -14,6 +14,56 @@
 namespace App\Models\Backend{
 /**
  * @property int $id
+ * @property int $user_id
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $phone
+ * @property string $city
+ * @property string|null $cv
+ * @property string|null $experience
+ * @property string|null $skills
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereCv($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereExperience($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereSkills($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereUserId($value)
+ */
+	class Candidate extends \Eloquent {}
+}
+
+namespace App\Models\Backend\Candidate{
+/**
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateCV newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateCV newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateCV query()
+ */
+	class CandidateCV extends \Eloquent {}
+}
+
+namespace App\Models\Backend\Candidate{
+/**
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation query()
+ */
+	class CandidateEducation extends \Eloquent {}
+}
+
+namespace App\Models\Backend{
+/**
+ * @property int $id
  * @property string|null $status
  * @property string $company_eik
  * @property string $company_name
@@ -80,16 +130,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereUpdatedAt($value)
  */
 	class Blog extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * @property-read \App\Models\User|null $user
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate query()
- */
-	class Candidate extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -243,6 +283,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TicketMessage> $messages
  * @property-read int|null $messages_count
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Ticket newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Ticket newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Ticket query()
@@ -309,7 +350,7 @@ namespace App\Models{
  * @property string|null $google_refresh_token
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Blog> $articles
  * @property-read int|null $articles_count
- * @property-read \App\Models\Candidate|null $candidate
+ * @property-read \App\Models\Backend\Candidate|null $candidate
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Backend\Company> $companies
  * @property-read int|null $companies_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
@@ -318,6 +359,8 @@ namespace App\Models{
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Cashier\Subscription> $subscriptions
  * @property-read int|null $subscriptions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Ticket> $tickets
+ * @property-read int|null $tickets_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User hasExpiredGenericTrial()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User newModelQuery()

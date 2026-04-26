@@ -274,6 +274,162 @@
     font-size: 16px;
 }
 
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.radio-card {
+    position: relative;
+    cursor: pointer;
+    padding: 12px 18px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.radio-card input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.radio-card:hover {
+    border-color: #007bff;
+}
+
+.radio-card input:checked+span {
+    font-weight: 600;
+}
+
+.radio-card input:checked~span,
+.radio-card input:checked+span {
+    color: #007bff;
+}
+
+.radio-card input:checked {}
+
+.radio-card:has(input:checked) {
+    border-color: #007bff;
+    background: #f0f7ff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+/* From Uiverse.io by Yaya12085 */
+.custum-file-upload {
+        padding: 15px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+    margin-left: 15px;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #cacaca;
+    background-color: rgba(255, 255, 255, 1);
+    /* padding: 1.5rem; */
+    border-radius: 10px;
+    box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
+}
+
+.custum-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custum-file-upload .icon svg {
+    height: 80px;
+    fill: rgba(75, 85, 99, 1);
+}
+
+.custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custum-file-upload .text span {
+    font-weight: 400;
+    color: rgba(75, 85, 99, 1);
+}
+
+.custum-file-upload input {
+    display: none;
+}
+
+.custum-file-upload .fa-file-pdf {
+    font-size: 35px;
+    color: red;
+}
+
+.workExperiencePanel {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.cv-card {
+    position: relative;
+    min-width: 150px;
+}
+
+/* DELETE BUTTON */
+.cv-delete-btn {
+position: absolute;
+    top: -15px;
+    right: -21px;
+    border-radius: 36px;
+    border: none;
+    background: #ff4d4f;
+    color: white;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.cv-delete-btn:hover {
+    background: #d9363e;
+    transform: scale(1.1);
+}
+
+.pdfDownload {
+        border-radius: 38px;
+    border: none;
+    background: #ff4d4f;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+}
+
+.pdfDownload:hover {
+    color: white;
+    transition: 0.5s;
+    transform: scale(1.1);
+    background-color: #d9363e;
+}
+
+.pdfDownload:not(:hover) {
+    transition: 0.5s;
+}
+
 @media (min-width: 1366px) {
     .banner-style-one .image {
         position: absolute;
@@ -464,6 +620,10 @@
 
 .wt-panel-body .alert-info {
     max-width: 650px;
+}
+
+.panel-body {
+    border-radius: 10px;
 }
 
 .downloadXMLBtn {

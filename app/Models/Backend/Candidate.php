@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Backend;
 
+use App\Models\Backend\Candidate\CandidateCV;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -16,6 +18,7 @@ class Candidate extends Model
 
     protected $fillable = [
         'user_id',
+        'status',
         'first_name',
         'last_name',
         'phone',
@@ -32,4 +35,10 @@ class Candidate extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /** Get all CV's for a Candidate */
+    public function cvs () {
+        return $this->hasMany(CandidateCV::class);
+    }
+
 }
