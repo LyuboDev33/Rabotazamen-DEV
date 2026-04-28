@@ -3,6 +3,8 @@
 namespace App\Models\Backend;
 
 use App\Models\Backend\Candidate\CandidateCV;
+use App\Models\Backend\Candidate\CandidateEducation;
+use App\Models\Backend\Candidate\CandidateWorkExperience;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,8 +39,20 @@ class Candidate extends Model
     }
 
     /** Get all CV's for a Candidate */
-    public function cvs () {
+    public function cvs()
+    {
         return $this->hasMany(CandidateCV::class);
     }
 
+    /** Return Work Experience */
+    public function workExperience()
+    {
+        return $this->hasMany(CandidateWorkExperience::class);
+    }
+
+    /** Return Education */
+    public function education()
+    {
+        return $this->hasMany(CandidateEducation::class);
+    }
 }

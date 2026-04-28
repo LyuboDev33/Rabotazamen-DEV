@@ -11476,7 +11476,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 .twm-timing-list-wrap {
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 50px;
+    padding: 25px;
     margin-bottom: 30px;
 }
 
@@ -11488,7 +11488,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 
 .twm-timing-list {
     margin-bottom: 30px;
-    margin-left: 30px;
+    /* margin-left: 30px; */
 }
 
 .twm-timing-list:last-child {
@@ -11496,15 +11496,18 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .twm-timing-list .twm-time-list-date {
-    font-size: 14px;
+     font-size: 15px;
     color: #666666;
+    padding-left: 35px;
 }
 
 .twm-timing-list .twm-time-list-title {
     color: #1967d2;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     position: relative;
+    padding-left: 35px;
+    width: fit-content !important;
 }
 
 .twm-timing-list .twm-time-list-title:before {
@@ -11515,7 +11518,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     background-color: #1967d2;
     content: "";
     position: absolute;
-    left: -50px;
+    left: -15px;
     top: 3px;
 }
 
@@ -11525,7 +11528,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     background-color: #1967d2;
     content: "";
     position: absolute;
-    left: -26px;
+    left: 7px;
     top: 13px;
 }
 
@@ -11534,10 +11537,12 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     font-weight: 500;
     font-size: 14px;
     color: #000;
+    padding-left: 35px;
 }
 
 .twm-timing-list .twm-time-list-discription p:last-child {
     margin-bottom: 0px;
+    padding-left: 35px;
 }
 
 /*Social Share*/
@@ -13484,6 +13489,7 @@ strong {
     background: #fff;
     box-shadow: -3px 3px 25px #0000000f;
     position: relative;
+    margin-bottom: 20px;
 }
 
 .wt-panel-heading {

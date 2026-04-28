@@ -63,13 +63,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
             /** Work experience  */
             Route::post('/work-experience/create', [CandidateController::class, 'workExperienceCreate'])->name('work.experience.create');
             Route::patch('/work-experience/update', [CandidateController::class, 'workExperienceUpdate'])->name('work.experience.update');
-            Route::delete('/work-experience/delete', [CandidateController::class, 'workExperienceCreateDelete'])->name('work.experience.delete');
+            Route::delete('/work-experience/delete', [CandidateController::class, 'workExperienceDelete'])->name('work.experience.delete');
+
+            Route::post('/education/create', [CandidateController::class, 'educationCreate'])->name('education.create');
+            Route::patch('/education/update', [CandidateController::class, 'workExperienceUpdate'])->name('education.update');
+            Route::delete('/education/delete', [CandidateController::class, 'workExperienceDelete'])->name('eeducation.delete');
 
             /** Upload and delete CV */
             Route::post('/upload-cv', [CandidateController::class, 'uploadCV'])->name('upload.cv');
             Route::delete('/detele-cv', [CandidateController::class, 'deleteCV'])->name('delete.cv');
-
-
         });
     /** END OF CANDIDATE MIDDLEWARE  */
 

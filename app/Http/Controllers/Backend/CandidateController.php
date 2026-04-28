@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Candidate;
 use App\Models\Backend\Candidate\CandidateCV;
-use App\Models\CandidateWorkExperience;
+use App\Models\Backend\Candidate\CandidateWorkExperience;
 use App\Models\City;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,8 +21,12 @@ class CandidateController extends Controller
     {
         $candidate = Candidate::with([
             'CVs',
+            'workExperience',
+            'education'
         ])->where('user_id', Auth::id())
             ->first();
+
+        dd($candidate);
 
         return Inertia::render('BackEnd/Candidate/DocumentsCV', [
             'cities' => City::get(),
@@ -31,8 +35,28 @@ class CandidateController extends Controller
     }
 
     /** Add main fields for
-     *
+    *
+    */
+
+     /** Private method to return all months
+     * @return array
      */
+     private static function monthsMap (): array {
+        return  $monthsMap = [
+            'Януари' => 'January',
+            'Февруари' => 'February',
+            'Март' => 'March',
+            'Април' => 'April',
+            'Май' => 'May',
+            'Юни' => 'June',
+            'Юли' => 'July',
+            'Август' => 'August',
+            'Септември' => 'September',
+            'Октомври' => 'October',
+            'Ноември' => 'November',
+            'Декември' => 'December',
+        ];
+     }
 
     /** Add work experience
      *  @param Request $request
@@ -40,14 +64,15 @@ class CandidateController extends Controller
      */
     public function workExperienceCreate(Request $request)
     {
+
         $currentYear = (int) now()->year;
 
         $validated = $request->validate([
             'position'                 => ['required', 'string', 'max:255'],
             'company'                  => ['required', 'string', 'max:255'],
-            'work_experience_location' => ['nullable', 'string', 'max:255'],
-            'responsibilities'         => ['nullable', 'string', 'max:5000'],
-            'current_position'         => ['nullable', 'boolean'],
+            'work_experience_location' => ['required', 'nullable', 'string', 'max:255'],
+            'responsibilities'         => ['required', 'nullable', 'string'],
+            'current_position'         => ['nullable'],
             'year_start_from'          => ['required', 'integer', 'between:2000,' . $currentYear],
             'month_start_from'         => ['required', 'string'],
 
@@ -62,19 +87,24 @@ class CandidateController extends Controller
             'month_end_to.required'     => 'Изберете месец на приключване.',
         ]);
 
-
         $isCurrent = (bool) ($validated['current_position'] ?? false);
 
-        $startValue = $validated['year_start_from'] * 12 + $validated['month_start_from'];
-        $endValue   = $validated['year_end_to']     * 12 + $validated['month_end_to'];
 
-        if ($endValue < $startValue) {
+        $monthsMap = static::monthsMap();
+
+        $startMonthEn = $monthsMap[$validated['month_start_from']] ?? null;
+        $endMonthEn   = $monthsMap[$validated['month_end_to']] ?? null;
+
+        $startTimestamp = strtotime($validated['year_start_from'] . ' ' . $startMonthEn);
+        $endTimestamp   = strtotime($validated['year_end_to'] . ' ' . $endMonthEn);
+
+
+        if ($endTimestamp < $startTimestamp) {
             return back()->withErrors([
-                'month_end_to' => 'Датата на приключване не може да бъде преди началната.',
+                'month_end_to' => 'Датата на приключване не може да бъде преди годината на започване.',
             ]);
         }
 
-        // Use model directly
         CandidateWorkExperience::create([
             'candidate_id'    => Auth::id(),
             'position'        => $validated['position'],
@@ -95,8 +125,113 @@ class CandidateController extends Controller
             'successCreateWorkExperience' =>  'Успешно добавихте работен опит'
         ]);
 
-        return back()->with('workExperienceCreated', 'Трудовият опит беше добавен успешно.');
+        return back();
     }
+
+    /** Update the work experience
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function workExperienceUpdate(Request $request)
+    {
+
+        $workExperience = CandidateWorkExperience::where('id', $request->update_id)->firstOrFail();
+
+        if(!$workExperience) {
+            abort(404, 'Записът не беше намерен');
+        }
+
+        $currentYear = (int) now()->year;
+
+        $validated = $request->validate([
+            'update_id'                       => ['required', 'integer', 'exists:candidate_work_experiences,id'],
+            'update_position'                 => ['required', 'string', 'max:255'],
+            'update_company'                  => ['required', 'string', 'max:255'],
+            'update_work_experience_location' => ['required', 'nullable', 'string', 'max:255'],
+            'update_responsibilities'         => ['required', 'nullable', 'string'],
+            'update_is_current'               => ['nullable'],
+            'update_year_start_from'          => ['integer', 'between:2000,' . $currentYear],
+            'update_month_start_from'         => ['required', 'string'],
+
+            'update_year_end_to'              => ['integer', 'between:2000,' . $currentYear],
+            'update_month_end_to'             => ['string'],
+        ], [
+            'update_position.required'         => 'Длъжността е задължителна.',
+            'update_company.required'          => 'Компанията е задължителна.',
+            'update_year_start_from.required'  => 'Изберете година на започване.',
+            'update_month_start_from.required' => 'Изберете месец на започване.',
+            'update_year_end_to.required'      => 'Изберете година на приключване.',
+            'update_month_end_to.required'     => 'Изберете месец на приключване.',
+        ]);
+
+        $isCurrent = (bool) ($validated['update_is_current'] ?? false);
+
+
+        $monthsMap = static::monthsMap();
+
+        $startMonthEn = $monthsMap[$validated['update_month_start_from']] ?? null;
+        $endMonthEn   = $monthsMap[$validated['update_month_end_to']] ?? null;
+
+        $startTimestamp = strtotime($validated['update_year_start_from'] . ' ' . $startMonthEn);
+        $endTimestamp   = strtotime($validated['update_year_end_to'] . ' ' . $endMonthEn);
+
+
+
+
+        if ($endTimestamp < $startTimestamp) {
+            return back()->withErrors([
+                'update_month_end_to' => 'Датата на приключване не може да бъде преди годината на започване.',
+            ]);
+        }
+
+
+        $workExperience->update([
+            'position'        => $validated['update_position'],
+            'company'         => $validated['update_company'],
+            'location'        => $validated['update_work_experience_location'] ?? null,
+            'responsibilities' => $validated['update_responsibilities'] ?? null,
+
+            'start_year'      => $validated['update_year_start_from'],
+            'start_month'     => $validated['update_month_start_from'],
+
+            'end_year'        => $validated['update_year_end_to'],
+            'end_month'       => $validated['update_month_end_to'],
+
+            'is_current'      => $isCurrent,
+        ]);
+
+        Inertia::flash([
+            'successUpdateWorkExperience' =>  'Промените бяха запазени'
+        ]);
+
+        return back();
+    }
+
+    /** Delete the Work Experience
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function workExperienceDelete(Request $request)
+    {
+        $workExpId = $request->WorkExpId;
+        $workExp = CandidateWorkExperience::where('id', $workExpId)->first();
+
+        if (!$workExp) {
+            Inertia::flash([
+                'failedWorkExperience' => 'Упссс... нещо се обърка!'
+            ]);
+            return back();
+        }
+
+        $workExp->delete();
+
+        Inertia::flash([
+            'successDeletionWorkExperience' => 'Работното място беше изтрито успешно!'
+        ]);
+
+        return back();
+    }
+
 
     /** Upload a CV to a candidate
      * @param Request @request
