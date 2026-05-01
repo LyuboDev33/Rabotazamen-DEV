@@ -26,13 +26,13 @@ export default function Roles() {
                             Всички налични роли
                         </h4>
                         <hr className='hr-users' />
-                        <>
-                            <Link
-                                className='btn btn-primary text-white rounded-pill w-fit-content'
-                                href='/dashboard/admin/access'>
-                                Създай роля
-                            </Link>
-                        </>
+
+                        {/* <Link
+                            className='btn btn-primary text-white rounded-pill w-fit-content'
+                            href='/dashboard/admin/access'>
+                            Създай роля
+                        </Link> */}
+
                     </div>
 
                     <div className="panel-body wt-panel-body">

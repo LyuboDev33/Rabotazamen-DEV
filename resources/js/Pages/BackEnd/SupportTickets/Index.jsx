@@ -40,7 +40,7 @@ export default function SupportTicket() {
 
                         <Link
                             className="btn btn-info text-white rounded-pill"
-                            href="/support/tickets/create-ticket"
+                            href="/support/ticket/create-ticket"
                         >
                             Създай тикет
                         </Link>

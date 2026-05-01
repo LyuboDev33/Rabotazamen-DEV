@@ -17,6 +17,7 @@ class CandidateEducation extends Model
         'candidate_id',
         'institution',
         'specialty',
+        'city',
         'degree',
         'start_year',
         'start_month',

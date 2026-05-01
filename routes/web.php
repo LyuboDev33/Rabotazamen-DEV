@@ -41,7 +41,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/support/tickets/{ticket_id}', [SupportTicketController::class,  'show'])->name('tickets.show');
 
 
-    Route::get('/support/tickets/create-ticket', [SupportTicketController::class,  'createTicketView']);
+    Route::get('/support/ticket/create-ticket', [SupportTicketController::class,  'createTicketView']);
     Route::post('/support/tickets/create', [SupportTicketController::class,  'create'])->name('ticket.create');
     Route::post('/support/message/reply', [SupportTicketController::class,  'reply'])->name('ticket.reply');
 
@@ -59,15 +59,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->group(function () {
 
             Route::get('/cv-documents', [CandidateController::class, 'documentsCV']);
+            Route::patch('/populate-candidate', [CandidateController::class, 'populateCandidate'])->name('populate.candidate');
 
             /** Work experience  */
             Route::post('/work-experience/create', [CandidateController::class, 'workExperienceCreate'])->name('work.experience.create');
             Route::patch('/work-experience/update', [CandidateController::class, 'workExperienceUpdate'])->name('work.experience.update');
             Route::delete('/work-experience/delete', [CandidateController::class, 'workExperienceDelete'])->name('work.experience.delete');
 
+            /** Education */
             Route::post('/education/create', [CandidateController::class, 'educationCreate'])->name('education.create');
-            Route::patch('/education/update', [CandidateController::class, 'workExperienceUpdate'])->name('education.update');
-            Route::delete('/education/delete', [CandidateController::class, 'workExperienceDelete'])->name('eeducation.delete');
+            Route::patch('/education/update', [CandidateController::class, 'educationUpdate'])->name('education.update');
+            Route::delete('/education/delete', [CandidateController::class, 'educationDelete'])->name('education.delete');
 
             /** Upload and delete CV */
             Route::post('/upload-cv', [CandidateController::class, 'uploadCV'])->name('upload.cv');

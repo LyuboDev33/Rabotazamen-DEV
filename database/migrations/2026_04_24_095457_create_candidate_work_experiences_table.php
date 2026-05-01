@@ -27,14 +27,14 @@ return new class extends Migration
             $table->string('start_year');
             $table->string('start_month');
 
-            $table->string('end_year')->nullable();
-            $table->string('end_month')->nullable();
+            $table->string('end_year');
+            $table->string('end_month');
 
             $table->boolean('is_current')->default(false);
 
-            $table->string('location')->nullable();
+            $table->string('location');
 
-            $table->longText('responsibilities')->nullable();
+            $table->longText('responsibilities');
 
             $table->timestamps();
         });

@@ -4,11 +4,21 @@ import { useState } from 'react';
 import CandidateStatus from '@/Components/CandidateStatus';
 import TinyMCETextEditor from '@/Components/TinyMCETextEditor';
 import { router } from '@inertiajs/react';
+import {
+    DoubleRangeSlider,
+    SimpleRangeSlider,
+} from "react-range-slider-advanced";
+import "react-range-slider-advanced/style.css";
+
 import Modal from '@/Components/Modal';
 import WorkExperience from './DocumentsCVPartials/WorkExperience';
 import Education from './DocumentsCVPartials/Education';
 
 export default function Candidate({ candidate, cities }) {
+
+
+    const candidateData = candidate || {};
+
 
     const months = [
         "Януари",
@@ -25,11 +35,21 @@ export default function Candidate({ candidate, cities }) {
         "Декември"
     ];
 
+    const yearsExperience = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
     const currentYear = new Date().getFullYear();
     const years = [];
     for (let y = 2000; y <= currentYear; y++) {
         years.push(y);
     }
+    const [expectedMinPay, setExpectedMinPay] = useState(
+        candidateData?.min_salary ?? 0
+    );
+
+    const [expectedMaxPay, setExpectedMaxPay] = useState(
+        candidateData?.max_salary ?? 10000
+    );
+
     const [avatarFile, setAvatarFile] = useState(null);
     const [aboutContent, setAboutContent] = useState('');
     const [showDeleteCVModal, setShowDeleteCVModal] = useState(false);
@@ -42,10 +62,6 @@ export default function Candidate({ candidate, cities }) {
     const { flash } = usePage();
     const profilePic = auth.profilePic;
 
-    const candidateData = candidate || {};
-
-    const workReadiness = candidateData.work_readiness || [];
-    const jobStatus = candidateData.job_status || [];
 
     function handleAvatarChange(e) {
         if (e.target.files[0]) {
@@ -74,12 +90,8 @@ export default function Candidate({ candidate, cities }) {
 
                     <Form
                         options={{ preserveScroll: true }}
-                        // action={
-                        //     candidate
-                        //         ? route('candidate.update', candidate.id)
-                        //         : route('candidate.store')
-                        // }
-                        method={candidate ? 'put' : 'post'}
+                        action={route('populate.candidate')}
+                        method="PATCH"
                         encType="multipart/form-data"
                         onSuccess={() => {
                             setAvatarFile(null);
@@ -97,10 +109,7 @@ export default function Candidate({ candidate, cities }) {
                                 <div className="dashboard-profile-section clearfix">
                                     <div className="dashboard-profile-pic d-flex gap-4">
                                         <div className="dashboard-profile-photo">
-                                            <img
-                                                src={profilePic}
-                                                alt="Профилна снимка"
-                                            />
+                                            <img src={profilePic} alt="Профилна снимка" />
 
                                             <div className="upload-btn-wrapper">
                                                 <div id="upload-avatar-grid" />
@@ -130,9 +139,7 @@ export default function Candidate({ candidate, cities }) {
                                     </div>
 
                                     {errors.profile_picture && (
-                                        <div className="text-danger">
-                                            {errors.profile_picture}
-                                        </div>
+                                        <div className="text-danger">{errors.profile_picture}</div>
                                     )}
                                 </div>
                             </div>
@@ -211,7 +218,11 @@ export default function Candidate({ candidate, cities }) {
                                             )}
                                         </div>
                                     </div>
+
+
                                     <hr />
+
+                                    {/* Work status */}
                                     <div className="col-xl-12 mb-3">
                                         <h3>Отбележете в какъв период се намирате:</h3>
 
@@ -220,9 +231,9 @@ export default function Candidate({ candidate, cities }) {
                                             <label className="radio-card">
                                                 <input
                                                     type="radio"
-                                                    name="job_status"
+                                                    name="work_status"
                                                     value="actively_looking"
-                                                    defaultChecked={jobStatus === 'actively_looking'}
+                                                    defaultChecked={candidateData.work_status === 'actively_looking'}
                                                 />
                                                 <span>Активно търся работа</span>
                                             </label>
@@ -230,9 +241,9 @@ export default function Candidate({ candidate, cities }) {
                                             <label className="radio-card">
                                                 <input
                                                     type="radio"
-                                                    name="job_status"
+                                                    name="work_status"
                                                     value="open_to_offers"
-                                                    defaultChecked={jobStatus === 'open_to_offers'}
+                                                    defaultChecked={candidateData.work_status === 'open_to_offers'}
                                                 />
                                                 <span>Отворен за предложения</span>
                                             </label>
@@ -240,22 +251,113 @@ export default function Candidate({ candidate, cities }) {
                                             <label className="radio-card">
                                                 <input
                                                     type="radio"
-                                                    name="job_status"
+                                                    name="work_status"
                                                     value="not_looking"
-                                                    defaultChecked={jobStatus === 'not_looking'}
+                                                    defaultChecked={candidateData.work_status === 'not_looking'}
                                                 />
                                                 <span>Не търся в момента</span>
                                             </label>
 
                                         </div>
 
-                                        {errors.job_status && (
-                                            <div className="text-danger">{errors.job_status}</div>
+                                        {errors.work_status && (
+                                            <div className="text-danger">{errors.work_status}</div>
                                         )}
                                     </div>
+
                                     <hr />
+
+                                    <h3>Отбележете вашия опит</h3>
+
+                                    <div className="col-xl-3 mb-3">
+                                        <h3>Години опит:</h3>
+
+                                        <select
+                                            name="years_experience"
+                                            className="form-control"
+                                            defaultValue={candidateData.years_experience || ""}
+                                        >
+                                            <option value="">Избери години опит</option>
+
+                                            {yearsExperience.map((year) => (
+                                                <option key={year} value={year}>
+                                                    {year} {year === 1 ? "година" : "години"}
+                                                </option>
+                                            ))}
+                                        </select>
+
+                                        {errors.years_experience && (
+                                            <div className="text-danger">{errors.years_experience}</div>
+                                        )}
+                                    </div>
+
+
+
+                                    <div className="col-xl-3 mb-3">
+                                        <h3>Ниво (Seniority):</h3>
+
+                                        <select
+                                            name="seniority"
+                                            className="form-control"
+                                            defaultValue={candidateData.seniority || ""}
+                                        >
+                                            <option value="">Избери ниво</option>
+
+                                            <option value="junior">Junior</option>
+                                            <option value="mid">Mid</option>
+                                            <option value="team_leader">Team Leader</option>
+                                            <option value="senior">Senior</option>
+                                            <option value="principal">Principal</option>
+                                            <option value="cto">CTO</option>
+                                        </select>
+
+                                        {errors.seniority && (
+                                            <div className="text-danger">{errors.seniority}</div>
+                                        )}
+                                    </div>
+
+                                    <h3>Изберете диапазон на желаното възнаграждение</h3>
+
+                                    <DoubleRangeSlider
+                                        min={620}
+                                        max={10000}
+                                        from={candidateData.min_salary ?? 620}
+                                        to={candidateData.max_salary ?? 10000}
+                                        numberOfSections={10}
+                                        separator=","
+
+                                        postfix=" EUR"
+                                        valuesSeparator='-'
+                                        onFinish={({ from, to }) => {
+                                            setExpectedMinPay(from);
+                                            setExpectedMaxPay(to);
+                                        }}
+                                    />
+
+                                    {/* Hidden inputs for backend */}
+                                    <input
+                                        type="hidden"
+                                        name="min_salary"
+                                        value={expectedMinPay}
+                                    />
+
+                                    <input
+                                        type="hidden"
+                                        name="max_salary"
+                                        value={expectedMaxPay}
+                                    />
+
+                                    {errors.min_salary && (
+                                        <div className="text-danger">{errors.min_salary}</div>
+                                    )}
+
+                                    {errors.max_salary && (
+                                        <div className="text-danger">{errors.max_salary}</div>
+                                    )}
+                                    <hr />
+                                    {/* Work model */}
                                     <div className="col-xl-12 mb-3">
-                                        <h3>Ибзерете предпочитан модел на работа:</h3>
+                                        <h3>Изберете предпочитан модел на работа:</h3>
 
                                         <div className="radio-group">
 
@@ -264,7 +366,7 @@ export default function Candidate({ candidate, cities }) {
                                                     type="checkbox"
                                                     name="work_model[]"
                                                     value="on_site"
-                                                    defaultChecked={isChecked(workReadiness, 'on_site')}
+                                                    defaultChecked={isChecked(candidateData.work_model, 'on_site')}
                                                 />
                                                 <span>Работа на място</span>
                                             </label>
@@ -274,7 +376,7 @@ export default function Candidate({ candidate, cities }) {
                                                     type="checkbox"
                                                     name="work_model[]"
                                                     value="hybrid"
-                                                    defaultChecked={isChecked(workReadiness, 'hybrid')}
+                                                    defaultChecked={isChecked(candidateData.work_model, 'hybrid')}
                                                 />
                                                 <span>Хибридна работа</span>
                                             </label>
@@ -284,73 +386,125 @@ export default function Candidate({ candidate, cities }) {
                                                     type="checkbox"
                                                     name="work_model[]"
                                                     value="remote"
-                                                    defaultChecked={isChecked(workReadiness, 'remote')}
+                                                    defaultChecked={isChecked(candidateData.work_model, 'remote')}
                                                 />
                                                 <span>Дистанционна работа</span>
                                             </label>
 
                                         </div>
 
-                                        {errors.work_readiness && (
-                                            <div className="text-danger">{errors.work_readiness}</div>
+                                        {errors.work_model && (
+                                            <div className="text-danger">{errors.work_model}</div>
                                         )}
                                     </div>
 
-
                                     <hr />
 
+
+
+                                    {/* Skills */}
                                     <div className="col-xl-12 mb-3">
                                         <h3>Ключови умения:</h3>
 
                                         <div className="radio-group">
 
                                             <label className="radio-card">
-                                                <input type="checkbox" name="skills[]" value="communication" />
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="communication"
+                                                    defaultChecked={isChecked(candidateData.skills, 'communication')}
+                                                />
                                                 <span>Комуникация</span>
                                             </label>
 
                                             <label className="radio-card">
-                                                <input type="checkbox" name="skills[]" value="teamwork" />
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="teamwork"
+                                                    defaultChecked={isChecked(candidateData.skills, 'teamwork')}
+                                                />
                                                 <span>Работа в екип</span>
                                             </label>
 
                                             <label className="radio-card">
-                                                <input type="checkbox" name="skills[]" value="problem_solving" />
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="problem_solving"
+                                                    defaultChecked={isChecked(candidateData.skills, 'problem_solving')}
+                                                />
                                                 <span>Решаване на проблеми</span>
                                             </label>
 
                                             <label className="radio-card">
-                                                <input type="checkbox" name="skills[]" value="adaptability" />
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="adaptability"
+                                                    defaultChecked={isChecked(candidateData.skills, 'adaptability')}
+                                                />
                                                 <span>Адаптивност</span>
                                             </label>
 
                                             <label className="radio-card">
-                                                <input type="checkbox" name="skills[]" value="organization" />
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="organization"
+                                                    defaultChecked={isChecked(candidateData.skills, 'organization')}
+                                                />
                                                 <span>Организираност</span>
                                             </label>
 
                                             <label className="radio-card">
-                                                <input type="checkbox" name="skills[]" value="time_management" />
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="time_management"
+                                                    defaultChecked={isChecked(candidateData.skills, 'time_management')}
+                                                />
                                                 <span>Управление на времето</span>
                                             </label>
 
                                             <label className="radio-card">
-                                                <input type="checkbox" name="skills[]" value="critical_thinking" />
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="critical_thinking"
+                                                    defaultChecked={isChecked(candidateData.skills, 'critical_thinking')}
+                                                />
                                                 <span>Критично мислене</span>
                                             </label>
 
                                             <label className="radio-card">
-                                                <input type="checkbox" name="skills[]" value="analytical_thinking" />
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="analytical_thinking"
+                                                    defaultChecked={isChecked(candidateData.skills, 'analytical_thinking')}
+                                                />
                                                 <span>Аналитично мислене</span>
                                             </label>
 
                                             <label className="radio-card">
-                                                <input type="checkbox" name="skills[]" value="independence" />
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="independence"
+                                                    defaultChecked={isChecked(candidateData.skills, 'independence')}
+                                                />
                                                 <span>Самостоятелност</span>
                                             </label>
 
                                             <label className="radio-card">
-                                                <input type="checkbox" name="skills[]" value="work_under_pressure" />
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="work_under_pressure"
+                                                    defaultChecked={isChecked(candidateData.skills, 'work_under_pressure')}
+                                                />
                                                 <span>Работа под напрежение</span>
                                             </label>
 
@@ -363,15 +517,22 @@ export default function Candidate({ candidate, cities }) {
 
                                     <hr />
 
-                                    {/* Кратко представяне / About me */}
+                                    {/* About me */}
                                     <div className="col-xl-12 col-lg-12 col-md-12">
                                         <div className="form-group">
-                                            <label className='mb-2'><strong>Кратко представяне</strong> - Представете себе си, уменията си, технологиите с които сте работили и всичко което смятате за релевантно пред потенциални работодатели.</label>
+                                            <label className='mb-2'>
+                                                <strong>Кратко представяне</strong> - Представете себе си, уменията си, технологиите с които сте работили и всичко което смятате за релевантно пред потенциални работодатели.
+                                            </label>
                                             <TinyMCETextEditor
                                                 value={aboutContent}
                                                 onChange={setAboutContent}
+                                                initialValue={candidateData.about_me || ''}
                                             />
-                                            <input type="hidden" name="blog_content" value={aboutContent} />
+                                            <input
+                                                type="hidden"
+                                                name="about_me"
+                                                value={aboutContent || candidateData.about_me || ''}
+                                            />
                                             {errors.about_me && (
                                                 <div className="text-danger">{errors.about_me}</div>
                                             )}
@@ -389,7 +550,6 @@ export default function Candidate({ candidate, cities }) {
                         </div>
 
                     </Form>
-
 
                     <WorkExperience
                         months={months}
@@ -533,6 +693,12 @@ export default function Candidate({ candidate, cities }) {
                 <input name="CVid" value={CVId} type="hidden" />
             </Modal>
 
+
+            {flash?.successUpdateCandidate && (
+                <div className="alert alert-success animate__animated animate__fadeInUp">
+                    {flash.successUpdateCandidate}
+                </div>
+            )}
 
             {/* Flash Messages */}
             {flash?.successUploadCV && (

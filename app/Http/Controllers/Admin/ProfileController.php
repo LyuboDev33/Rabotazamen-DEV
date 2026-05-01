@@ -20,7 +20,11 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
-        return Inertia::render('BackEnd/Profile');
+        $user = $request->user();
+
+        return Inertia::render('BackEnd/Profile', [
+            'requiresCurrentPassword' => !is_null($user->password),
+        ]);
     }
 
     /**

@@ -20,11 +20,23 @@ return new class extends Migration
                 ->on('users')
                 ->cascadeOnDelete();
 
-            $table->string('profile_status')->nullable();
             $table->string('professional_title')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('location')->nullable();
+
+            $table->string('profile_status')->nullable();
+            $table->string('work_status')->nullable();
+
+
+            $table->string('years_experience')->nullable();
+            $table->string('seniority')->nullable();
+            $table->string('min_salary')->nullable();
+            $table->string('max_salary')->nullable();
+
             $table->json('skills')->nullable();
             $table->json('work_model')->nullable();
-            $table->string('work_status')->nullable();
+
+            $table->longText('about_me')->nullable();
 
             $table->timestamps();
         });

@@ -20,14 +20,24 @@ class Candidate extends Model
 
     protected $fillable = [
         'user_id',
-        'status',
-        'first_name',
-        'last_name',
+        'professional_title',
         'phone',
-        'city',
-        'cv',
-        'experience',
+        'location',
+        'work_status',
+        'work_model',
         'skills',
+        'about_me',
+        'profile_status',
+        'years_experience',
+        'seniority',
+        'min_salary',
+        'max_salary'
+    ];
+
+
+    protected $casts = [
+        'work_model' => 'array',
+        'skills'     => 'array',
     ];
 
     /**

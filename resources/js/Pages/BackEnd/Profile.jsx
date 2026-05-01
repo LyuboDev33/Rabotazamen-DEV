@@ -3,14 +3,11 @@ import { Head, usePage, Form } from '@inertiajs/react';
 import { useState } from 'react';
 import Modal from '@/Components/Modal';
 
-export default function Profile() {
+export default function Profile({ requiresCurrentPassword }) {
     const [file, setFile] = useState(null);
     const { csrf_token, auth, errors } = usePage().props;
-    const [flashKey, setFlashKey] = useState(Date.now());
     const { flash } = usePage();
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const user = auth.user;
-
     const profilePic = auth.profilePic;
 
     function handleChange(e) {
@@ -221,22 +218,27 @@ export default function Profile() {
                                 <input type="hidden" name="_token" value={csrf_token} />
 
                                 <div className="row">
-                                    <div className="col-xl-4 col-lg-6 col-md-12">
-                                        <div className="form-group">
-                                            <label className="form-label" htmlFor="current_password">
-                                                Въведете сегашната си парола
-                                            </label>
-                                            <input
-                                                className="form-control"
-                                                id="current_password"
-                                                type="password"
-                                                name="current_password"
-                                            />
-                                            {errors.current_password && (
-                                                <p className="text-danger mt-1">{errors.current_password}</p>
-                                            )}
+                                    {/* If a user is registered with Google, this field should not be required */}
+                                    {requiresCurrentPassword && (
+                                        <div className="col-xl-4 col-lg-6 col-md-12">
+                                            <div className="form-group">
+                                                <label className="form-label" htmlFor="current_password">
+                                                    Въведете сегашната си парола
+                                                </label>
+
+                                                <input
+                                                    className="form-control"
+                                                    id="current_password"
+                                                    type="password"
+                                                    name="current_password"
+                                                />
+
+                                                {errors.current_password && (
+                                                    <p className="text-danger mt-1">{errors.current_password}</p>
+                                                )}
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
 
                                     <div className="col-xl-4 col-lg-6 col-md-12">
                                         <div className="form-group">
@@ -346,7 +348,6 @@ export default function Profile() {
 
             {flash.editSuccess && (
                 <div
-                    key={flashKey}
                     className="alert alert-success animate__animated animate__fadeInUp">
                     {flash.editSuccess}
                 </div>
@@ -354,7 +355,6 @@ export default function Profile() {
 
             {flash.successPasswordChange && (
                 <div
-                    key={flashKey}
                     className="alert alert-success animate__animated animate__fadeInUp">
                     {flash.successPasswordChange}
                 </div>

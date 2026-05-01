@@ -2,7 +2,7 @@ import { usePage, Form } from "@inertiajs/react";
 import React, { useState } from "react";
 import Modal from "@/Components/Modal";
 
-export default function Education({ years, months, degrees }) {
+export default function Education({ years, months, cities }) {
 
     const { flash } = usePage();
     const candidate = usePage().props.candidate;
@@ -56,7 +56,7 @@ export default function Education({ years, months, degrees }) {
                                 <div className="row">
 
                                     {/* INSTITUTION */}
-                                    <div className="col-xl-6 col-lg-6 col-md-12">
+                                    <div className="col-xl-3 col-lg-4 col-md-12">
                                         <div className="form-group">
                                             <label><strong>Учебно заведение</strong> <span className="text-danger">*</span></label>
                                             <input
@@ -71,8 +71,28 @@ export default function Education({ years, months, degrees }) {
                                         </div>
                                     </div>
 
+                                    <div className="col-xl-3 col-lg-4 col-md-12">
+                                        <div className="form-group">
+                                            <label><strong>Град</strong> <span className="text-danger">*</span></label>
+                                            <select
+                                                className="form-control"
+                                                name="city"
+                                            >
+                                                <option value="">Изберете град</option>
+                                                {cities && cities.map((city) => (
+                                                    <option key={city.id} value={city.city_name}>
+                                                        {city.city_name}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            {errors.city && (
+                                                <p className="text-danger text-center">{errors.city}</p>
+                                            )}
+                                        </div>
+                                    </div>
+
                                     {/* SPECIALTY */}
-                                    <div className="col-xl-6 col-lg-6 col-md-12">
+                                    <div className="col-xl-3 col-lg-4 col-md-12">
                                         <div className="form-group">
                                             <label><strong>Специалност</strong> <span className="text-danger">*</span></label>
                                             <input
@@ -88,19 +108,25 @@ export default function Education({ years, months, degrees }) {
                                     </div>
 
                                     {/* DEGREE */}
-                                    <div className="col-xl-6 col-lg-6 col-md-12">
+                                    <div className="col-xl-3 col-lg-4 col-md-12">
                                         <div className="form-group">
                                             <label><strong>Степен</strong> <span className="text-danger">*</span></label>
-                                            <select
-                                                className="form-control"
-                                                name="degree"
-                                            >
+                                            <select className="form-control" name="degree">
                                                 <option value="">Изберете степен</option>
-                                                {degrees && degrees.map((degree) => (
-                                                    <option key={degree.id} value={degree.name}>
-                                                        {degree.name}
-                                                    </option>
-                                                ))}
+
+                                                <option value="Основно образование">Основно образование</option>
+                                                <option value="Средно образование">Средно образование</option>
+                                                <option value="Професионална гимназия">Професионална гимназия</option>
+                                                <option value="Гимназия">Гимназия</option>
+
+                                                <option value="Бакалавър">Бакалавър</option>
+                                                <option value="Магистър">Магистър</option>
+                                                <option value="Доктор">Доктор (PhD)</option>
+
+                                                <option value="Професионален бакалавър">Професионален бакалавър</option>
+                                                <option value="Следдипломна квалификация">Следдипломна квалификация</option>
+
+                                                <option value="Сертификат / курс">Сертификат / курс</option>
                                             </select>
                                             {errors.degree && (
                                                 <p className="text-danger">{errors.degree}</p>
@@ -111,12 +137,12 @@ export default function Education({ years, months, degrees }) {
                                     {/* CERTIFICATE / DIPLOMA */}
                                     <div className="col-xl-6 col-lg-6 col-md-12">
                                         <div className="form-group">
-                                            <label><strong>Сертификат / диплома</strong></label>
+                                            <label><strong>Сертификат / диплома (не  е задължително) </strong></label>
                                             <input
                                                 className="form-control"
                                                 name="certificate"
                                                 type="file"
-                                                accept=".pdf,.jpg,.jpeg,.png"
+                                                accept=".jpg,.jpeg,.png"
                                             />
                                             {errors.certificate && (
                                                 <p className="text-danger">{errors.certificate}</p>
@@ -125,7 +151,7 @@ export default function Education({ years, months, degrees }) {
                                     </div>
 
                                     {/* CURRENTLY STUDYING */}
-                                    <div className="col-xl-12 col-lg-12 col-md-12">
+                                    <div className="col-xl-6 col-lg-6 col-md-12">
                                         <div className="form-group">
                                             <div className="form-check mt-2">
                                                 <input
@@ -303,7 +329,7 @@ export default function Education({ years, months, degrees }) {
                                         <i className="fa fa-trash-alt ms-1"></i>
                                     </button>
                                 </div>
-                                <div className="panel-heading wt-panel-heading p-a20">
+                                <div className="panel-heading wt-panel-heading p-a30">
                                     <h4 className="panel-tittle m-a0 twm-time-list-title text-black">{edu.institution}</h4>
                                     <div className="twm-time-list-position">{edu.specialty}, {edu.degree}</div>
 
@@ -313,7 +339,9 @@ export default function Education({ years, months, degrees }) {
 
                                     {edu.certificate && (
                                         <div className="twm-time-list-discription">
-                                            <a href={`/storage/${edu.certificate}`} target="_blank" rel="noopener noreferrer">
+                                            <a href={`/assets_dashboard/images/candidate/education/${edu.certificate}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
                                                 <i className="fa fa-file me-1" /> Виж сертификат / диплома
                                             </a>
                                         </div>
@@ -331,7 +359,7 @@ export default function Education({ years, months, degrees }) {
                                         )}
 
                                         {/* Institution */}
-                                        <div className="col-xl-6 col-lg-6 col-md-12">
+                                        <div className="col-xl-3 col-lg-6 col-md-12">
                                             <div className="form-group">
                                                 <label>Учебно заведение</label>
                                                 <div className="ls-inputicon-box">
@@ -350,7 +378,7 @@ export default function Education({ years, months, degrees }) {
                                         </div>
 
                                         {/* Specialty */}
-                                        <div className="col-xl-6 col-lg-6 col-md-12">
+                                        <div className="col-xl-3 col-lg-6 col-md-12">
                                             <div className="form-group">
                                                 <label>Специалност</label>
                                                 <div className="ls-inputicon-box">
@@ -368,8 +396,30 @@ export default function Education({ years, months, degrees }) {
                                             </div>
                                         </div>
 
+                                        <div className="col-xl-3 col-lg-4 col-md-12">
+                                            <div className="form-group">
+                                                <label>Град</label>
+                                                <select
+                                                    className="form-control"
+                                                    name="update_city"
+                                                >
+                                                    <option value={edu.city} selected>
+                                                        {edu.city}
+                                                    </option>
+                                                    {cities && cities.map((city) => (
+                                                        <option key={city.id} value={city.city_name}>
+                                                            {city.city_name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                {errors.update_city && (
+                                                    <p className="text-danger text-center">{errors.update_city}</p>
+                                                )}
+                                            </div>
+                                        </div>
+
                                         {/* Degree */}
-                                        <div className="col-xl-6 col-lg-6 col-md-12">
+                                        <div className="col-xl-3 col-lg-6 col-md-12">
                                             <div className="form-group">
                                                 <label>Степен</label>
                                                 <div className="ls-inputicon-box">
@@ -380,11 +430,20 @@ export default function Education({ years, months, degrees }) {
                                                         <option value={edu.degree} selected>
                                                             {edu.degree}
                                                         </option>
-                                                        {degrees && degrees.map((degree) => (
-                                                            <option key={degree.id} value={degree.name}>
-                                                                {degree.name}
-                                                            </option>
-                                                        ))}
+
+                                                        <option value="Основно образование">Основно образование</option>
+                                                        <option value="Средно образование">Средно образование</option>
+                                                        <option value="Професионална гимназия">Професионална гимназия</option>
+                                                        <option value="Гимназия">Гимназия</option>
+
+                                                        <option value="Бакалавър">Бакалавър</option>
+                                                        <option value="Магистър">Магистър</option>
+                                                        <option value="Доктор">Доктор (PhD)</option>
+
+                                                        <option value="Професионален бакалавър">Професионален бакалавър</option>
+                                                        <option value="Следдипломна квалификация">Следдипломна квалификация</option>
+
+                                                        <option value="Сертификат / курс">Сертификат / курс</option>
                                                     </select>
                                                     <i className="fs-input-icon fa fa-graduation-cap" />
                                                 </div>
@@ -402,7 +461,7 @@ export default function Education({ years, months, degrees }) {
                                                     className="form-control"
                                                     name="update_certificate"
                                                     type="file"
-                                                    accept=".pdf,.jpg,.jpeg,.png"
+                                                    accept=".jpg,.jpeg,.png"
                                                 />
                                                 {edu.certificate && (
                                                     <small className="text-muted">
@@ -416,7 +475,7 @@ export default function Education({ years, months, degrees }) {
                                         </div>
 
                                         {/* Period */}
-                                        <div className="col-xl-6 col-lg-6 col-md-12">
+                                        <div className="col-xl-12 col-lg-6 col-md-12">
                                             <div className="form-group">
                                                 <h3>Изберете нов период</h3>
                                                 <label>Дата на започване</label>
@@ -564,11 +623,19 @@ export default function Education({ years, months, degrees }) {
                 </div>
             )}
 
+            {flash?.errorEducationExist && (
+                <div className="alert alert-danger animate__animated animate__fadeInUp">
+                    {flash.errorEducationExist}
+                </div>
+            )}
+
             {flash?.failedEducation && (
                 <div className="alert alert-danger animate__animated animate__fadeInUp">
                     {flash.failedEducation}
                 </div>
             )}
+
+
 
         </>
     )

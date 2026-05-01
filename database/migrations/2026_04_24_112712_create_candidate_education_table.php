@@ -24,13 +24,13 @@ return new class extends Migration
             $table->string('institution');
             $table->string('specialty');
             $table->string('degree');
+            $table->string('city');
 
+            $table->string('start_year');
+            $table->string('start_month');
 
-            $table->unsignedSmallInteger('start_year');
-            $table->unsignedTinyInteger('start_month');
-
-            $table->unsignedSmallInteger('end_year')->nullable();
-            $table->unsignedTinyInteger('end_month')->nullable();
+            $table->string('end_year');
+            $table->string('end_month');
 
             $table->boolean('is_current')->default(false);
 
