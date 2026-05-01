@@ -44,7 +44,11 @@ export default function Blog({ article }) {
                                                             year: "numeric",
                                                         })}</div>
                                                     <div className="wt-list-content post-author">
-                                                        {article.author.first_name + " " + article.author.last_name}
+                                                        {article.author
+                                                            ? (article.author.first_name ?? '') +
+                                                            ' ' +
+                                                            (article.author.last_name ?? '')
+                                                            : ''}
                                                     </div>
                                                 </div>
                                                 <h3 className="post-title">{article.blog_name}</h3>
