@@ -668,6 +668,10 @@ position: absolute;
     color: black !important;
 }
 
+.rrsa-from, .rrsa-max, .rrsa-min, .rrsa-single, .rrsa-to {
+    font-size: 14px !important;
+}
+
 @media screen and (min-width: 767px) {
 
     .edit-work-experience {

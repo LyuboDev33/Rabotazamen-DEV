@@ -84,6 +84,8 @@ class ProfileController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $user = $request->user();
+        $user->companies()->delete();
+
 
         Auth::logout();
 

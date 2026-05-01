@@ -348,7 +348,7 @@ class CandidateController extends Controller
                 'month_end_to' => 'Датата на приключване не може да бъде преди годината на започване.',
             ]);
         }
-
+        $certificateName = null;
         if ($request->hasFile('certificate')) {
             $file = $request->file('certificate');
             $certificateName = time() . '_' . preg_replace('/\s+/', '', $file->getClientOriginalName());

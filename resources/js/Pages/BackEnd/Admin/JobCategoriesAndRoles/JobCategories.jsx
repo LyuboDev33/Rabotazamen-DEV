@@ -22,14 +22,14 @@ export default function JobCategories() {
             <div className="content-admin-main">
                 <div className="panel panel-default site-bg-white shadow">
                     <div className="panel-heading wt-panel-heading p-a15 d-flex">
-                        <h4 className="panel-tittle m-a0">Категории и роли в системата</h4>
+                        <h4 className="panel-tittle m-a0">Индустрии и професии в системата</h4>
                         <hr className='hr-users' />
                         {/* {can('jobcategory.create') && ( */}
                             <Link
                                 className='btn btn-primary text-white rounded-pill w-fit-content'
                                 href='/dashboard/admin/job-categories/create-view'
                             >
-                                Създай категория
+                                Създай индустрия
                             </Link>
                         {/* )} */}
                     </div>
