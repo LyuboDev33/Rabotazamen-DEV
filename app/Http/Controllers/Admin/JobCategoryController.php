@@ -56,7 +56,7 @@ class JobCategoryController extends Controller
     {
 
         $validated = $request->validate([
-            'job_category_name' => ['required', 'regex:/^[\p{L}]+$/u', 'unique:job_categories,name']
+            'job_category_name' => ['required', 'regex:/^[\p{L}\s\-.]+$/u', 'unique:job_categories,name']
         ], [
             'job_category_name.regex' => 'Позволение са само букви!',
             'job_category_name.unique' => 'Тази категория вече съществува'
