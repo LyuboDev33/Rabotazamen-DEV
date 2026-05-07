@@ -73,11 +73,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
             /** Edn of routes available only to Super admins */
             /** -------------------------------------------- */
 
-            Route::get('/job-categories', [JobCategoryController::class, 'index']);
+            Route::get('/job-categories', [JobCategoryController::class, 'index'])->name('job.categories.index');
             Route::get('/job-categories/create-view', [JobCategoryController::class, 'createCategoryView']);
             Route::get('/job-category/edit/{job_category_id}', [JobCategoryController::class, 'jobCategoryEdit'])->name('job.category.edit');
 
             Route::post('/job-categories/create-category', [JobCategoryController::class, 'createCategory'])->name('job.category.create');
+            Route::delete('/job-categories/delete-category/{category}', [JobCategoryController::class, 'deleteCategory'])->name('job.category.delete');
 
             Route::post('/job-role/create/{category}', [JobCategoryController::class, 'createJobRole'])->name('job.role.create');
             Route::patch('/job-role/update', [JobCategoryController::class, 'updateJobRole'])->name('job.role.update');

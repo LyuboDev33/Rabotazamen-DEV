@@ -109,7 +109,7 @@ export default function Sidebar() {
                                 <Link href="/dashboard/admin/job-categories">
                                     <i className="fa fa-briefcase" />
                                     <span className="admin-nav-text">
-                                        Индустрий + професии
+                                        Индустрии + професии
                                     </span>
                                 </Link>
                             </li>

@@ -16,7 +16,7 @@ export default function CreateJobCategoriesView() {
                 <div className="panel panel-default shadow">
                     <div className="panel-heading wt-panel-heading p-a20 d-flex align-items-center gap-3">
                         <Link
-                            className='btn btn-primary'
+                            className='btn btn-primary rounded-pill'
                             href="/dashboard/admin/job-categories">
                             Назад към всички категории
                         </Link>

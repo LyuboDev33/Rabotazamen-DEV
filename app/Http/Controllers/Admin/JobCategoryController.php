@@ -75,6 +75,21 @@ class JobCategoryController extends Controller
     }
 
     /**
+     * @param JobCategory
+     * @return RedirectResponse
+     */
+    public function deleteCategory(JobCategory $category)
+    {
+        $category->delete();
+
+        Inertia::flash([
+            'successDeletingCategory' => 'Успешно изтрихте индустрията.'
+        ]);
+
+        return redirect(route('job.categories.index'));
+    }
+
+    /**
      * Create a Job role
      * @param Request
      * @return RedirectResponse
