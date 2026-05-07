@@ -50,19 +50,26 @@ export default function Companies() {
                                         companies.map((company) => (
                                             <tr key={company.id}>
 
-                                            <td>
+                                                <td>
 
-                                                {company.company_name}
-                                            </td>
+                                                    {company.company_name}
+                                                </td>
 
                                                 <td>{company.company_eik}</td>
 
                                                 <td>{company.company_industry}</td>
 
                                                 <td>
-                                                    <span className="badge bg-secondary p-2 rounded-4">
+                                                    <h3
+                                                        className={`badge rounded-pill pt-2 pb-2
+                                                            ${company.status === 'pending' ? 'bg-warning' :
+                                                              company.status === 'approved' ? 'bg-success' :
+                                                              company.status === 'rejected' ? 'bg-danger' :
+                                                              company.status === 'closed' ? 'bg-secondary' : 'bg-dark'
+                                                            }`}
+                                                    >
                                                         {company.status ?? 'Фирмените данни не са попълнени'}
-                                                    </span>
+                                                    </h3>
                                                 </td>
 
                                                 <td className="d-flex last-td-edit">

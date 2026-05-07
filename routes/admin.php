@@ -1,14 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\RolesController;
-use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Backend\CompaniesController;
 use App\Http\Controllers\Backend\SupportTicketController;
-use App\Models\JobCategory;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -54,13 +54,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 /** All routes for the companies */
                 Route::get('/companies', [CompaniesController::class, 'index']);
                 Route::get('/companies/{company_eik}', [CompaniesController::class, 'show']);
-                Route::patch('/company/update-status', [CompaniesController::class, 'updateCompanyStatus']);
+                Route::patch('/company/update-status/{company}', [CompaniesController::class, 'changeCompanyStatus'])->name('company.status.change');
                 Route::delete('/company/delete', [CompaniesController::class, 'delete'])->name('company.delete');
 
                 /** All cities routes */
                 Route::get('/cities', [CityController::class, 'index']);
                 Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
                 Route::delete('/cities/delete', [CityController::class, 'destroy'])->name('cities.destroy');
+
+                /** All cities routes */
+                Route::get('/languages', [LanguageController::class, 'index']);
+                Route::post('/language/create', [LanguageController::class, 'create'])->name('language.create');
+                Route::delete('/language/delete', [LanguageController::class, 'delete'])->name('language.delete');
 
             });
 

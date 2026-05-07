@@ -650,6 +650,10 @@ position: absolute;
     font-size: 18px;
 }
 
+ul li {
+    
+}
+
 .split-box a {
     background: #e0eeff;
     color: black ! IMPORTANT;

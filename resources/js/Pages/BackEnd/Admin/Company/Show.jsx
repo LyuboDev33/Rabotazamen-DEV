@@ -1,9 +1,11 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
-import { Head, usePage } from '@inertiajs/react';
+import { Head, usePage, Form, Link } from '@inertiajs/react';
+import DOMPurify from "dompurify";
 
-export default function ViewCompany() {
+export default function ViewCompany({ companyStatuses }) {
 
-    const { company } = usePage().props;
+    const { flash } = usePage();
+    const { company, errors } = usePage().props;
 
     return (
         <>
@@ -15,10 +17,18 @@ export default function ViewCompany() {
 
                 <div className="panel panel-default shadow">
                     <div className="panel-heading wt-panel-heading p-a20">
+                        <Link
+                        href={'/dashboard/admin/companies'}
+                        className='site-button pt-2 pb-2 mb-2 rounded-pill'
+                        >
+                            Назад към всички фирми
+                        </Link>
+                        <hr className='mt-0' />
                         <h4 className="panel-tittle m-a0">
                             <i className="fa fa-building me-2" />
                             {company.company_name}
                         </h4>
+
                     </div>
 
                     <div className="panel-body wt-panel-body p-a20 m-b30">
@@ -63,13 +73,53 @@ export default function ViewCompany() {
                                         alt="Лого"
                                     />
 
-                                    <h5 className="mt-3 mb-1">
+                                    <h4 className="mb-1">
                                         {company.company_name}
-                                    </h5>
+                                    </h4>
 
-                                    <span className="badge bg-secondary">
+                                    <h3
+                                        className={`badge rounded-pill pt-2 pb-2   ${
+                                            company.status === 'pending' ? 'bg-warning' :
+                                            company.status === 'approved' ? 'bg-success' :
+                                            company.status === 'rejected' ? 'bg-danger' :
+                                            company.status === 'closed' ? 'bg-secondary' : 'bg-dark'
+                                            }`}
+                                    >
                                         {company.status ?? 'Фирмените данни не са попълнени'}
-                                    </span>
+                                    </h3>
+                                    <hr />
+                                    <Form
+                                        action={route('company.status.change', company)}
+                                        method='PATCH'
+                                        options={{ preserveScroll: true }}
+                                        resetOnError
+                                        resetOnSuccess
+                                        className='d-flex flex-column justify-content-center text-center'>
+                                        <label htmlFor="company_status"><strong>Променете статуса</strong></label>
+                                        <select
+
+                                            className='p-2 rounded-pill'
+                                            name="company_status"
+                                        >
+                                            <option value=""></option>
+                                            {companyStatuses && companyStatuses.map(status => (
+                                                <option key={status} value={status}>
+                                                    {status}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <button
+                                            className='btn btn-primary text-white rounded-pill w-fit-content mt-2 m-0-auto'
+                                            type='submit'>
+                                            Запази новия статус
+                                        </button>
+                                    </Form>
+
+                                          {errors.company_status && (
+                                            <div className="text-danger mt-1">
+                                                {errors.company_status}
+                                            </div>
+                                        )}
                                 </div>
 
                                 <div className="card p-3 mb-3">
@@ -91,9 +141,13 @@ export default function ViewCompany() {
 
                                 <div className="card p-3 mb-3">
                                     <h5>Описание</h5>
-                                    <p className="mb-0">
-                                        {company.company_full_description}
-                                    </p>
+                                    <p
+                                        className="mb-0"
+                                        dangerouslySetInnerHTML={{
+                                            __html: DOMPurify
+                                                .sanitize(company.company_full_description)
+                                        }}
+                                    />
                                 </div>
 
                                 <div className="row">
@@ -144,6 +198,20 @@ export default function ViewCompany() {
                 </div>
 
             </div>
+
+
+            {flash.errorCompanyStatus && (
+                <div className="alert alert-danger animate__animated animate__fadeInUp">
+                    {flash.successDeletingCompany}
+                </div>
+            )}
+
+            {flash.successCompanyUpdate && (
+                <div className="alert alert-success animate__animated animate__fadeInUp">
+                    {flash.successDeletingCompany}
+                </div>
+            )}
+
         </>
     );
 }

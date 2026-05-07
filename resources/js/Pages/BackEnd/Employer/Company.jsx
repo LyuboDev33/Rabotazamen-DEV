@@ -2,6 +2,7 @@ import DashboardLayout from '@/Layouts/DashboardLayout';
 import { Head, usePage, Form } from '@inertiajs/react';
 import { useState } from 'react';
 import CompanyStatus from '@/Components/CompanyStatus';
+import TinyMCETextEditor from '@/Components/TinyMCETextEditor';
 
 
 export default function Company({ company, cities, jobCategories }) {
@@ -11,6 +12,7 @@ export default function Company({ company, cities, jobCategories }) {
     const { flash } = usePage();
 
     const companyData = company || {};
+    const [companyDescription, setCompanyDescription] = useState('');
 
     const companyBenefits = companyData.company_benefits || [];
     const workLocations = companyData.work_locations || [];
@@ -31,8 +33,6 @@ export default function Company({ company, cities, jobCategories }) {
     function isChecked(array, value) {
         return Array.isArray(array) && array.includes(value);
     }
-
-    console.log(companyStatus);
 
 
     return (
@@ -339,13 +339,13 @@ export default function Company({ company, cities, jobCategories }) {
                                         <div className="form-group">
                                             <label>Подробно описание <span className="text-danger">*</span></label>
                                             <div className="ls-inputicon-box">
-                                                <textarea
-                                                    className="form-control"
-                                                    name="company_full_description"
-                                                    rows="8"
-                                                    defaultValue={companyData.company_full_description || ''}
-                                                    placeholder="Разкажете повече за вашата компания, мисия, визия, култура..."
+
+                                                <TinyMCETextEditor
+                                                    value={companyDescription}
+                                                    onChange={setCompanyDescription}
                                                 />
+                                                <input type="hidden" name="company_full_description" value={companyDescription} />
+
                                             </div>
                                             {errors.company_full_description && (
                                                 <div className="text-danger">{errors.company_full_description}</div>

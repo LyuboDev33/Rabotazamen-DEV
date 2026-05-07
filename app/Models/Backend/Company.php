@@ -19,6 +19,13 @@ class Company extends Model
     const STATUS_INCOMPLETE = 'incomplete';
     const STATUS_COMPLETE = 'complete';
 
+    const COMPANY_STATUSES = [
+        self::STATUS_PENDING,
+        self::STATUS_APPROVED,
+        self::STATUS_REJECTED,
+        self::STATUS_CLOSED
+    ];
+
 
     protected $fillable = [
         'status',

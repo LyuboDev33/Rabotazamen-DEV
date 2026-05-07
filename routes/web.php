@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Backend\SupportTicketController;
 use App\Http\Controllers\Backend\CandidateController;
+use App\Http\Controllers\Backend\Employer\JobsEmployerController;
 use App\Http\Controllers\Backend\EmployerController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\GoogleAuthController;
@@ -82,9 +83,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->prefix('dashboard/employer')
         ->group(function () {
 
+            /** All company routes */
             Route::get('/company-details', [EmployerController::class, 'company']);
             Route::post('/company-details', [EmployerController::class, 'store'])->name('employer.store');
             Route::put('/company-details/{company}', [EmployerController::class, 'update'])->name('employer.update');
+
+            /** All jobs routes */
+            Route::get('/jobs', [JobsEmployerController::class, 'index']);
+            Route::get('/jobs/create', [JobsEmployerController::class, 'createView']);
+
+            Route::post('/job/create', [JobsEmployerController::class, 'create'])->name('job.create');
+
         });
 });
 

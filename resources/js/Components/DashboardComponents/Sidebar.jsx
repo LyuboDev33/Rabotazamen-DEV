@@ -63,6 +63,16 @@ export default function Sidebar() {
                                 </Link>
                             </li>
 
+                            <li className={isActive('/dashboard/admin/languages', true) ? 'active' : ''}>
+                                <Link href="/dashboard/admin/languages">
+                                    <i className="fa fa-language" />
+                                    <span className="admin-nav-text">
+                                        Езици
+                                    </span>
+                                </Link>
+                            </li>
+
+
                             <li className={isActive('/dashboard/admin/roles') ? 'active' : ''}>
                                 <Link href="/dashboard/admin/roles">
                                     <i className="fa fa-home" />
