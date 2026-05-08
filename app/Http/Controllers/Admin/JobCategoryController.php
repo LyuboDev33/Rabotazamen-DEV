@@ -97,7 +97,7 @@ class JobCategoryController extends Controller
     public function createJobRole(Request $request, JobCategory $category)
     {
         $validated = $request->validate([
-            'name_create_role' => ['required', 'regex:/^[\p{L}\s]+$/u', 'unique:job_roles,name'],
+            'name_create_role' => ['required', 'regex:/^[\p{L}\s\-.]+$/u', 'unique:job_roles,name'],
         ], [
             'name_create_role.required' => 'Името е задължително',
             'name_create_role.regex' => 'Позволени са само букви!',
@@ -125,7 +125,7 @@ class JobCategoryController extends Controller
     {
 
         $validated = $request->validate([
-            'name' => ['required', 'regex:/^[\p{L}\s]+$/u', 'unique:job_roles,name,' . $request->role_id],
+            'name' => ['required', 'regex:/^[\p{L}\s\-.]+$/u', 'unique:job_roles,name,' . $request->role_id],
         ], [
             'name.required' => 'Името е задължително',
             'name.regex' => 'Позволени са само букви!',
