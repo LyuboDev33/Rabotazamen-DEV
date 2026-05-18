@@ -275,32 +275,32 @@ h6 {
 }
 
 h1 {
-    font-size: 60px;
+    /* font-size: 60px; */
     font-weight: 700;
 }
 
 h2 {
-    font-size: 46px;
+    /* font-size: 46px; */
     font-weight: 500;
 }
 
 h3 {
-    font-size: 22px;
+    /* font-size: 22px; */
     font-weight: 500;
 }
 
 h4 {
-    font-size: 18px;
+    /* font-size: 18px; */
     font-weight: 500;
 }
 
 h5 {
-    font-size: 16px;
+    /* font-size: 16px; */
     font-weight: 500;
 }
 
 h6 {
-    font-size: 14px;
+    /* font-size: 14px; */
     font-weight: 400;
 }
 
@@ -1627,6 +1627,10 @@ ol li {
 
 .overlay-dark .overlay-main {
     opacity: 0.9;
+}
+
+ul li {
+    list-style: none;
 }
 
 .overlay-wraper>.container,
@@ -5698,7 +5702,7 @@ ol li {
 }
 
 .section-head.left.wt-small-separator-outer p {
-    margin-bottom: 40px;
+    margin-bottom: 15px;
 }
 
 .section-head.center.wt-small-separator-outer {
@@ -8613,8 +8617,8 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .twm-w-process-steps-2 {
-    padding-left: 80px;
-    padding-top: 30px;
+    /* padding-left: 40px;
+    padding-top: 30px; */
     position: relative;
 }
 
@@ -8631,7 +8635,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .twm-w-process-steps-2 .twm-large-number {
-    font-size: 60px;
+    font-size: 48px;
     font-weight: 600;
     line-height: 50px;
     position: absolute;
@@ -8641,7 +8645,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .twm-w-process-steps-2 .twm-w-pro-top {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     margin-bottom: 40px;
     padding: 25px;
     border-radius: 10px;
@@ -8664,14 +8668,17 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 
 .twm-w-process-steps-2 .twm-w-pro-top .twm-title {
     color: #17171d;
-    margin-bottom: 30px;
-    margin-top: 40px;
-    margin-left: 30px;
+    margin-bottom: 20px;
+    width: 85%;
+    font-size: 20px;
+    /* margin-top: 40px;
+    margin-left: 30px; */
 }
 
 .twm-w-process-steps-2 p {
     margin-bottom: 0px;
     font-size: 14px;
+    color: white;
 }
 
 /*how it work*/
@@ -9917,7 +9924,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
         font-size: 30px;
     }
 
-    .twm-explore-content .twm-title-large h2  {
+    .twm-explore-content .twm-title-large h2 {
         width: 100%;
         font-size: 22px;
     }
@@ -11496,7 +11503,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .twm-timing-list .twm-time-list-date {
-     font-size: 15px;
+    font-size: 15px;
     color: #666666;
     padding-left: 35px;
 }
@@ -17734,7 +17741,7 @@ strong {
 
 @media(min-width: 768px) {
     .twm-log-reg-form-wrap {
-      overflow-y: scroll;
+        overflow-y: scroll;
         display: flex;
         justify-content: center;
     }
@@ -17746,7 +17753,7 @@ strong {
   }
 } */
 .twm-log-reg-form-wrap .twm-log-reg-inner {
-   padding: 20px 20px;
+    padding: 20px 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -19773,9 +19780,9 @@ strong {
 }
 
 /* Home 5 Millions section*/
-.twm-millions-section-wrap {
+/* .twm-millions-section-wrap {
     margin-bottom: 100px;
-}
+} */
 
 @media (max-width: 991px) {
     .twm-millions-section-wrap {
@@ -22618,7 +22625,6 @@ strong {
 }
 
 .h-page-6-getjobs-wrap {
-    padding-top: 120px;
     padding-bottom: 90px;
 }
 

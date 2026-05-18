@@ -1,330 +1,460 @@
 import React from "react";
 import FrontEndLayout from "@/Layouts/FrontEndLayout";
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import GetHiredCompanies from "@/Components/FrontEndComponents/GetHiredCompanies";
-
+import { Link } from "@inertiajs/react";
+import { useState } from "react";
 
 export default function About() {
+
+
+const [activeTab, setActiveTab] = useState("candidates");
 
     return (
         <>
 
-            {/* ABOUT SECTION START */}
-            <section className="section-full p-t120 p-b0 site-bg-white twm-millions-1-area pos-relative">
+            {/* HERO / MANIFESTO START */}
+            <section className="section-full p-t60 p-b30 site-bg-white twm-explore-area pos-relative">
                 <div className="container">
-                    <div className="twm-millions-section-wrap">
-                        <div className="row">
-                            <div className="col-lg-7 col-md-12">
-                                <div className="twm-millions-1-section">
-                                    <div className="twm-media">
-                                        <img src="/assets/images/million-jobs/main-pic.png" alt="#"/>
-                                        <div className="twm-circle-jobs-wrap">
-                                            {/*1*/}
-                                            <div className="twm-circle-jobs-box one bounce2">
-                                                <div className="twm-circle-job-pics">
-                                                    <img src="/assets/images/million-jobs/company-1.png" alt="#" />
-                                                </div>
-                                            </div>
-                                            {/*2*/}
-                                            <div className="twm-circle-jobs-box two bounce">
-                                                <div className="twm-circle-job-pics">
-                                                    <img src="/assets/images/million-jobs/company-2.png" alt="#" />
-                                                </div>
-                                            </div>
-                                            {/*3*/}
-                                            <div className="twm-circle-jobs-box three bounce2">
-                                                <div className="twm-circle-job-pics">
-                                                    <img src="/assets/images/million-jobs/company-3.png" alt="#" />
-                                                </div>
-                                            </div>
-                                            {/*4*/}
-                                            <div className="twm-circle-jobs-box four bounce">
-                                                <div className="twm-circle-job-pics">
-                                                    <img src="/assets/images/million-jobs/company-4.png" alt="#" />
-                                                </div>
-                                            </div>
-                                            {/*5*/}
-                                            <div className="twm-circle-jobs-box five bounce2">
-                                                <div className="twm-circle-job-pics">
-                                                    <img src="/assets/images/million-jobs/company-5.png" alt="#" />
-                                                </div>
-                                            </div>
-                                            {/*6*/}
-                                            <div className="twm-circle-jobs-box six bounce">
-                                                <div className="twm-circle-job-pics">
-                                                    <img src="/assets/images/million-jobs/company-6.png" alt="#" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="twm-bg-circle-pic">
-                                        <img src="/assets/images/million-jobs/bg-circle.png" alt="#" />
-                                    </div>
-                                </div>
+                    <div className="row justify-content-center text-center">
+                        <div className="col-lg-10">
+
+                            <div className="wt-small-separator site-text-primary justify-content-center">
+                                <div>За нас</div>
                             </div>
-                            <div className="col-lg-5 col-md-12">
-                                <div>
-                                    <div className="wt-post-discription">
 
+                            <h1 className="wt-title" style={{ fontSize: "2.6rem", lineHeight: "1.2" }}>
+                                Не предлагаме просто услуги. <br />
+                                <span className="site-text-primary">Предлагаме партньорство.</span>
+                            </h1>
 
-                                        <h4 className="twm-blog-s-title">About Business Network</h4>
-                                        <p>
-                                            Phasellus enim magna, varius et commodo ut, ultricies vitae velit. Ut nulla tellus, eleifend euismod and pellentesque vel, sagittis vel justo. In libero urna, venenatis sit amet ornare non, suscipit nec risus. Sed consequat justo non mauris pretium at tempor justo sodales.
-                                        </p>
-                                        <div className="wt-post-discription">
-                                            <blockquote>
-                                                <p><span>"</span> A business consulting agency is involved in the planning, implementation,
-                                                    and education  of businesses.
-                                                </p>
-                                                <strong>Richard Anderson</strong>
-                                            </blockquote>
-                                        </div>
-                                        <h4 className="twm-blog-s-title">Get Your Resume Done Right</h4>
-                                        <p>Phasellus enim magna, varius et commodo ut, ultricies vitae velit. Ut nulla tellus, eleifend euismod and pellentesque vel, sagittis vel justo. In libero urna, venenatis sit amet ornare non, suscipit nec risus. Sed consequat justo non mauris pretium at tempor justo sodales. </p>
-                                    </div>
-                                    <div className="post-single-list">
-                                        <ul className="description-list-2">
-                                            <li>
-                                                <i className="feather-check" />
-                                                You need to create an account to find the best and preferred job.
-                                            </li>
-                                            <li>
-                                                <i className="feather-check" />
-                                                After creating the account, you have to apply for the desired job.
-                                            </li>
-                                            <li>
-                                                <i className="feather-check" />
-                                                After filling all the relevant information you have to upload your resume.
-                                            </li>
-                                        </ul>
-                                    </div>
-                                 
-                                </div>
+                            <p className="p-t20" style={{ fontSize: "1.05rem" }}>
+                                <strong>„РаботаЗаМен.БГ“</strong> е новосъздадена компания,
+                                изградена върху стълбовете на сигурността, иновациите и стремежа
+                                към реални резултати. Нашата идентичност се гради върху
+                                разбирането, че стандартните модели на посредничество вече не са
+                                достатъчни.
+                            </p>
 
-                            </div>
+                            <p>
+                                Нашата дейност се разгръща в три стратегически направления, които
+                                работят в синхрон. Вярваме, че най-добрият начин да намериш работа
+                                е като докажеш уменията си, а най-добрият начин да развиеш бизнес е
+                                като инвестираш в хората и технологиите си.
+                            </p>
+
+                            <p>
+                                <em>
+                                    Ние сме тук, за да направим пазара на труда по-прозрачен,
+                                    по-ефективен и по-достъпен за всички.
+                                </em>
+                            </p>
+
                         </div>
                     </div>
                 </div>
+
                 <div className="twm-bg-shape5" />
             </section>
-            {/* ABOUT SECTION END */}
+            {/* HERO / MANIFESTO END */}
 
-            <hr />
 
-            {/* EXPLORE NEW LIFE START */}
-            <section className="section-full p-t30 p-b120 site-bg-white twm-explore-area2">
+            {/* THREE PILLARS START */}
+            <section className="section-full p-t60 p-b90 site-bg-white twm-how-it-work-area2">
                 <div className="container">
-                    <div className="section-content">
-                        <div className="twm-explore-content-2">
-                            <div className="row">
-                                <div className="col-lg-8 col-md-12">
-                                    <div className="twm-explore-content-outer2">
-                                        <div className="twm-explore-top-section">
-                                            <div className="twm-title-small">For Employee</div>
-                                            <div className="twm-title-large">
-                                                <h2>We help you connect
-                                                    with the organizer</h2>
-                                                <p>Get paid easily and security. Use our resources to become
-                                                    independent and showcase your professional skills.</p>
-                                            </div>
-                                            <div className="twm-read-more">
-                                                <a href="about-1.html" className="site-button">Read More</a>
-                                            </div>
-                                        </div>
-                                        <div className="twm-explore-bottom-section">
-                                            <div className="row">
-                                                {/*block 1*/}
-                                                <div className="col-lg-4 col-md-6">
-                                                    <div className="counter-outer-two">
-                                                        <div className="icon-content">
-                                                            <div className="tw-count-number text-clr-yellow-2">
-                                                                <span className="counter">5</span>M+</div>
-                                                            <p className="icon-content-info">Million daily active users</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {/*block 2*/}
-                                                <div className="col-lg-4 col-md-6">
-                                                    <div className="counter-outer-two">
-                                                        <div className="icon-content">
-                                                            <div className="tw-count-number text-clr-green">
-                                                                <span className="counter">9</span>K+</div>
-                                                            <p className="icon-content-info">Open job positions</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {/*block 3*/}
-                                                <div className="col-lg-4 col-md-12">
-                                                    <div className="counter-outer-two">
-                                                        <div className="icon-content">
-                                                            <div className="tw-count-number text-clr-pink">
-                                                                <span className="counter">2</span>M+</div>
-                                                            <p className="icon-content-info">Million stories shared</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-4 col-md-12">
-                                    <div className="twm-explore-media-wrap2">
-                                        <div className="twm-media">
-                                            <img src="/assets/images/gir-large-2.png" alt="#"/>
-                                        </div>
+
+                    <div className="section-head center wt-small-separator-outer">
+                        <div className="wt-small-separator site-text-primary">
+                            <div>Стълбове на нашата мисия</div>
+                        </div>
+                        <h2 className="wt-title">Върху какво градим всичко?</h2>
+                    </div>
+
+                    <div className="twm-w-process-steps-2-wrap">
+                        <div className="row">
+
+                            <div className="col-lg-4 col-md-6">
+                                <div className="twm-w-process-steps-2">
+                                    <div className="twm-w-pro-top bg-clr-sky-light bg-sky-light-shadow text-center">
+                                        <span className="twm-large-number text-clr-sky">01</span>
+                                        <h4 className="twm-title">Сигурност</h4>
+                                        <p>
+                                            Верифицирани работодатели, проверени кандидати и
+                                            прозрачни процеси. Доверието е в основата на всяко
+                                            успешно партньорство.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
+
+                            <div className="col-lg-4 col-md-6">
+                                <div className="twm-w-process-steps-2">
+                                    <div className="twm-w-pro-top bg-clr-yellow-light bg-yellow-light-shadow text-center">
+                                        <span className="twm-large-number text-clr-yellow">02</span>
+                                        <h4 className="twm-title">Иновации</h4>
+                                        <p>
+                                            Дигитален HR Агент, интелигентни алгоритми за
+                                            мачмейкинг и интегрирана ATS система — технологията
+                                            работи в полза на хората.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-lg-4 col-md-6 mx-auto">
+                                <div className="twm-w-process-steps-2">
+                                    <div className="twm-w-pro-top bg-clr-pink-light bg-pink-light-shadow text-center">
+                                        <span className="twm-large-number text-clr-pink">03</span>
+                                        <h4 className="twm-title">Реални резултати</h4>
+                                        <p>
+                                            Не обещания, а измерими постижения — по-кратък цикъл на
+                                            наемане, по-добри съответствия и кариерно израстване,
+                                            което се вижда.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
+
+                </div>
+            </section>
+            {/* THREE PILLARS END */}
+
+
+            {/* STATS COUNTER STRIP START */}
+            <section className="section-full p-t60 p-b60 site-bg-light-purple">
+                <div className="container">
+                    <div className="row text-center">
+
+                        <div className="col-lg-3 col-md-6">
+                            <div className="counter-outer-two">
+                                <div className="icon-content">
+                                    <div className="tw-count-number text-clr-yellow-2">
+                                        <span className="counter">60</span>%
+                                    </div>
+                                    <p className="icon-content-info">По-кратък цикъл на наемане</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-3 col-md-6">
+                            <div className="counter-outer-two">
+                                <div className="icon-content">
+                                    <div className="tw-count-number text-clr-green">
+                                        <span className="counter">3</span>
+                                    </div>
+                                    <p className="icon-content-info">Стратегически направления</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-3 col-md-6">
+                            <div className="counter-outer-two">
+                                <div className="icon-content">
+                                    <div className="tw-count-number text-clr-pink">
+                                        <span className="counter">100</span>%
+                                    </div>
+                                    <p className="icon-content-info">Верифицирани работодатели</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-3 col-md-6">
+                            <div className="counter-outer-two">
+                                <div className="icon-content">
+                                    <div className="tw-count-number text-clr-sky">
+                                        <span className="counter">24</span>/7
+                                    </div>
+                                    <p className="icon-content-info">Дигитален HR Агент</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
-            {/* EXPLORE NEW LIFE END */}
+            {/* STATS COUNTER STRIP END */}
 
 
-            {/* HOW IT WORK SECTION START */}
-            <section className="section-full p-t120 p-b90 site-bg-white twm-how-it-work-area2">
+            <section className="section-full p-t120 p-b90 site-bg-white">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-lg-4 col-md-12">
-                            {/* TITLE START*/}
-                            <div className="section-head left wt-small-separator-outer">
-                                <div className="wt-small-separator site-text-primary">
-                                    <div>How It Works </div>
-                                </div>
-                                <h2 className="wt-title">Follow our steps we will help you.</h2>
-                            </div>
-                            <ul className="description-list">
-                                <li>
-                                    <i className="feather-check" />
-                                    Trusted &amp; Quality Job
-                                </li>
-                                <li>
-                                    <i className="feather-check" />
-                                    International Job
-                                </li>
-                                <li>
-                                    <i className="feather-check" />
-                                    No Extra Charge
-                                </li>
-                                <li>
-                                    <i className="feather-check" />
-                                    Top Companies
-                                </li>
-                            </ul>
-                            {/* TITLE END*/}
+
+                    {/* SECTION HEADER */}
+                    <div className="section-head center wt-small-separator-outer">
+
+                        <div className="wt-small-separator site-text-primary">
+                            <div>Две перспективи, една платформа</div>
                         </div>
-                        <div className="col-lg-8 col-md-12">
-                            <div className="twm-w-process-steps-2-wrap">
+
+                        <h2 className="wt-title">
+                            Кое е важно за вас?
+                        </h2>
+
+                        <p>
+                            Изберете гледната точка, която ви интересува,
+                            и вижте как РаботаЗаМен.БГ работи за вас.
+                        </p>
+
+                    </div>
+
+                    {/* CUSTOM REACT TABS */}
+                    <div className="twm-custom-tabs">
+
+                        {/* TAB BUTTONS */}
+                        <div className="d-flex justify-content-center gap-3 flex-wrap mb-5">
+
+                            <button
+                                type="button"
+                                onClick={() => setActiveTab("candidates")}
+                                className={`site-button ${activeTab === "candidates"
+                                    ? ""
+                                    : "site-bg-secondry"
+                                    }`}
+                            >
+                                За кандидати
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => setActiveTab("employers")}
+                                className={`site-button ${activeTab === "employers"
+                                    ? ""
+                                    : "site-bg-secondry"
+                                    }`}
+                            >
+                                За работодатели
+                            </button>
+
+                        </div>
+
+                        {/* ========================= */}
+                        {/* CANDIDATES CONTENT */}
+                        {/* ========================= */}
+                        {activeTab === "candidates" && (
+
+                            <div className="tab-content-fade">
+
                                 <div className="row">
-                                    <div className="col-xl-6 col-lg-6 col-md-6">
+
+                                    <div className="col-lg-6 col-md-6">
                                         <div className="twm-w-process-steps-2">
                                             <div className="twm-w-pro-top bg-clr-sky-light bg-sky-light-shadow">
-                                                <span className="twm-large-number text-clr-sky">01</span>
-                                                <div className="twm-media">
-                                                    <span><img src="/assets/images/work-process/icon1.png" alt="icon1" /></span>
-                                                </div>
-                                                <h4 className="twm-title">Register<br />Your Account</h4>
-                                                <p>You need to create an account to find the best and preferred job.</p>
+
+                                                <h4 className="twm-title">
+                                                    Дигитален HR Агент
+                                                </h4>
+
+                                                <p>
+                                                    Вашата кандидатура не потъва в архива.
+                                                    Получавате обратна връзка в реално време
+                                                    за статуса на вашите апликации и достъп
+                                                    до позиции, които максимално съответстват
+                                                    на вашия профил.
+                                                </p>
+
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-6">
+
+                                    <div className="col-lg-6 col-md-6">
                                         <div className="twm-w-process-steps-2">
                                             <div className="twm-w-pro-top bg-clr-yellow-light bg-yellow-light-shadow">
-                                                <span className="twm-large-number text-clr-yellow">02</span>
-                                                <div className="twm-media">
-                                                    <span><img src="/assets/images/work-process/icon4.png" alt="icon1" /></span>
-                                                </div>
-                                                <h4 className="twm-title">Search <br />
-                                                    Your Job</h4>
-                                                <p>You need to create an account to find the best and preferred job.</p>
+
+                                                <h4 className="twm-title">
+                                                    Ефективност и бързина
+                                                </h4>
+
+                                                <p>
+                                                    Забравете за дългото чакане. Нашата система
+                                                    осигурява светкавична връзка с работодателите
+                                                    и ви дава възможност да получите обратна връзка
+                                                    в реално време.
+                                                </p>
+
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-6">
+
+                                    <div className="col-lg-6 col-md-6">
                                         <div className="twm-w-process-steps-2">
                                             <div className="twm-w-pro-top bg-clr-pink-light bg-pink-light-shadow">
-                                                <span className="twm-large-number text-clr-pink">03</span>
-                                                <div className="twm-media">
-                                                    <span><img src="/assets/images/work-process/icon3.png" alt="icon1" /></span>
-                                                </div>
-                                                <h4 className="twm-title">Apply <br />For Dream Job</h4>
-                                                <p>You need to create an account to find the best and preferred job.</p>
+
+                                                <h4 className="twm-title">
+                                                    Персонализирана академия
+                                                </h4>
+
+                                                <p>
+                                                    Платформата идентифицира пропуските във
+                                                    вашите умения и ви предлага конкретни
+                                                    обучения за развитие.
+                                                </p>
+
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-6">
+
+                                    <div className="col-lg-6 col-md-6">
                                         <div className="twm-w-process-steps-2">
                                             <div className="twm-w-pro-top bg-clr-green-light bg-clr-light-shadow">
-                                                <span className="twm-large-number text-clr-green">04</span>
-                                                <div className="twm-media">
-                                                    <span><img src="/assets/images/work-process/icon3.png" alt="icon1" /></span>
-                                                </div>
-                                                <h4 className="twm-title">Upload <br />Your Resume</h4>
-                                                <p>You need to create an account to find the best and preferred job.</p>
+
+                                                <h4 className="twm-title">
+                                                    Инструменти за кариерен анализ
+                                                </h4>
+
+                                                <p>
+                                                    Вашият личен дашборд предоставя всичко
+                                                    необходимо за професионално развитие
+                                                    и по-добро позициониране.
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                        )}
+
+                        {/* ========================= */}
+                        {/* EMPLOYERS CONTENT */}
+                        {/* ========================= */}
+                        {activeTab === "employers" && (
+
+                            <div className="tab-content-fade">
+
+                                <div className="row">
+
+                                    <div className="col-lg-6 col-md-6">
+                                        <div className="twm-w-process-steps-2">
+                                            <div className="twm-w-pro-top bg-clr-yellow-light bg-yellow-light-shadow">
+
+                                                <h4 className="twm-title">
+                                                    Дигитален HR Агент
+                                                </h4>
+
+                                                <p>
+                                                    Автоматизира рутинните процеси —
+                                                    филтриране, анализ и класиране
+                                                    на кандидати според зададени критерии.
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-lg-6 col-md-6">
+                                        <div className="twm-w-process-steps-2">
+                                            <div className="twm-w-pro-top bg-clr-sky-light bg-sky-light-shadow">
+
+                                                <h4 className="twm-title">
+                                                    Интегрирана ATS система
+                                                </h4>
+
+                                                <p>
+                                                    Централизирате комуникацията и
+                                                    управлението на кандидатите
+                                                    в една модерна платформа.
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-lg-6 col-md-6">
+                                        <div className="twm-w-process-steps-2">
+                                            <div className="twm-w-pro-top bg-clr-pink-light bg-pink-light-shadow">
+
+                                                <h4 className="twm-title">
+                                                    Обективен подбор чрез данни
+                                                </h4>
+
+                                                <p>
+                                                    Алгоритмите ни намаляват субективния фактор
+                                                    и откриват най-подходящите таланти.
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-lg-6 col-md-6">
+                                        <div className="twm-w-process-steps-2">
+                                            <div className="twm-w-pro-top bg-clr-green-light bg-clr-light-shadow">
+
+                                                <h4 className="twm-title">
+                                                    По-бърз процес по наемане
+                                                </h4>
+
+                                                <p>
+                                                    Намалявате времето за подбор чрез
+                                                    автоматизирани процеси и интелигентен
+                                                    matching между кандидати и позиции.
+                                                </p>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+                        )}
+
                     </div>
-                    <div className="twm-how-it-work-section">
-                    </div>
+
                 </div>
             </section>
-            {/* HOW IT WORK SECTION END */}
+            {/* TWO PERSPECTIVES END */}
 
-
-            {/* EXPLORE NEW LIFE START */}
-            <section className="section-full p-t120 p-b120 twm-explore-area bg-cover " style={{ backgroundImage: 'url(images/background/bg-1.jpg)' }}>
+            {/* DUAL CTA START */}
+            <section
+                className="section-full p-t50 p-b50 twm-explore-area bg-cover site-bg-light-purple"
+            >
                 <div className="container">
-                    <div className="section-content">
-                        <div className="row">
-                            <div className="col-lg-4 col-md-12">
-                                <div className="twm-explore-media-wrap">
-                                    <div className="twm-media">
-                                        <img src="/assets/images/gir-large.png" alt="#" />
+                    <div className="row justify-content-center">
+                        <div className="col-lg-10">
+
+                            <div className="twm-explore-content-outer">
+                                <div className="twm-explore-content text-center">
+                                    <div className="twm-l-line-1" />
+                                    <div className="twm-l-line-2" />
+                                    <div className="twm-r-circle-1" />
+                                    <div className="twm-r-circle-2" />
+
+                                    <div className="twm-title-small">Готови ли сте?</div>
+                                    <div className="twm-title-large mb-0">
+                                        <h2>Присъединете се към новото поколение пазар на труда</h2>
+                                        <p className="mt-2">
+                                            Без значение дали търсите следващата стъпка в кариерата
+                                            си или следващия топ талант — ние сме тук, за да го
+                                            направим възможно.
+                                        </p>
+                                    </div>
+
+                                    <div className="twm-upload-file d-flex gap-3 justify-content-center flex-wrap p-t20">
+                                        <Link href="/register/candidate" className="site-button">
+                                            Аз съм кандидат <i className="feather-arrow-right" />
+                                        </Link>
+                                        <Link href="/register/employer" className="site-button site-bg-secondry">
+                                            Аз съм работодател <i className="feather-arrow-right" />
+                                        </Link>
                                     </div>
                                 </div>
+                                <div className="twm-bold-circle-right" />
+                                <div className="twm-bold-circle-left" />
                             </div>
-                            <div className="col-lg-8 col-md-12">
-                                <div className="twm-explore-content-outer">
-                                    <div className="twm-explore-content">
-                                        <div className="twm-l-line-1" />
-                                        <div className="twm-l-line-2" />
-                                        <div className="twm-r-circle-1" />
-                                        <div className="twm-r-circle-2" />
-                                        <div className="twm-title-small">Explore New Life</div>
-                                        <div className="twm-title-large">
-                                            <h2>Don’t just find. be found
-                                                put your CV in front of
-                                                great employers </h2>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry the standard dummy text ever since the  when an printer took.</p>
-                                        </div>
-                                        <div className="twm-upload-file">
-                                            <button type="button" className="site-button">Upload Your Resume <i className="feather-upload" /></button>
-                                        </div>
-                                    </div>
-                                    <div className="twm-bold-circle-right" />
-                                    <div className="twm-bold-circle-left" />
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </section>
-            {/* EXPLORE NEW LIFE END */}
-
-
-
-
-            {/* CONTENT END */}
+            {/* DUAL CTA END */}
 
         </>
-    )
-
+    );
 }
 
-About.layout = page => <FrontEndLayout children={page} />
+About.layout = (page) => <FrontEndLayout children={page} />;

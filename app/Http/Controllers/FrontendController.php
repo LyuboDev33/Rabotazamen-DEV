@@ -9,31 +9,35 @@ use Inertia\Inertia;
 class FrontendController extends Controller
 {
     /** Return home view */
-    public function home () {
+    public function home()
+    {
 
         $articles = Blog::with('author')
-                    ->orderBy('created_at', 'desc')
-                    ->limit(3)
-                    ->get();
+            ->orderBy('created_at', 'desc')
+            ->limit(3)
+            ->get();
 
 
-         return Inertia::render('FrontEnd/Welcome' , [
+        return Inertia::render('FrontEnd/Welcome', [
             'articles' => $articles
-         ]);
+        ]);
     }
 
     /** Return the about view */
-    public function about() {
+    public function about()
+    {
         return Inertia::render('FrontEnd/About');
     }
 
     /** Return the contact view */
-    public function contact () {
+    public function contact()
+    {
         return Inertia::render('FrontEnd/Contact');
     }
 
     /** Show all Blog articles */
-    public function blog () {
+    public function blog()
+    {
 
         return Inertia::render('FrontEnd/Blog/Blog', [
             'articles' => Blog::with('author')->get()
@@ -42,14 +46,15 @@ class FrontendController extends Controller
 
     /** Show a single Blog Article
      * @param string $slug
-    */
-    public function blogShow($slug) {
+     */
+    public function blogShow($slug)
+    {
         $article = Blog::where('blog_slug', $slug)
-                    ->with('author')
-                    ->first();
+            ->with('author')
+            ->first();
 
-        if(!$article) {
-           return Inertia::render('NotFoundBlogFrontEnd');
+        if (!$article) {
+            return Inertia::render('NotFoundBlogFrontEnd');
         }
 
         return Inertia::render('FrontEnd/Blog/Show', [
@@ -59,9 +64,34 @@ class FrontendController extends Controller
 
 
     /** Show the calculator view */
-    public function calculator () {
+    public function calculator()
+    {
         return Inertia::render('FrontEnd/Calculator');
     }
+
+    /** Show the services view */
+    public function services()
+    {
+        return Inertia::render('FrontEnd/Services');
+    }
+
+    /** Show the education part */
+    public function learning()
+    {
+        return Inertia::render('FrontEnd/Learning');
+    }
+
+    /** Show the platform Employer */
+    public function employer () {
+        return Inertia::render('FrontEnd/PlatformEmployers');
+    }
+
+     /** Show the platform Employer */
+    public function candidate () {
+        return Inertia::render('FrontEnd/PlatformCandidates');
+    }
+
+
 
 
 }

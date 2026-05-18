@@ -320,7 +320,7 @@
 
 /* From Uiverse.io by Yaya12085 */
 .custum-file-upload {
-        padding: 15px;
+    padding: 15px;
     width: fit-content;
     display: flex;
     flex-direction: column;
@@ -381,7 +381,7 @@
 
 /* DELETE BUTTON */
 .cv-delete-btn {
-position: absolute;
+    position: absolute;
     top: -15px;
     right: -21px;
     border-radius: 36px;
@@ -408,7 +408,7 @@ position: absolute;
 }
 
 .pdfDownload {
-        border-radius: 38px;
+    border-radius: 38px;
     border: none;
     background: #ff4d4f;
     padding-left: 10px;
@@ -650,9 +650,7 @@ position: absolute;
     font-size: 18px;
 }
 
-ul li {
-    
-}
+
 
 .split-box a {
     background: #e0eeff;
@@ -667,21 +665,108 @@ ul li {
     z-index: 999999;
 }
 
-.rrsa-max, .rrsa-min {
+.rrsa-max,
+.rrsa-min {
     font-size: 15px !important;
     color: black !important;
 }
 
-.rrsa-from, .rrsa-max, .rrsa-min, .rrsa-single, .rrsa-to {
+.rrsa-from,
+.rrsa-max,
+.rrsa-min,
+.rrsa-single,
+.rrsa-to {
     font-size: 14px !important;
+}
+
+.szh-accordion__item-btn {
+    padding: 10px;
+}
+
+.szh-accordion__item-btn {
+    border-radius: 20px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: rgb(215, 215, 215);
+    padding: 22px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #111827;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        padding 0.3s ease;
+}
+
+/* Hover */
+.szh-accordion__item-btn:hover {
+    background: #f5f7fa;
+    color: #000;
+}
+
+/* Active/Open state */
+.szh-accordion__item--expanded .szh-accordion__item-btn {
+    background: #111827;
+    color: #fff;
+}
+
+/* Arrow icon */
+.szh-accordion__item-btn::after {
+    content: '+';
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 300;
+    background: rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+/* Open arrow */
+.szh-accordion__item--expanded .szh-accordion__item-btn::after {
+    content: '−';
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    transform: rotate(180deg);
+}
+
+/* Focus accessibility */
+.szh-accordion__item-btn:focus-visible {
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .szh-accordion__item-btn {
+        padding: 18px 20px;
+        font-size: 16px;
+    }
+
 }
 
 @media screen and (min-width: 767px) {
 
     .edit-work-experience {
-            position: absolute;
-    top: 20px;
-    right: 20px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
     }
 
     .go-back-button {

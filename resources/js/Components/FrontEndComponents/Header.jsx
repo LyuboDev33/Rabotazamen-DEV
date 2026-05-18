@@ -84,7 +84,7 @@ export default function Header() {
                                         </li>
 
                                         <li>
-                                            <Link href="/education">Обучения</Link>
+                                            <Link href="/learning">Обучения</Link>
                                         </li>
 
                                         <li>
@@ -135,7 +135,7 @@ export default function Header() {
                                                 <div className="twm-nav-btn-right">
                                                     <Link href="/dashboard" className="twm-nav-post-a-job">
 
-                                                        <span className="d-none d-md-block">Табло за управление</span>
+                                                        <span className="d-md-block">Админ панел</span>
                                                     </Link>
                                                 </div>}
                                         </div>

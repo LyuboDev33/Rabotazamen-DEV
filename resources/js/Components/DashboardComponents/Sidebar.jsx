@@ -150,6 +150,15 @@ export default function Sidebar() {
                             </Link>
                         </li>
 
+                        <li className={isActive('/subscriptions') ? 'active' : ''}>
+                            <Link href="/subscriptions">
+                                    <i className="fa-brands fa-cc-stripe"></i>
+                                <span className="admin-nav-text">
+                                    Абонаменти
+                                </span>
+                            </Link>
+                        </li>
+
                         {/* Profile */}
                         <li className={isActive('/profile') ? 'active' : ''}>
                             <Link href="/profile">

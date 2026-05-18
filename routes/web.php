@@ -1,12 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\ProfileController;
-use App\Http\Controllers\Backend\SupportTicketController;
 use App\Http\Controllers\Backend\CandidateController;
 use App\Http\Controllers\Backend\Employer\JobsEmployerController;
 use App\Http\Controllers\Backend\EmployerController;
+use App\Http\Controllers\Backend\SupportTicketController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\OnlinePaymentsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -25,7 +26,11 @@ Route::get('/blog', [FrontendController::class, 'blog']);
 Route::get('/blog/{slug}', [FrontendController::class, 'blogShow']);
 
 Route::get('/calculator', [FrontendController::class, 'calculator']);
+Route::get('/services', [FrontendController::class, 'services']);
+Route::get('/learning', [FrontendController::class, 'learning']);
 
+Route::get('/platform/employer', [FrontendController::class, 'employer']);
+Route::get('/platform/candidate', [FrontendController::class, 'candidate']);
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -36,6 +41,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     /** ALL COMMON ROUTES FOR THE DASHBOARD (DOESN'T MATTER THE ACCESS TYPE) */
+
+    /** Subscriptions routes */
+    Route::get('/subscriptions', [OnlinePaymentsController::class, 'subscriptions']);
+
+    Route::post('/subscription/create/{price_id}/{plan}', [OnlinePaymentsController::class, 'createSubscription'])->name('subscription.create');
+    Route::get('/subscription/verify', [OnlinePaymentsController::class, 'checkout'])->name('subscription.verify');
+
+
+    Route::get('/subscription/fail', [OnlinePaymentsController::class, 'fail'])->name('subscription.fail');
+
 
     /** Support Tickets */
     Route::get('/support/tickets', [SupportTicketController::class,  'index'])->name('user.tickets');
