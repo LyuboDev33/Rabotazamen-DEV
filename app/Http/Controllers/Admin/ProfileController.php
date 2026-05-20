@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -85,7 +87,8 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         $user->companies()->delete();
-
+        
+        $this->deleteSubscription($user);
 
         Auth::logout();
 
@@ -95,6 +98,42 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    /**
+     * Cancel active Stripe subscription immediately.
+     *
+     * @param mixed $user
+     * @return void
+     */
+    private function deleteSubscription($user): void
+    {
+        $subscription = $user->subscriptions()
+            ->where('stripe_status', 'active')
+            ->first();
+
+        if (!$subscription) {
+            return;
+        }
+
+        try {
+
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+
+            $stripe->subscriptions->cancel(
+                $subscription->stripe_id
+            );
+
+            // Delete subscriptions
+            DB::table('subscriptions')
+                ->where('user_id', $user->id)
+                ->delete();
+
+
+        } catch (\Exception $e) {
+
+            Log::error($e->getMessage());
+        }
     }
 
     /**

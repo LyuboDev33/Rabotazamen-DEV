@@ -43,11 +43,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /** ALL COMMON ROUTES FOR THE DASHBOARD (DOESN'T MATTER THE ACCESS TYPE) */
 
     /** Subscriptions routes */
-    Route::get('/subscriptions', [OnlinePaymentsController::class, 'subscriptions']);
+    Route::get('/subscriptions', [OnlinePaymentsController::class, 'subscriptions'])->name('subscription.index');
 
     Route::post('/subscription/create/{price_id}/{plan}', [OnlinePaymentsController::class, 'createSubscription'])->name('subscription.create');
     Route::get('/subscription/verify', [OnlinePaymentsController::class, 'checkout'])->name('subscription.verify');
-
+    Route::post('/subscription/cancel', [OnlinePaymentsController::class, 'cancelSubscription'])->name('cancel.subscription');
 
     Route::get('/subscription/fail', [OnlinePaymentsController::class, 'fail'])->name('subscription.fail');
 

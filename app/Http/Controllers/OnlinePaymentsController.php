@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class OnlinePaymentsController extends Controller
@@ -41,7 +42,7 @@ class OnlinePaymentsController extends Controller
             return redirect(route('subscription.fail'));
         }
 
-        return view('checkout.success', ['checkoutSession' => $checkoutSession]);
+        return redirect(route('subscription.index'));
     }
 
     /** Create a subscription for a user
@@ -62,11 +63,12 @@ class OnlinePaymentsController extends Controller
         }
 
         if (static::hasActiveSubscription($request->user())) {
-            Inertia::flash([
-                'subscriptionAlreadyExists' =>  'Вече имате активен абонамент в нашата система!'
-            ]);
-            return back();
+            return back()->with(
+                'subscriptionAlreadyExists',
+                'Вече имате активен абонамент в нашата система!'
+            );
         }
+
 
         return $request->user()
             ->newSubscription($plan, $priceId)
@@ -75,6 +77,50 @@ class OnlinePaymentsController extends Controller
                 'cancel_url' => route('subscription.fail'),
             ]);
     }
+
+    /** Cancel the plan at period end
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function cancelSubscription(Request $request): RedirectResponse
+    {
+        $user = $request->user();
+
+        // 1. Get ONLY active subscription
+        $subscription = DB::table('subscriptions')
+            ->where('user_id', $user->id)
+            ->where('stripe_status', 'active')
+            ->first();
+
+        if (!$subscription) {
+            return redirect()
+                ->route('subscription.index')
+                ->with('error_noSubscription', 'Нямате активен абонамент.');
+        }
+
+        try {
+            // 2. Stripe client
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+
+            $stripe->subscriptions->update(
+                $subscription->stripe_id,
+                [
+                    'cancel_at_period_end' => true,
+                ]
+            );
+
+            return redirect()
+                ->route('subscription.index')
+                ->with('success', 'Абонаментът ще бъде прекратен в края на текущия период.');
+        } catch (\Exception $e) {
+
+            return redirect()
+                ->route('subscription.index')
+                ->with('error', 'Възникна грешка при анулиране на абонамента.');
+        }
+    }
+
 
     /** Validate the Stripe Price Id's coming from the Front End
      *
