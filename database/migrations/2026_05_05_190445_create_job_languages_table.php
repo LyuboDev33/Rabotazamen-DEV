@@ -22,11 +22,6 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
-
-            $table->string('level'); 
-            $table->boolean('is_required')->default(false);
-            $table->json('usage')->nullable();
-
             $table->unique(['job_id', 'language_id']);
         });
     }

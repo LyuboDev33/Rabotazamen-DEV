@@ -24,14 +24,14 @@ class UsersController extends Controller
     }
 
     /** Show a single user
-     * @param int @user_id
+     * @param int $user_id
      */
     public function show($user_id)
     {
         $user = User::where('id', $user_id)->first();
 
         if (!$user) {
-            return Inertia::render('NotFoundUser');
+            return Inertia::render('Errors/NotFoundUser');
         }
 
         return Inertia::render('BackEnd/Admin/Users/Show', [

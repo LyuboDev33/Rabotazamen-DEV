@@ -7932,6 +7932,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     top: 0;
     width: 100%;
     height: 100%;
+    border-radius: 30px;
 }
 
 .opacity-01 {

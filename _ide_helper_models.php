@@ -11,54 +11,161 @@
  */
 
 
+namespace App\Models\Admin{
+/**
+ * @property int $id
+ * @property string $language_name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Language newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Language newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Language query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Language whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Language whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Language whereLanguageName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Language whereUpdatedAt($value)
+ */
+	class Language extends \Eloquent {}
+}
+
 namespace App\Models\Backend{
 /**
  * @property int $id
- * @property int $user_id
- * @property string $first_name
- * @property string $last_name
- * @property string $phone
- * @property string $city
- * @property string|null $cv
- * @property string|null $experience
- * @property string|null $skills
+ * @property int|null $user_id
+ * @property string|null $professional_title
+ * @property string|null $phone
+ * @property string|null $location
+ * @property string|null $profile_status
+ * @property string|null $work_status
+ * @property string|null $years_experience
+ * @property string|null $seniority
+ * @property string|null $min_salary
+ * @property string|null $max_salary
+ * @property array<array-key, mixed>|null $skills
+ * @property array<array-key, mixed>|null $work_model
+ * @property string|null $about_me
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Backend\Candidate\CandidateCV> $cvs
+ * @property-read int|null $cvs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Backend\Candidate\CandidateEducation> $education
+ * @property-read int|null $education_count
+ * @property-read \App\Models\User|null $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Backend\Candidate\CandidateWorkExperience> $workExperience
+ * @property-read int|null $work_experience_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereAboutMe($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereCv($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereExperience($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereFirstName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereMaxSalary($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereMinSalary($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereProfessionalTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereProfileStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereSeniority($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereSkills($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereWorkModel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereWorkStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereYearsExperience($value)
  */
 	class Candidate extends \Eloquent {}
 }
 
 namespace App\Models\Backend\Candidate{
 /**
+ * @property int $id
+ * @property int $candidate_id
+ * @property string $file_name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Backend\Candidate $candidate
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateCV newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateCV newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateCV query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateCV whereCandidateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateCV whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateCV whereFileName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateCV whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateCV whereUpdatedAt($value)
  */
 	class CandidateCV extends \Eloquent {}
 }
 
 namespace App\Models\Backend\Candidate{
 /**
+ * @property int $id
+ * @property int $candidate_id
+ * @property string $institution
+ * @property string $specialty
+ * @property string $degree
+ * @property string $city
+ * @property string $start_year
+ * @property string $start_month
+ * @property string $end_year
+ * @property string $end_month
+ * @property int $is_current
+ * @property string|null $certificate
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereCandidateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereCertificate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereDegree($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereEndMonth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereEndYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereInstitution($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereIsCurrent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereSpecialty($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereStartMonth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereStartYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateEducation whereUpdatedAt($value)
  */
 	class CandidateEducation extends \Eloquent {}
+}
+
+namespace App\Models\Backend\Candidate{
+/**
+ * @property int $id
+ * @property int $candidate_id
+ * @property string $position
+ * @property string $company
+ * @property string $start_year
+ * @property string $start_month
+ * @property string $end_year
+ * @property string $end_month
+ * @property int $is_current
+ * @property string $location
+ * @property string $responsibilities
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereCandidateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereCompany($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereEndMonth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereEndYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereIsCurrent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience wherePosition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereResponsibilities($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereStartMonth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereStartYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CandidateWorkExperience whereUpdatedAt($value)
+ */
+	class CandidateWorkExperience extends \Eloquent {}
 }
 
 namespace App\Models\Backend{
@@ -153,27 +260,6 @@ namespace App\Models{
 /**
  * @property int $id
  * @property string $name
- * @property string $description
- * @property int|null $category_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Job newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Job newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Job query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereUpdatedAt($value)
- */
-	class Job extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * @property int $id
- * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobRole> $job_roles
@@ -192,10 +278,26 @@ namespace App\Models{
 namespace App\Models{
 /**
  * @property int $id
+ * @property int $job_id
+ * @property int $language_id
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobLanguage newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobLanguage newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobLanguage query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobLanguage whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobLanguage whereJobId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobLanguage whereLanguageId($value)
+ */
+	class JobLanguage extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
  * @property string $name
  * @property int $category_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\JobCategory $category
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobRole newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobRole newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobRole query()

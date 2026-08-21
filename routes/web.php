@@ -5,6 +5,8 @@ use App\Http\Controllers\Backend\CandidateController;
 use App\Http\Controllers\Backend\Employer\JobsEmployerController;
 use App\Http\Controllers\Backend\EmployerController;
 use App\Http\Controllers\Backend\SupportTicketController;
+
+use App\Http\Controllers\Frontend\WorkController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\OnlinePaymentsController;
@@ -16,21 +18,28 @@ Route::fallback(function () {
 });
 
 
-Route::get('/auth/redirect/{access?}', [GoogleAuthController::class, 'index'])->name('google.auth.register');
-Route::get('/auth/callback', [GoogleAuthController::class, 'redirectURL']);
+Route::get('/auth/redirect/{access?}',  [GoogleAuthController::class, 'index'])->name('google.auth.register');
+Route::get('/auth/callback',            [GoogleAuthController::class, 'redirectURL']);
 
-Route::get('/', [FrontendController::class, 'home']);
-Route::get('/about', [FrontendController::class, 'about']);
-Route::get('/contact', [FrontendController::class, 'contact']);
-Route::get('/blog', [FrontendController::class, 'blog']);
-Route::get('/blog/{slug}', [FrontendController::class, 'blogShow']);
+Route::get('/',                 [FrontendController::class, 'home']);
+Route::get('/about',            [FrontendController::class, 'about']);
+Route::get('/contact',          [FrontendController::class, 'contact']);
+Route::get('/blog',             [FrontendController::class, 'blog']);
+Route::get('/blog/{slug}',      [FrontendController::class, 'blogShow']);
 
-Route::get('/calculator', [FrontendController::class, 'calculator']);
-Route::get('/services', [FrontendController::class, 'services']);
-Route::get('/learning', [FrontendController::class, 'learning']);
+Route::get('/calculator',       [FrontendController::class, 'calculator']);
+Route::get('/services',         [FrontendController::class, 'services']);
+Route::get('/learning',         [FrontendController::class, 'learning']);
 
 Route::get('/platform/employer', [FrontendController::class, 'employer']);
-Route::get('/platform/candidate', [FrontendController::class, 'candidate']);
+Route::get('/platform/candidate',[FrontendController::class, 'candidate']);
+
+Route::get('/user/{id}', [WorkController::class, 'user'])->name('user.show');
+
+Route::prefix('/find-work')->group(function () {
+    Route::get('/', [WorkController::class, 'index'])->name('find-work.index');
+    Route::get('/show', [WorkController::class, 'show'])->name('find-work.show');
+});
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -104,13 +113,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::put('/company-details/{company}', [EmployerController::class, 'update'])->name('employer.update');
 
             /** All jobs routes */
-            Route::get('/jobs', [JobsEmployerController::class, 'index']);
-            Route::get('/jobs/create', [JobsEmployerController::class, 'createView']);
+            Route::prefix('/jobs')->group(function () {
+                Route::get('/',                             [JobsEmployerController::class, 'index'])->name('jobs.index');
+                Route::get('/create',                       [JobsEmployerController::class, 'createView']);
+                Route::post('/create',                      [JobsEmployerController::class, 'create'])->name('job.create');
 
-            Route::post('/job/create', [JobsEmployerController::class, 'create'])->name('job.create');
+                Route::get('/job-roles/category/{category}', [JobsEmployerController::class, 'getRolesByCategory'])->name('job.roles.by.category');
 
+                Route::get('/edit/{reference_number}',      [JobsEmployerController::class, 'show'])->name('job.edit');
+                Route::put('/edit/{reference_number}',      [JobsEmployerController::class, 'update'])->name('job.update');
+
+                Route::put('/change-job-status/{reference_number}',[JobsEmployerController::class, 'changeStatus'])->name('job.change.status');
+
+                Route::delete('/delete',                    [JobsEmployerController::class, 'delete'])->name('job.delete');
+            });
         });
 });
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
+require __DIR__ . '/api.php';

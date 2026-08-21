@@ -22,6 +22,7 @@ class Candidate extends Model
         'user_id',
         'professional_title',
         'phone',
+        'profile_picture',
         'location',
         'work_status',
         'work_model',
@@ -51,18 +52,21 @@ class Candidate extends Model
     /** Get all CV's for a Candidate */
     public function cvs()
     {
-        return $this->hasMany(CandidateCV::class);
+        return $this->hasMany(CandidateCV::class)
+            ->orderByDesc('id');
     }
 
     /** Return Work Experience */
     public function workExperience()
     {
-        return $this->hasMany(CandidateWorkExperience::class);
+        return $this->hasMany(CandidateWorkExperience::class)
+            ->orderByDesc('id');
     }
 
     /** Return Education */
     public function education()
     {
-        return $this->hasMany(CandidateEducation::class);
+        return $this->hasMany(CandidateEducation::class)
+            ->orderByDesc('id');
     }
 }

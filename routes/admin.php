@@ -57,10 +57,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::patch('/company/update-status/{company}', [CompaniesController::class, 'changeCompanyStatus'])->name('company.status.change');
                 Route::delete('/company/delete', [CompaniesController::class, 'delete'])->name('company.delete');
 
-                /** All cities routes */
-                Route::get('/cities', [CityController::class, 'index']);
-                Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
-                Route::delete('/cities/delete', [CityController::class, 'destroy'])->name('cities.destroy');
 
                 /** All cities routes */
                 Route::get('/languages', [LanguageController::class, 'index']);
@@ -70,7 +66,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             });
 
             /** -------------------------------------------- */
-            /** Edn of routes available only to Super admins */
+            /** End of routes available only to Super admins */
             /** -------------------------------------------- */
 
             Route::get('/job-categories', [JobCategoryController::class, 'index'])->name('job.categories.index');

@@ -56,11 +56,8 @@ export default function Candidate({ candidate, cities }) {
     const [CVId, setCVId] = useState('');
 
 
-
-
     const { csrf_token, errors, candidateStatus, auth } = usePage().props;
     const { flash } = usePage();
-    const profilePic = auth.profilePic;
 
 
     function handleAvatarChange(e) {
@@ -100,50 +97,7 @@ export default function Candidate({ candidate, cities }) {
                         <input type="hidden" name="_token" value={csrf_token} />
 
                         {/* Профилна снимка */}
-                        <div className="panel panel-default">
-                            <div className="panel-heading wt-panel-heading p-a20">
-                                <h4 className="panel-tittle m-a0">Профилна снимка</h4>
-                            </div>
-
-                            <div className="panel-body wt-panel-body p-a20 m-b30 bg-white">
-                                <div className="dashboard-profile-section clearfix">
-                                    <div className="dashboard-profile-pic d-flex gap-4">
-                                        <div className="dashboard-profile-photo">
-                                            <img src={profilePic} alt="Профилна снимка" />
-
-                                            <div className="upload-btn-wrapper">
-                                                <div id="upload-avatar-grid" />
-                                                <button type="button" className="site-button button-sm">
-                                                    Прикачи снимка
-                                                </button>
-
-                                                <input
-                                                    id="avatar-uploader"
-                                                    accept=".jpg,.jpeg,.png,.svg"
-                                                    name="profile_picture"
-                                                    type="file"
-                                                    onChange={handleAvatarChange}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        {avatarFile && (
-                                            <img
-                                                height={125}
-                                                width={150}
-                                                src={avatarFile}
-                                                style={{ objectFit: 'cover' }}
-                                                alt="Avatar preview"
-                                            />
-                                        )}
-                                    </div>
-
-                                    {errors.profile_picture && (
-                                        <div className="text-danger">{errors.profile_picture}</div>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
+             
 
                         {/* Основна информация */}
                         <div className="panel panel-default">

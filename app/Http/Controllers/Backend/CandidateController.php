@@ -76,6 +76,7 @@ class CandidateController extends Controller
 
         $profilePictureName = $candidate->profile_picture;
 
+
         if ($request->hasFile('profile_picture')) {
             $file = $request->file('profile_picture');
             $profilePictureName = time() . '_' . preg_replace('/\s+/', '', $file->getClientOriginalName());
@@ -83,7 +84,6 @@ class CandidateController extends Controller
         }
 
         $candidate->update([
-            'profile_picture'    => $profilePictureName,
             'professional_title' => $validated['professional_title'] ?? null,
             'phone'              => $validated['phone'],
             'location'           => $validated['location'],

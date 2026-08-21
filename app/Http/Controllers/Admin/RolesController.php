@@ -31,7 +31,7 @@ class RolesController extends Controller
         $role = Role::where('id', $role_id)->first();
 
         if (!$role) {
-            return Inertia::render('NotFoundRole');
+            return Inertia::render('Errors/NotFoundRole');
         }
 
         return Inertia::render('BackEnd/Admin/Roles/Permissions', [

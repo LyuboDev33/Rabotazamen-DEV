@@ -2,6 +2,14 @@
     margin: 0 auto;
 }
 
+input:focus,
+input:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border-color: inherit;
+    background-color: inherit;
+}
+
 .banner-style-home22 .inner-box {
     background-color: rgba(236, 237, 242, .4);
     border-radius: 12px;

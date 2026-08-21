@@ -22,7 +22,7 @@ class SuperAdminMiddleware
         $isSuperAdmin = $user->roles->contains('role_name', 'super_admin');
 
         if (!$isSuperAdmin) {
-            return Inertia::render('NoAccess');
+            return Inertia::render('Errors/NoAccess');
         }
 
         return $next($request);

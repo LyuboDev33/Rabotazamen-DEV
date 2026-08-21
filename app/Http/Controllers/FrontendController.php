@@ -54,7 +54,7 @@ class FrontendController extends Controller
             ->first();
 
         if (!$article) {
-            return Inertia::render('NotFoundBlogFrontEnd');
+            return Inertia::render('Errors/NotFoundBlogFrontEnd');
         }
 
         return Inertia::render('FrontEnd/Blog/Show', [

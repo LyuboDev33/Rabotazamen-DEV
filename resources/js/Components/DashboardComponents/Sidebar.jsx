@@ -54,15 +54,6 @@ export default function Sidebar() {
                                 </Link>
                             </li>
 
-                            <li className={isActive('/dashboard/admin/cities', true) ? 'active' : ''}>
-                                <Link href="/dashboard/admin/cities">
-                                    <i className="fa fa-city" />
-                                    <span className="admin-nav-text">
-                                        Градове
-                                    </span>
-                                </Link>
-                            </li>
-
                             <li className={isActive('/dashboard/admin/languages', true) ? 'active' : ''}>
                                 <Link href="/dashboard/admin/languages">
                                     <i className="fa fa-language" />
@@ -281,13 +272,7 @@ export default function Sidebar() {
                                 <hr />
                                 <p className="mb-0">Работодател</p>
 
-                                <li className={isActive('/dashboard/employer', true) ? 'active' : ''}>
-                                    <Link href="/dashboard/employer">
-                                        <i className="fa fa-home" />
-                                        <span className="admin-nav-text">Табло</span>
-                                    </Link>
-                                </li>
-
+                    
                                 <li className={isActive('/dashboard/employer/jobs') ? 'active' : ''}>
                                     <Link href="/dashboard/employer/jobs">
                                         <i className="fa fa-briefcase" />
