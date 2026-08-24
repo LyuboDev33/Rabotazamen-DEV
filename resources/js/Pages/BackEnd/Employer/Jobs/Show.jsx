@@ -23,6 +23,9 @@ export default function Show({
     errors = {},
 }) {
 
+    console.log(errors);
+
+
     const [jobContent, setJobContent] = useState(
         job.description || ''
     );
@@ -300,6 +303,7 @@ export default function Show({
 
                                 <select
                                     className="form-control"
+                                    name='is_active'
                                     value={job.is_active === 1 ? '1' : '0'}
                                     onChange={(e) => {
                                         router.put(route('job.change.status', job.reference_number),

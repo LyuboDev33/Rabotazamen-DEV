@@ -6992,7 +6992,7 @@ button.scroltop span {
 /*Blog Side Bar*/
 .side-bar {
     background-color: #fcfcfc;
-    padding: 30px;
+    padding: 18px;
     border-radius: 10px;
 }
 
@@ -7759,7 +7759,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     .section-full.p-t120,
     .section-full.p-b90,
     .section-full.p-tb120 {
-        padding-top: 50px;
+        padding-top: 120px;
         padding-bottom: 10px;
     }
 }
@@ -11610,7 +11610,6 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 /*Employer detail*/
 .twm-job-self-wrap {
     border-radius: 10px;
-    margin-bottom: 40px;
 }
 
 .twm-job-self-wrap .twm-job-self-info {
@@ -12862,7 +12861,6 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     border-radius: 10px;
     box-shadow: 0px 0px 25px rgba(56, 152, 226, 0.3);
     padding: 30px;
-    margin-top: 90px;
 }
 
 .twm-s-info3 .twm-s-info-logo-section {

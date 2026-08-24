@@ -36,9 +36,9 @@ Route::get('/platform/candidate',[FrontendController::class, 'candidate']);
 
 Route::get('/user/{id}', [WorkController::class, 'user'])->name('user.show');
 
-Route::prefix('/find-work')->group(function () {
+Route::prefix('/jobs')->group(function () {
     Route::get('/', [WorkController::class, 'index'])->name('find-work.index');
-    Route::get('/show', [WorkController::class, 'show'])->name('find-work.show');
+    Route::get('/show/{id}', [WorkController::class, 'show'])->name('find-work.show');
 });
 
 

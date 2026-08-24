@@ -301,4 +301,6 @@ class JobsEmployerController extends Controller
             'Статусът на обявата беше променен успешно.'
         );
     }
+
+    
 }

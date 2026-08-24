@@ -28,6 +28,31 @@ class WorkController extends Controller
         ]);
     }
 
+    /** Show the job
+     *
+     * @param int $id
+     */
+    public function show($id)
+    {
+        $job = Job::with([
+            'user',
+            'category',
+            'jobRole',
+            'city',
+            'languages',
+            'publisher'
+        ])
+        ->where('id', $id)
+        ->first();
+
+        $job->increment('number_of_views');
+
+
+        return Inertia::render('FrontEnd/Work/Show', [
+            'job' => $job
+        ]);
+    }
+
     /**
      * Show a candidate
      *  @param int $id

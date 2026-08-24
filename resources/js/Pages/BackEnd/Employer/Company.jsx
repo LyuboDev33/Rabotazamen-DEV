@@ -12,7 +12,7 @@ export default function Company({ company, cities, jobCategories }) {
     const { flash } = usePage();
 
     const companyData = company || {};
-    const [companyDescription, setCompanyDescription] = useState('');
+    const [companyDescription, setCompanyDescription] = useState(company.company_full_description ?? '');
 
     const companyBenefits = companyData.company_benefits || [];
     const workLocations = companyData.work_locations || [];
@@ -341,7 +341,7 @@ export default function Company({ company, cities, jobCategories }) {
                                             <div className="ls-inputicon-box">
 
                                                 <TinyMCETextEditor
-                                                    value={companyDescription}
+                                                    initialValue={companyDescription}
                                                     onChange={setCompanyDescription}
                                                 />
                                                 <input type="hidden" name="company_full_description" value={companyDescription} />
