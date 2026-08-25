@@ -18,8 +18,8 @@ export default function ViewCompany({ companyStatuses }) {
                 <div className="panel panel-default shadow">
                     <div className="panel-heading wt-panel-heading p-a20">
                         <Link
-                        href={'/dashboard/admin/companies'}
-                        className='site-button pt-2 pb-2 mb-2 rounded-pill'
+                            href={'/dashboard/admin/companies'}
+                            className='site-button pt-2 pb-2 mb-2 rounded-pill'
                         >
                             Назад към всички фирми
                         </Link>
@@ -78,11 +78,10 @@ export default function ViewCompany({ companyStatuses }) {
                                     </h4>
 
                                     <h3
-                                        className={`badge rounded-pill pt-2 pb-2   ${
-                                            company.status === 'pending' ? 'bg-warning' :
-                                            company.status === 'approved' ? 'bg-success' :
-                                            company.status === 'rejected' ? 'bg-danger' :
-                                            company.status === 'closed' ? 'bg-secondary' : 'bg-dark'
+                                        className={`badge rounded-pill pt-2 pb-2   ${company.status === 'pending' ? 'bg-warning' :
+                                                company.status === 'approved' ? 'bg-success' :
+                                                    company.status === 'rejected' ? 'bg-danger' :
+                                                        company.status === 'closed' ? 'bg-secondary' : 'bg-dark'
                                             }`}
                                     >
                                         {company.status ?? 'Фирмените данни не са попълнени'}
@@ -115,11 +114,11 @@ export default function ViewCompany({ companyStatuses }) {
                                         </button>
                                     </Form>
 
-                                          {errors.company_status && (
-                                            <div className="text-danger mt-1">
-                                                {errors.company_status}
-                                            </div>
-                                        )}
+                                    {errors.company_status && (
+                                        <div className="text-danger mt-1">
+                                            {errors.company_status}
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="card p-3 mb-3">
@@ -141,13 +140,17 @@ export default function ViewCompany({ companyStatuses }) {
 
                                 <div className="card p-3 mb-3">
                                     <h5>Описание</h5>
-                                    <p
-                                        className="mb-0"
-                                        dangerouslySetInnerHTML={{
-                                            __html: DOMPurify
-                                                .sanitize(company.company_full_description)
-                                        }}
-                                    />
+
+                                    {company?.company_full_description ? (
+                                        <div
+                                            className="mb-0"
+                                            dangerouslySetInnerHTML={{
+                                                __html: DOMPurify.sanitize(company.company_full_description)
+                                            }}
+                                        />
+                                    ) : (
+                                        <p className="mb-0">Няма добавено описание.</p>
+                                    )}
                                 </div>
 
                                 <div className="row">
