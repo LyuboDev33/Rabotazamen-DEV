@@ -12,8 +12,9 @@ export default function Company({ company, cities, jobCategories }) {
     const { flash } = usePage();
 
     const companyData = company || {};
-    const [companyDescription, setCompanyDescription] = useState(company.company_full_description ?? '');
-
+    const [companyDescription, setCompanyDescription] = useState(
+        company?.company_full_description ?? ''
+    );
     const companyBenefits = companyData.company_benefits || [];
     const workLocations = companyData.work_locations || [];
     const workLanguages = companyData.work_languages || [];
