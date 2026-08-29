@@ -275,32 +275,32 @@ h6 {
 }
 
 h1 {
-    font-size: 60px;
+    /* font-size: 60px; */
     font-weight: 700;
 }
 
 h2 {
-    font-size: 46px;
+    /* font-size: 46px; */
     font-weight: 500;
 }
 
 h3 {
-    font-size: 22px;
+    /* font-size: 22px; */
     font-weight: 500;
 }
 
 h4 {
-    font-size: 18px;
+    /* font-size: 18px; */
     font-weight: 500;
 }
 
 h5 {
-    font-size: 16px;
+    /* font-size: 16px; */
     font-weight: 500;
 }
 
 h6 {
-    font-size: 14px;
+    /* font-size: 14px; */
     font-weight: 400;
 }
 
@@ -1627,6 +1627,10 @@ ol li {
 
 .overlay-dark .overlay-main {
     opacity: 0.9;
+}
+
+ul li {
+    list-style: none;
 }
 
 .overlay-wraper>.container,
@@ -3415,7 +3419,7 @@ ol li {
     }
 
     .header-style-3.mobile-sider-drawer-menu .icon-bar {
-        transition: all 0.5s linear;
+        transition: all 0.2s linear;
         position: relative;
     }
 
@@ -5698,7 +5702,7 @@ ol li {
 }
 
 .section-head.left.wt-small-separator-outer p {
-    margin-bottom: 40px;
+    margin-bottom: 15px;
 }
 
 .section-head.center.wt-small-separator-outer {
@@ -6425,7 +6429,7 @@ button.scroltop span {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 0px 25px rgba(56, 152, 226, 0.3);
-    padding: 50px;
+    padding: 20px;
     position: relative;
     overflow: hidden;
     z-index: 1;
@@ -6988,7 +6992,7 @@ button.scroltop span {
 /*Blog Side Bar*/
 .side-bar {
     background-color: #fcfcfc;
-    padding: 30px;
+    padding: 18px;
     border-radius: 10px;
 }
 
@@ -7928,6 +7932,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     top: 0;
     width: 100%;
     height: 100%;
+    border-radius: 30px;
 }
 
 .opacity-01 {
@@ -8593,7 +8598,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    box-shadow: -5px 10px 25px rgba(56, 152, 226, 0.4);
+    box-shadow: -3px 3px 25px rgba(56, 152, 226, 0.4);
 }
 
 .twm-w-process-steps .twm-w-pro-top .twm-title {
@@ -8613,8 +8618,8 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .twm-w-process-steps-2 {
-    padding-left: 80px;
-    padding-top: 30px;
+    /* padding-left: 40px;
+    padding-top: 30px; */
     position: relative;
 }
 
@@ -8631,7 +8636,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .twm-w-process-steps-2 .twm-large-number {
-    font-size: 60px;
+    font-size: 48px;
     font-weight: 600;
     line-height: 50px;
     position: absolute;
@@ -8641,7 +8646,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .twm-w-process-steps-2 .twm-w-pro-top {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     margin-bottom: 40px;
     padding: 25px;
     border-radius: 10px;
@@ -8664,14 +8669,17 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 
 .twm-w-process-steps-2 .twm-w-pro-top .twm-title {
     color: #17171d;
-    margin-bottom: 30px;
-    margin-top: 40px;
-    margin-left: 30px;
+    margin-bottom: 20px;
+    width: 85%;
+    font-size: 20px;
+    /* margin-top: 40px;
+    margin-left: 30px; */
 }
 
 .twm-w-process-steps-2 p {
     margin-bottom: 0px;
     font-size: 14px;
+    color: white;
 }
 
 /*how it work*/
@@ -9749,9 +9757,6 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     background: linear-gradient(to bottom, transparent, #ffffff70, transparent);
 }
 
-.left-box {
-    padding-right: 40px;
-}
 
 .right-box {
     padding-left: 40px;
@@ -9826,7 +9831,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .twm-explore-content {
-    background-color: #1967d2;
+    background-color: #738298;
     border-radius: 30px;
     padding: 30px 121px;
     position: relative;
@@ -9910,7 +9915,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 .twm-explore-content .twm-title-large h2 {
     color: #fff;
     text-align: center;
-    font-size: 34px;
+    font-size: 26px;
     width: 80%;
     margin: 0 auto;
 }
@@ -9918,6 +9923,11 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 @media (max-width: 768px) {
     .twm-explore-content .twm-title-large h2 {
         font-size: 30px;
+    }
+
+    .twm-explore-content .twm-title-large h2 {
+        width: 100%;
+        font-size: 22px;
     }
 }
 
@@ -10170,7 +10180,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     background-color: #fff;
     box-shadow: 0px 0px 40px rgba(56, 152, 226, 0.3);
     border-radius: 10px;
-    padding: 55px 70px;
+    padding: 20px 25px;
     position: relative;
     margin-top: 70px;
     margin-left: 30px;
@@ -11474,7 +11484,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 .twm-timing-list-wrap {
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 50px;
+    padding: 15px;
     margin-bottom: 30px;
 }
 
@@ -11486,7 +11496,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 
 .twm-timing-list {
     margin-bottom: 30px;
-    margin-left: 30px;
+    /* margin-left: 30px; */
 }
 
 .twm-timing-list:last-child {
@@ -11494,15 +11504,18 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .twm-timing-list .twm-time-list-date {
-    font-size: 14px;
+    font-size: 15px;
     color: #666666;
+    padding-left: 35px;
 }
 
 .twm-timing-list .twm-time-list-title {
     color: #1967d2;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     position: relative;
+    padding-left: 35px;
+    width: fit-content !important;
 }
 
 .twm-timing-list .twm-time-list-title:before {
@@ -11513,7 +11526,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     background-color: #1967d2;
     content: "";
     position: absolute;
-    left: -50px;
+    left: -15px;
     top: 3px;
 }
 
@@ -11523,7 +11536,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     background-color: #1967d2;
     content: "";
     position: absolute;
-    left: -26px;
+    left: 7px;
     top: 13px;
 }
 
@@ -11532,10 +11545,12 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     font-weight: 500;
     font-size: 14px;
     color: #000;
+    padding-left: 35px;
 }
 
 .twm-timing-list .twm-time-list-discription p:last-child {
     margin-bottom: 0px;
+    padding-left: 35px;
 }
 
 /*Social Share*/
@@ -11595,7 +11610,6 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 /*Employer detail*/
 .twm-job-self-wrap {
     border-radius: 10px;
-    margin-bottom: 40px;
 }
 
 .twm-job-self-wrap .twm-job-self-info {
@@ -12335,7 +12349,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 @media (max-width: 992px) {
     .twm-home1-banner-section {
         position: relative;
-        padding-top: 120px;
+        padding-top: 50px;
         overflow: hidden;
     }
 }
@@ -12847,7 +12861,6 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     border-radius: 10px;
     box-shadow: 0px 0px 25px rgba(56, 152, 226, 0.3);
     padding: 30px;
-    margin-top: 90px;
 }
 
 .twm-s-info3 .twm-s-info-logo-section {
@@ -13339,7 +13352,7 @@ strong {
 }
 
 .listing-user .dropdown-toggle {
-    padding-right: 20px;
+    padding-right: 5px;
     display: block;
 }
 
@@ -13480,6 +13493,9 @@ strong {
 .content-admin-main .panel.panel-default {
     border-radius: 10px;
     background: #fff;
+    box-shadow: -3px 3px 25px #0000000f;
+    position: relative;
+    margin-bottom: 20px;
 }
 
 .wt-panel-heading {
@@ -15213,9 +15229,6 @@ strong {
     justify-content: center;
 }
 
-.twm-model-popup .modal-content .modal-footer .site-button {
-    padding: 4px 20px;
-}
 
 .twm-msg-noti {
     background-color: #1967d2;
@@ -17727,7 +17740,7 @@ strong {
 
 @media(min-width: 768px) {
     .twm-log-reg-form-wrap {
-      overflow-y: scroll;
+        overflow-y: scroll;
         display: flex;
         justify-content: center;
     }
@@ -17740,6 +17753,10 @@ strong {
 } */
 .twm-log-reg-form-wrap .twm-log-reg-inner {
     padding: 20px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 @media (max-width: 575px) {
@@ -19762,9 +19779,9 @@ strong {
 }
 
 /* Home 5 Millions section*/
-.twm-millions-section-wrap {
+/* .twm-millions-section-wrap {
     margin-bottom: 100px;
-}
+} */
 
 @media (max-width: 991px) {
     .twm-millions-section-wrap {
@@ -22607,7 +22624,6 @@ strong {
 }
 
 .h-page-6-getjobs-wrap {
-    padding-top: 120px;
     padding-bottom: 90px;
 }
 

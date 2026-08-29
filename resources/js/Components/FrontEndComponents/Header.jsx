@@ -31,7 +31,7 @@ export default function Header() {
             <header className={`site-header header-style-3 mobile-sider-drawer-menu ${sideBar ? 'active' : ''}`}>
                 <div className="sticky-wrapper" style={{ height: 90 }}>
                     <div className="sticky-header main-bar-wraper navbar-expand-lg is-fixed">
-                        <div className={`main-bar ${isSticky ? 'color-fill' : ''}`}>
+                        <div className={`main-bar shadow-sm ${isSticky ? 'color-fill' : ''}`}>
                             <div className="container-fluid clearfix">
                                 <div className="logo-header">
                                     <div className="logo-header-inner logo-header-one">
@@ -61,7 +61,7 @@ export default function Header() {
 
                                         {/* Намери Работа */}
                                         <li>
-                                            <Link href="/find-work">Обяви</Link>
+                                            <Link href="/jobs">Обяви</Link>
                                         </li>
 
                                         <li className="has-child">
@@ -73,22 +73,29 @@ export default function Header() {
                                                 <li>
                                                     <Link href="/platform/candidate">За кандидати</Link>
                                                 </li>
+                                                <li>
+                                                    <Link href="/calculator">Калкулатор на заплатa</Link>
+                                                </li>
                                             </ul>
                                         </li>
 
-                                        <li>
+                                        {/* <li>
                                             <Link href="/digital-hr-agent">Дигитален HR агент</Link>
+                                        </li> */}
+
+                                        <li>
+                                            <Link href="/">Обучения</Link>
                                         </li>
 
                                         <li>
-                                            <Link href="/education">Обучения</Link>
+                                            <Link href="/learning">Обучения</Link>
                                         </li>
 
                                         <li>
                                             <Link href="/services">Услуги</Link>
                                         </li>
 
-                                          <li>
+                                        <li>
                                             <Link href="/blog">Блог</Link>
                                         </li>
 
@@ -132,7 +139,7 @@ export default function Header() {
                                                 <div className="twm-nav-btn-right">
                                                     <Link href="/dashboard" className="twm-nav-post-a-job">
 
-                                                        <span className="d-none d-md-block">Табло за управление</span>
+                                                        <span className="d-md-block">Админ панел</span>
                                                     </Link>
                                                 </div>}
                                         </div>

@@ -1,50 +1,97 @@
-// import PrimaryButton from '@/Components/PrimaryButton';
-// import GuestLayout from '@/Layouts/FrontEndLayout';
-// import { Head, Link, useForm } from '@inertiajs/react';
+import React from "react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import FrontEndLayout from "@/Layouts/FrontEndLayout";
 
-// export default function VerifyEmail({ status }) {
-//     const { post, processing } = useForm({});
+export default function VerifyEmail({ status }) {
 
-//     const submit = (e) => {
-//         e.preventDefault();
+    const { post, processing } = useForm({});
+    const { auth } = usePage().props;
 
-//         post(route('verification.send'));
-//     };
+    const submit = (e) => {
+        e.preventDefault();
+        post(route('verification.send'));
+    };
 
-//     return (
-//         <GuestLayout>
-//             <Head title="Email Verification" />
 
-//             <div className="mb-4 text-sm text-gray-600">
-//                 Thanks for signing up! Before getting started, could you verify
-//                 your email address by clicking on the link we just emailed to
-//                 you? If you didn't receive the email, we will gladly send you
-//                 another.
-//             </div>
+    return (
+        <>
+            <Head>
+                <title>Потвърждение на имейл | Rabotazamen</title>
+                <meta
+                    name="description"
+                    content="Потвърдете вашия имейл адрес, за да продължите да използвате Rabotazamen."
+                />
+            </Head>
 
-//             {status === 'verification-link-sent' && (
-//                 <div className="mb-4 text-sm font-medium text-green-600">
-//                     A new verification link has been sent to the email address
-//                     you provided during registration.
-//                 </div>
-//             )}
+            <div className="page-content">
 
-//             <form onSubmit={submit}>
-//                 <div className="mt-4 flex items-center justify-between">
-//                     <PrimaryButton disabled={processing}>
-//                         Resend Verification Email
-//                     </PrimaryButton>
+                <div className="section-full twm-contact-one">
+                    <div className="section-content">
+                        <div className="container">
 
-//                     <Link
-//                         href={route('logout')}
-//                         method="post"
-//                         as="button"
-//                         className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-//                     >
-//                         Log Out
-//                     </Link>
-//                 </div>
-//             </form>
-//         </GuestLayout>
-//     );
-// }
+                            <div className="pt-120 pb-120">
+                                <div className="row justify-content-center">
+
+                                    <div className="col-lg-8 col-md-12">
+                                        <div className="contact-form-outer">
+
+                                            <div className="section-head left wt-small-separator-outer">
+                                                <h2 className="wt-title">Потвърдете вашия имейл</h2>
+                                                <p className="mb-1">
+                                                    Благодарим ви за регистрацията!
+                                                </p>
+                                                <p className="mb-1">
+                                                    Преди да продължите,
+                                                    моля потвърдете вашия имейл адрес чрез линка,
+                                                    който ви изпратихме.
+                                                </p>
+                                                <p><strong>Имейла, който сте посочили е: {auth.user.email ?? ''}</strong></p>
+                                                <p>
+                                                    Ако не сте получили имейл,
+                                                    можете да заявите нов.
+                                                </p>
+                                            </div>
+
+                                            {/* STATUS MESSAGE */}
+                                            {status === 'verification-link-sent' && (
+                                                <div className="alert alert-success mb-3">
+                                                    Нов линк за потвърждение беше изпратен на вашия имейл.
+                                                </div>
+                                            )}
+
+                                            <form
+                                                onSubmit={submit}
+                                                className="cons-contact-form"
+                                            >
+                                                <div className="row">
+
+                                                    {/* RESEND BUTTON */}
+                                                    <div className="col-md-12 mb-3">
+                                                        <button
+                                                            type="submit"
+                                                            className="site-button"
+                                                            disabled={processing}
+                                                        >
+                                                            Изпрати отново имейл
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </>
+    );
+}
+
+VerifyEmail.layout = page => <FrontEndLayout children={page} />;

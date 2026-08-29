@@ -1,20 +1,19 @@
 <?php
 
 use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\RolesController;
-use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Backend\CompaniesController;
 use App\Http\Controllers\Backend\SupportTicketController;
-use App\Models\JobCategory;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-Route::middleware('auth')->group(function () {
-
-
+Route::middleware(['auth', 'verified'])->group(function () {
 
     /** All Admin Routing and middleware */
     Route::middleware('admin')
@@ -52,22 +51,30 @@ Route::middleware('auth')->group(function () {
                 Route::get('/users', [UsersController::class, 'index'])->name('users.all');
                 Route::get('/users/{user_id}/edit', [UsersController::class, 'show'])->name('user.show');
 
+                /** All routes for the companies */
+                Route::get('/companies', [CompaniesController::class, 'index']);
+                Route::get('/companies/{company_eik}', [CompaniesController::class, 'show']);
+                Route::patch('/company/update-status/{company}', [CompaniesController::class, 'changeCompanyStatus'])->name('company.status.change');
+                Route::delete('/company/delete', [CompaniesController::class, 'delete'])->name('company.delete');
+
+
                 /** All cities routes */
-                Route::get('/cities', [CityController::class, 'index']);
-                Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
-                Route::delete('/cities/delete', [CityController::class, 'destroy'])->name('cities.destroy');
+                Route::get('/languages', [LanguageController::class, 'index']);
+                Route::post('/language/create', [LanguageController::class, 'create'])->name('language.create');
+                Route::delete('/language/delete', [LanguageController::class, 'delete'])->name('language.delete');
 
             });
 
             /** -------------------------------------------- */
-            /** Edn of routes available only to Super admins */
+            /** End of routes available only to Super admins */
             /** -------------------------------------------- */
 
-            Route::get('/job-categories', [JobCategoryController::class, 'index']);
+            Route::get('/job-categories', [JobCategoryController::class, 'index'])->name('job.categories.index');
             Route::get('/job-categories/create-view', [JobCategoryController::class, 'createCategoryView']);
             Route::get('/job-category/edit/{job_category_id}', [JobCategoryController::class, 'jobCategoryEdit'])->name('job.category.edit');
 
             Route::post('/job-categories/create-category', [JobCategoryController::class, 'createCategory'])->name('job.category.create');
+            Route::delete('/job-categories/delete-category/{category}', [JobCategoryController::class, 'deleteCategory'])->name('job.category.delete');
 
             Route::post('/job-role/create/{category}', [JobCategoryController::class, 'createJobRole'])->name('job.role.create');
             Route::patch('/job-role/update', [JobCategoryController::class, 'updateJobRole'])->name('job.role.update');

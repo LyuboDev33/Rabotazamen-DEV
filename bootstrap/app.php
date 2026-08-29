@@ -23,7 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
             ->alias([
                 'super_admin' => SuperAdminMiddleware::class,
                 'admin' => AdminMiddleware::class,
-                'empoyer' => EmployerMiddleware::class,
+                'employer' => EmployerMiddleware::class,
                 'candidate' => CandidateMiddleware::class
             ]);
 

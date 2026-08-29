@@ -25,7 +25,7 @@ class AdminMiddleware
 
 
         if (!$isSuperAdmin && !$isAdmin) {
-            return Inertia::render('NoAccess');
+            return Inertia::render('Errors/NoAccess');
         }
 
         return $next($request);

@@ -33,7 +33,7 @@ class BlogController extends Controller
         $blog = Blog::where('blog_slug', $slug)->first();
 
         if (!$blog) {
-            return Inertia::render('NotFoundBlog');
+            return Inertia::render('Errors/NotFoundBlog');
         }
 
         return Inertia::render('BackEnd/Admin/Blog/Show', [

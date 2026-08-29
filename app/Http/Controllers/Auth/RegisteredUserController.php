@@ -121,9 +121,7 @@ class RegisteredUserController extends Controller
         ]);
 
 
-        $user->roles()->attach(
-            Role::where('role_name', $role)->first()
-        );
+        $user->roles()->attach(Role::where('role_name', $role)->first());
 
         event(new Registered($user));
         Auth::login($user);
@@ -131,5 +129,5 @@ class RegisteredUserController extends Controller
         return redirect(route('dashboard', absolute: false));
     }
 
-    
+
 }

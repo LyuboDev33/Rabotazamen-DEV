@@ -1,94 +1,141 @@
-// import InputError from '@/Components/InputError';
-// import InputLabel from '@/Components/InputLabel';
-// import PrimaryButton from '@/Components/PrimaryButton';
-// import TextInput from '@/Components/TextInput';
-// import GuestLayout from '@/Layouts/FrontEndLayout';
-// import { Head, useForm } from '@inertiajs/react';
+import React from "react";
+import { Head, useForm } from "@inertiajs/react";
+import FrontEndLayout from "@/Layouts/FrontEndLayout";
 
-// export default function ResetPassword({ token, email }) {
-//     const { data, setData, post, processing, errors, reset } = useForm({
-//         token: token,
-//         email: email,
-//         password: '',
-//         password_confirmation: '',
-//     });
+export default function ResetPassword({ token, email }) {
 
-//     const submit = (e) => {
-//         e.preventDefault();
+    const { data, setData, post, processing, errors } = useForm({
+        token: token || "",
+        email: email || "",
+        password: "",
+        password_confirmation: "",
+    });
 
-//         post(route('password.store'), {
-//             onFinish: () => reset('password', 'password_confirmation'),
-//         });
-//     };
+    const submit = (e) => {
+        e.preventDefault();
 
-//     return (
-//         <GuestLayout>
-//             <Head title="Reset Password" />
+        post(route('password.store'), {
+            onFinish: () => {
+                setData('password', '');
+                setData('password_confirmation', '');
+            },
+        });
+    };
 
-//             <form onSubmit={submit}>
-//                 <div>
-//                     <InputLabel htmlFor="email" value="Email" />
+    return (
+        <>
+            <Head>
+                <title>Смяна на парола | Rabotazamen</title>
+                <meta name="description" content="Сменете паролата си в Rabotazamen." />
+            </Head>
 
-//                     <TextInput
-//                         id="email"
-//                         type="email"
-//                         name="email"
-//                         value={data.email}
-//                         className="mt-1 block w-full"
-//                         autoComplete="username"
-//                         onChange={(e) => setData('email', e.target.value)}
-//                     />
+            <div className="page-content">
 
-//                     <InputError message={errors.email} className="mt-2" />
-//                 </div>
+                <div className="section-full twm-contact-one">
+                    <div className="section-content">
+                        <div className="container">
 
-//                 <div className="mt-4">
-//                     <InputLabel htmlFor="password" value="Password" />
+                            <div className="pt-120 pb-120">
+                                <div className="row justify-content-center">
 
-//                     <TextInput
-//                         id="password"
-//                         type="password"
-//                         name="password"
-//                         value={data.password}
-//                         className="mt-1 block w-full"
-//                         autoComplete="new-password"
-//                         isFocused={true}
-//                         onChange={(e) => setData('password', e.target.value)}
-//                     />
+                                    <div className="col-lg-6 col-md-12">
+                                        <div className="contact-form-outer">
 
-//                     <InputError message={errors.password} className="mt-2" />
-//                 </div>
+                                            <div className="section-head left wt-small-separator-outer">
+                                                <h2 className="wt-title">Смяна на парола</h2>
+                                                <p>
+                                                    Въведете новата си парола, за да я обновите.
+                                                </p>
+                                            </div>
 
-//                 <div className="mt-4">
-//                     <InputLabel
-//                         htmlFor="password_confirmation"
-//                         value="Confirm Password"
-//                     />
+                                            <form onSubmit={submit} className="cons-contact-form">
 
-//                     <TextInput
-//                         type="password"
-//                         id="password_confirmation"
-//                         name="password_confirmation"
-//                         value={data.password_confirmation}
-//                         className="mt-1 block w-full"
-//                         autoComplete="new-password"
-//                         onChange={(e) =>
-//                             setData('password_confirmation', e.target.value)
-//                         }
-//                     />
+                                                <div className="row">
 
-//                     <InputError
-//                         message={errors.password_confirmation}
-//                         className="mt-2"
-//                     />
-//                 </div>
+                                                    {/* EMAIL (readonly usually) */}
+                                                    <div className="col-lg-12">
+                                                        <div className="form-group mb-3">
+                                                            <input
+                                                                type="email"
+                                                                className="form-control"
+                                                                value={data.email}
+                                                                readOnly
+                                                            />
+                                                            {errors.email && (
+                                                                <p className="text-danger mt-1">
+                                                                    {errors.email}
+                                                                </p>
+                                                            )}
+                                                        </div>
+                                                    </div>
 
-//                 <div className="mt-4 flex items-center justify-end">
-//                     <PrimaryButton className="ms-4" disabled={processing}>
-//                         Reset Password
-//                     </PrimaryButton>
-//                 </div>
-//             </form>
-//         </GuestLayout>
-//     );
-// }
+                                                    {/* PASSWORD */}
+                                                    <div className="col-lg-12">
+                                                        <div className="form-group mb-3">
+                                                            <input
+                                                                type="password"
+                                                                className="form-control"
+                                                                placeholder="Нова парола"
+                                                                value={data.password}
+                                                                onChange={(e) =>
+                                                                    setData('password', e.target.value)
+                                                                }
+                                                            />
+                                                            {errors.password && (
+                                                                <p className="text-danger mt-1">
+                                                                    {errors.password}
+                                                                </p>
+                                                            )}
+                                                        </div>
+                                                    </div>
+
+                                                    {/* PASSWORD CONFIRMATION */}
+                                                    <div className="col-lg-12">
+                                                        <div className="form-group mb-3">
+                                                            <input
+                                                                type="password"
+                                                                className="form-control"
+                                                                placeholder="Потвърдете паролата"
+                                                                value={data.password_confirmation}
+                                                                onChange={(e) =>
+                                                                    setData('password_confirmation', e.target.value)
+                                                                }
+                                                            />
+                                                            {errors.password_confirmation && (
+                                                                <p className="text-danger mt-1">
+                                                                    {errors.password_confirmation}
+                                                                </p>
+                                                            )}
+                                                        </div>
+                                                    </div>
+
+                                                    {/* BUTTON */}
+                                                    <div className="col-md-12">
+                                                        <button
+                                                            type="submit"
+                                                            className="site-button"
+                                                            disabled={processing}
+                                                        >
+                                                            Запази новата парола
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </>
+    );
+}
+
+ResetPassword.layout = page => <FrontEndLayout children={page} />;

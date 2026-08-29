@@ -11,27 +11,35 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('candidates', function (Blueprint $table) {
-        //     $table->id();
+        Schema::create('candidates', function (Blueprint $table) {
+            $table->id();
 
-        //     $table->unsignedBigInteger('user_id')->unique();
-        //     $table->foreign('user_id')
-        //         ->references('id')
-        //         ->on('users')
-        //         ->cascadeOnDelete();
+            $table->unsignedBigInteger('user_id')->unique()->nullable();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->cascadeOnDelete();
 
-        //     $table->string('first_name');
-        //     $table->string('last_name');
-        //     $table->string('phone');
-        //     $table->string('city');
+            $table->string('professional_title')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('location')->nullable();
 
-        //     // Future-proof (you WILL need these later)
-        //     $table->text('cv')->nullable();
-        //     $table->text('experience')->nullable();
-        //     $table->text('skills')->nullable();
+            $table->string('profile_status')->nullable();
+            $table->string('work_status')->nullable();
 
-        //     $table->timestamps();
-        // });
+
+            $table->string('years_experience')->nullable();
+            $table->string('seniority')->nullable();
+            $table->string('min_salary')->nullable();
+            $table->string('max_salary')->nullable();
+
+            $table->json('skills')->nullable();
+            $table->json('work_model')->nullable();
+
+            $table->longText('about_me')->nullable();
+
+            $table->timestamps();
+        });
     }
 
     /**

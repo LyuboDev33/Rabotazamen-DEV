@@ -1,6 +1,7 @@
 import React from "react";
 import FrontEndLayout from "@/Layouts/FrontEndLayout";
 import { Head, Link } from "@inertiajs/react";
+import DOMPurify from "dompurify";
 
 export default function Blog({ articles }) {
 
@@ -67,9 +68,12 @@ export default function Blog({ articles }) {
                                                     </h4>
                                                 </div>
 
-                                                <div className="wt-post-text">
-                                                    <p>{article.blog_content.slice(0, 80) + '...'}</p>
-                                                </div>
+                                                <div
+                                                    className="wt-post-text"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: DOMPurify.sanitize(article.blog_content).slice(0, 80) + "...",
+                                                    }}
+                                                />
 
                                                 <div className="wt-post-readmore">
                                                     <Link

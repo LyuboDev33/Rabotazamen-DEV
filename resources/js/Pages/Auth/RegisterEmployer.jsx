@@ -12,6 +12,9 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 export default function RegisterEmployer() {
     const { errors, csrf_token, recaptchaSiteKey } = usePage().props;
 
+    console.log(errors);
+
+
 
     useEffect(() => {
         const script = document.createElement("script");
@@ -112,8 +115,8 @@ export default function RegisterEmployer() {
                                                 <div className="col-12 mb-4">
                                                     <div className="alert-info py-2 px-3 mb-2 rounded-4" role="alert">
                                                         <i className="fas fa-info-circle me-2"></i>
-                                                            <strong>Важно:</strong> След регистрация ще можете да попълните вашите фирмени данни,
-                                                            както и ще намерите допълнителни инструкции за използване на платформата.
+                                                        <strong>Важно:</strong> След регистрация ще можете да попълните вашите фирмени данни,
+                                                        както и ще намерите допълнителни инструкции за използване на платформата.
                                                     </div>
                                                 </div>
 
@@ -121,6 +124,7 @@ export default function RegisterEmployer() {
                                                 <div className="tab-pane fade show active">
                                                     <form
                                                         action={route('register')}
+                                                        onSubmit={handleSubmit}
                                                         method="post">
                                                         <input type="hidden" name="_token" value={csrf_token} />
                                                         <input type="hidden" name="recaptcha_token" id="recaptcha_token" />
@@ -258,7 +262,7 @@ export default function RegisterEmployer() {
                                                         method="get"
                                                         className="col-12">
                                                         <div className="form-group mb-2">
-                                                            <button type="button" className="log_with_google">
+                                                            <button type="submit" className="log_with_google">
                                                                 <img src="/assets/images/google-icon.png" alt="" />
                                                                 Регистрация с Google
                                                             </button>

@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -20,7 +22,11 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
-        return Inertia::render('BackEnd/Profile');
+        $user = $request->user();
+
+        return Inertia::render('BackEnd/Profile', [
+            'requiresCurrentPassword' => !is_null($user->password),
+        ]);
     }
 
     /**
@@ -44,7 +50,7 @@ class ProfileController extends Controller
             'email.email' => 'Моля въведете валиден имейл',
             'profile_pic.image' => 'Файлът трябва да е изображение',
             'profile_pic.mimes' => 'Файлът трябва да е jpg, jpeg или png',
-            'uploaded' => 'Изображението не може да надвишава 2MB!',
+            'profile_pic.uploaded' => 'Изображението не може да надвишава 2MB!',
             'phone.max' => 'Максимално разрешена дължина е 50 символа',
 
         ]);
@@ -79,11 +85,10 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('deleteAccountBag', [
-            'password' => ['required', 'current_password'],
-        ]);
-
         $user = $request->user();
+        $user->companies()->delete();
+        
+        $this->deleteSubscription($user);
 
         Auth::logout();
 
@@ -95,7 +100,43 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-     /**
+    /**
+     * Cancel active Stripe subscription immediately.
+     *
+     * @param mixed $user
+     * @return void
+     */
+    private function deleteSubscription($user): void
+    {
+        $subscription = $user->subscriptions()
+            ->where('stripe_status', 'active')
+            ->first();
+
+        if (!$subscription) {
+            return;
+        }
+
+        try {
+
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+
+            $stripe->subscriptions->cancel(
+                $subscription->stripe_id
+            );
+
+            // Delete subscriptions
+            DB::table('subscriptions')
+                ->where('user_id', $user->id)
+                ->delete();
+
+
+        } catch (\Exception $e) {
+
+            Log::error($e->getMessage());
+        }
+    }
+
+    /**
      * Download the XML audit file
      */
     public function downloadStaticXML()
@@ -145,7 +186,7 @@ class ProfileController extends Controller
                 'vatPercent' => $vatPercent,
             ])
             ->header('Content-Type', 'application/xml; charset=Windows-1251');
-            // ->header('Content-Disposition', 'attachment; filename="Softex-audit.xml"'); // enable for download
+        // ->header('Content-Disposition', 'attachment; filename="Softex-audit.xml"'); // enable for download
 
     }
 }

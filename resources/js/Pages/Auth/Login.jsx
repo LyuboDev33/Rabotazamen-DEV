@@ -17,7 +17,7 @@ export default function Login({ canResetPassword }) {
     return (
         <>
             <Head>
-                <title>Вход | Lunara - Магазин за детска мода</title>
+                <title>Вход | Rabotazamen</title>
                 <link rel="icon" href="/assets/images/favicon.ico"></link>
 
             </Head>
@@ -56,7 +56,7 @@ export default function Login({ canResetPassword }) {
                             <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-7">
                                 <div className="twm-log-reg-form-wrap">
 
-                                    <div className="twm-log-reg-inner max-w-464-px m-0-auto">
+                                    <div className="twm-log-reg-inner max-w-464-px m-0-auto justify-content-center">
                                         <div className="twm-log-reg-head">
                                             <ApplicationLogo width='200'
                                                 className='d-none d-md-inline' >
@@ -83,7 +83,9 @@ export default function Login({ canResetPassword }) {
 
                                                             <div className="col-lg-12">
                                                                 <div>
-                                                                    <input name="email" type="email" required className="form-control" placeholder="Usearname*" />
+                                                                    <label className="form-label small mb-1">Имейл <span className="text-danger">*</span></label>
+
+                                                                    <input name="email" type="email" required className="form-control" placeholder="Въведете вашия имейл*" />
                                                                     {errors.email ? (
                                                                         <div style={{ height: '30px' }} className="text-danger mt-1">
                                                                             {errors.email}
@@ -94,9 +96,14 @@ export default function Login({ canResetPassword }) {
 
                                                             <div className="col-lg-12">
                                                                 <div className="form-group mb-3">
-                                                                    <input name="password" type="password" className="form-control" required placeholder="Password*" />
+                                                                    <label className="form-label small mb-1">Парола <span className="text-danger">*</span></label>
+
+                                                                    <input name="password" type="password" className="form-control" required placeholder="Въведете вашата парола*" />
                                                                     {errors.password && (
                                                                         <div className="text-danger mt-1">{errors.password}</div>
+                                                                    )}
+                                                                    {errors.google_login && (
+                                                                        <div className="text-danger mt-1">{errors.google_login}</div>
                                                                     )}
                                                                 </div>
                                                             </div>
@@ -110,15 +117,6 @@ export default function Login({ canResetPassword }) {
                                                             <div className="col-md-12">
                                                                 <div className="form-group mb-1 mt-1">
                                                                     <span className="center-text-or">или</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="col-md-12">
-                                                                <div className="form-group">
-                                                                    <button type="button" className="log_with_google">
-                                                                        <img src="/assets/images/google-icon.png" alt="" />
-                                                                        Влезте с Google
-                                                                    </button>
                                                                 </div>
                                                             </div>
 
@@ -139,6 +137,18 @@ export default function Login({ canResetPassword }) {
                                                             </div>
 
 
+                                                        </div>
+                                                    </form>
+
+                                                    <form
+                                                        action={route('google.auth.register', { access: 'candidate' })}
+                                                        method="get"
+                                                        className="col-md-12">
+                                                        <div className="form-group">
+                                                            <button type='submit' className="log_with_google">
+                                                                <img src="/assets/images/google-icon.png" alt="" />
+                                                                Влезте с Google
+                                                            </button>
                                                         </div>
                                                     </form>
 

@@ -23,32 +23,6 @@ export default function Contact() {
             {/* CONTENT START */}
             <div className="page-content">
 
-                {/* INNER PAGE BANNER */}
-                {/* <div
-                    className="wt-bnr-inr overlay-wraper bg-center">
-                    <div className="overlay-main site-bg-white opacity-01" />
-
-                    <div className="container">
-                        <div className="wt-bnr-inr-entry">
-
-                            <div className="banner-title-outer">
-                                <div className="banner-title-name">
-                                    <h2 className="wt-title">Контакти</h2>
-                                </div>
-                            </div>
-
-                            <div>
-                                <ul className="wt-breadcrumb breadcrumb-style-2">
-                                    <li><a href="/">Начало</a></li>
-                                    <li>Контакти</li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div> */}
-                {/* INNER PAGE BANNER END */}
-
 
                 {/* CONTACT FORM */}
                 <div className="section-full twm-contact-one">

@@ -13,6 +13,7 @@ import '../../styles/flaticon.css'
 
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'animate.css';
+import 'lenis/dist/lenis.css'
 
 
 export default function DashboardLayout({ children }) {

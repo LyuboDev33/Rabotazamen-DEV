@@ -61,7 +61,7 @@ export default function Users() {
                                             <tr key={user.id}>
 
 
-                                                <td>{user.name}</td>
+                                                <td>{user.first_name + " " + user.last_name}</td>
 
                                                 <td>{user.email}</td>
 

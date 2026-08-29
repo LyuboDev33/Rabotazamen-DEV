@@ -1,90 +1,103 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import { Head, usePage, Form } from '@inertiajs/react';
 import { useState } from 'react';
+import CandidateStatus from '@/Components/CandidateStatus';
+import TinyMCETextEditor from '@/Components/TinyMCETextEditor';
+import { router } from '@inertiajs/react';
+import {
+    DoubleRangeSlider,
+    SimpleRangeSlider,
+} from "react-range-slider-advanced";
+import "react-range-slider-advanced/style.css";
 
-export default function DocumentCV () {
-    const [file, setFile] = useState(null);
-    const { csrf_token, auth, errors } = usePage().props;
+import Modal from '@/Components/Modal';
+import WorkExperience from './DocumentsCVPartials/WorkExperience';
+import Education from './DocumentsCVPartials/Education';
+
+export default function Candidate({ candidate, cities }) {
+
+
+    const candidateData = candidate || {};
+
+
+    const months = [
+        "Януари",
+        "Февруари",
+        "Март",
+        "Април",
+        "Май",
+        "Юни",
+        "Юли",
+        "Август",
+        "Септември",
+        "Октомври",
+        "Ноември",
+        "Декември"
+    ];
+
+    const yearsExperience = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+    const currentYear = new Date().getFullYear();
+    const years = [];
+    for (let y = 2000; y <= currentYear; y++) {
+        years.push(y);
+    }
+    const [expectedMinPay, setExpectedMinPay] = useState(
+        candidateData?.min_salary ?? 0
+    );
+
+    const [expectedMaxPay, setExpectedMaxPay] = useState(
+        candidateData?.max_salary ?? 10000
+    );
+
+    const [avatarFile, setAvatarFile] = useState(null);
+    const [aboutContent, setAboutContent] = useState('');
+    const [showDeleteCVModal, setShowDeleteCVModal] = useState(false);
+    const [CVId, setCVId] = useState('');
+
+
+    const { csrf_token, errors, candidateStatus, auth } = usePage().props;
     const { flash } = usePage();
 
-    const profilePic = auth.profilePic;
 
-    function handleChange(e) {
-        setFile(URL.createObjectURL(e.target.files[0]));
+    function handleAvatarChange(e) {
+        if (e.target.files[0]) {
+            setAvatarFile(URL.createObjectURL(e.target.files[0]));
+        }
     }
+
+
+    function isChecked(array, value) {
+        return Array.isArray(array) && array.includes(value);
+    }
+
 
     return (
         <>
             <Head>
-                <title>Профил</title>
+                <title>Кандидат | Вашия профил</title>
             </Head>
+
+
 
             <div>
                 <div className="content-admin-main">
 
-                    {/* Форма за профилна снимка и основна информация */}
+                    <CandidateStatus candidateStatus={candidateStatus} />
+
                     <Form
                         options={{ preserveScroll: true }}
-                        action={route('candidate.create.or.update')}
-                        method="post"
+                        action={route('populate.candidate')}
+                        method="PATCH"
                         encType="multipart/form-data"
                         onSuccess={() => {
-                            setFile(false);
+                            setAvatarFile(null);
                         }}
                     >
                         <input type="hidden" name="_token" value={csrf_token} />
 
-                        {/* Profile Image */}
-                        <div className="panel panel-default">
-                            <div className="panel-heading wt-panel-heading p-a20">
-                                <h4 className="panel-tittle m-a0">Промяна на профилна снимка</h4>
-                            </div>
-
-                            <div className="panel-body wt-panel-body p-a20 m-b30 bg-white">
-                                <div className="dashboard-profile-section clearfix">
-                                    <div className="dashboard-profile-pic d-flex gap-4">
-                                        <div className="dashboard-profile-photo">
-                                            <img src={profilePic} alt="" />
-
-                                            <div className="upload-btn-wrapper">
-                                                <div id="upload-image-grid" />
-                                                <button type="button" className="site-button button-sm">
-                                                    Прикачи снимка
-                                                </button>
-
-                                                <input
-                                                    id="file-uploader"
-                                                    accept=".jpg,.jpeg,.png"
-                                                    name="profile_pic"
-                                                    type="file"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-
-                                            {errors.profile_pic && (
-                                                <div className="text-danger">
-                                                    {errors.profile_pic}
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        {file && (
-                                            <img
-                                                height={125}
-                                                width={150}
-                                                src={file}
-                                                style={{ objectFit: 'cover' }}
-                                                alt="Uploaded preview"
-                                            />
-                                        )}
-                                    </div>
-                                </div>
-                                <hr />
-                                <button type="submit" className="site-button mt-1">
-                                    Запази профилната снимка
-                                </button>
-                            </div>
-                        </div>
+                        {/* Профилна снимка */}
+             
 
                         {/* Основна информация */}
                         <div className="panel panel-default">
@@ -95,208 +108,578 @@ export default function DocumentCV () {
                             <div className="panel-body wt-panel-body p-a20 m-b30">
                                 <div className="row">
 
-                                    <div className="col-xl-4 col-lg-6 col-md-12">
+                                    {/* Професионално заглавие */}
+                                    <div className="col-xl-6 col-lg-6 col-md-12">
                                         <div className="form-group">
-                                            <label>Първо име</label>
+                                            <label>Професионално заглавие (Не е задължително)</label>
                                             <div className="ls-inputicon-box">
                                                 <input
                                                     className="form-control"
-                                                    name="first_name"
+                                                    name="professional_title"
                                                     type="text"
-                                                    defaultValue={auth.user.first_name}
-                                                    placeholder="Въведете вашето име"
+                                                    defaultValue={candidateData.professional_title || ''}
+                                                    placeholder='Напр. "Customer Support Specialist"'
                                                 />
-                                                <i className="fs-input-icon fa fa-user" />
+                                                <i className="fs-input-icon fa fa-briefcase" />
                                             </div>
-                                            {errors.profile?.name && (
-                                                <div className="text-danger">{errors.profile.name}</div>
+                                            {errors.professional_title && (
+                                                <div className="text-danger">{errors.professional_title}</div>
                                             )}
                                         </div>
                                     </div>
 
-                                    <div className="col-xl-4 col-lg-6 col-md-12">
+                                    {/* Телефон */}
+                                    <div className="col-xl-3 col-lg-6 col-md-12">
                                         <div className="form-group">
-                                            <label>Фамилия</label>
-                                            <div className="ls-inputicon-box">
-                                                <input
-                                                    className="form-control"
-                                                    name="last_name"
-                                                    type="text"
-                                                    defaultValue={auth.user.last_name}
-                                                    placeholder="Въведете вашето име"
-                                                />
-                                                <i className="fs-input-icon fa fa-user" />
-                                            </div>
-                                            {errors.profile?.name && (
-                                                <div className="text-danger">{errors.profile.name}</div>
-                                            )}
-                                        </div>
-                                    </div>
-
-                                    <div className="col-xl-4 col-lg-6 col-md-12">
-                                        <div className="form-group">
-                                            <label>Телефон</label>
+                                            <label>Служебен телефон <span className="text-danger">*</span></label>
                                             <div className="ls-inputicon-box">
                                                 <input
                                                     className="form-control"
                                                     name="phone"
-                                                    type="text"
-                                                    defaultValue={auth.user.phone}
-                                                    placeholder="Въведете телефонен номер"
+                                                    type="tel"
+                                                    defaultValue={candidateData.phone || ''}
+                                                    placeholder="+359 ..."
                                                 />
-                                                <i className="fs-input-icon fa fa-phone-alt" />
+                                                <i className="fs-input-icon fa fa-phone" />
                                             </div>
-                                            {errors.profile?.phone && (
-                                                <div className="text-danger">{errors.profile.phone}</div>
+                                            {errors.phone && (
+                                                <div className="text-danger">{errors.phone}</div>
                                             )}
                                         </div>
                                     </div>
 
-                                    <div className="col-xl-4 col-lg-6 col-md-12">
+                                    {/* Локация */}
+                                    <div className="col-xl-3 col-lg-6 col-md-12">
                                         <div className="form-group">
-                                            <label>Имейл адрес</label>
+                                            <label>Локация <span className="text-danger">*</span></label>
                                             <div className="ls-inputicon-box">
-                                                <input
+                                                <select
                                                     className="form-control"
-                                                    name="email"
-                                                    type="email"
-                                                    defaultValue={auth.user.email}
-                                                    placeholder="Въведете имейл адрес"
-                                                />
-                                                <i className="fs-input-icon fas fa-at" />
+                                                    name="location"
+                                                    defaultValue={candidateData.location || ''}
+                                                >
+                                                    <option value="">Изберете град</option>
+                                                    {cities && cities.map((city) => (
+                                                        <option key={city.id} value={city.city_name}>
+                                                            {city.city_name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                <i className="fs-input-icon fa fa-map-marker-alt" />
                                             </div>
-                                            {errors.profile?.email && (
-                                                <div className="text-danger">{errors.profile.email}</div>
+                                            {errors.location && (
+                                                <div className="text-danger">{errors.location}</div>
                                             )}
                                         </div>
                                     </div>
 
-                                    <div className="col-xl-4 col-lg-6 col-md-12">
-                                        <div className="form-group">
-                                            <label>Уебсайт</label>
-                                            <div className="ls-inputicon-box">
+
+                                    <hr />
+
+                                    {/* Work status */}
+                                    <div className="col-xl-12 mb-3">
+                                        <h3>Отбележете в какъв период се намирате:</h3>
+
+                                        <div className="radio-group">
+
+                                            <label className="radio-card">
                                                 <input
-                                                    className="form-control"
-                                                    name="company_website"
-                                                    type="text"
-                                                    placeholder="Въведете вашия уебсайт"
+                                                    type="radio"
+                                                    name="work_status"
+                                                    value="actively_looking"
+                                                    defaultChecked={candidateData.work_status === 'actively_looking'}
                                                 />
-                                                <i className="fs-input-icon fa fa-globe-americas" />
-                                            </div>
+                                                <span>Активно търся работа</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="radio"
+                                                    name="work_status"
+                                                    value="open_to_offers"
+                                                    defaultChecked={candidateData.work_status === 'open_to_offers'}
+                                                />
+                                                <span>Отворен за предложения</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="radio"
+                                                    name="work_status"
+                                                    value="not_looking"
+                                                    defaultChecked={candidateData.work_status === 'not_looking'}
+                                                />
+                                                <span>Не търся в момента</span>
+                                            </label>
+
+                                        </div>
+
+                                        {errors.work_status && (
+                                            <div className="text-danger">{errors.work_status}</div>
+                                        )}
+                                    </div>
+
+                                    <hr />
+
+                                    <h3>Отбележете вашия опит</h3>
+
+                                    <div className="col-xl-3 mb-3">
+                                        <h3>Години опит:</h3>
+
+                                        <select
+                                            name="years_experience"
+                                            className="form-control"
+                                            defaultValue={candidateData.years_experience || ""}
+                                        >
+                                            <option value="">Избери години опит</option>
+
+                                            {yearsExperience.map((year) => (
+                                                <option key={year} value={year}>
+                                                    {year} {year === 1 ? "година" : "години"}
+                                                </option>
+                                            ))}
+                                        </select>
+
+                                        {errors.years_experience && (
+                                            <div className="text-danger">{errors.years_experience}</div>
+                                        )}
+                                    </div>
+
+
+
+                                    <div className="col-xl-3 mb-3">
+                                        <h3>Ниво (Seniority):</h3>
+
+                                        <select
+                                            name="seniority"
+                                            className="form-control"
+                                            defaultValue={candidateData.seniority || ""}
+                                        >
+                                            <option value="">Избери ниво</option>
+
+                                            <option value="junior">Junior</option>
+                                            <option value="mid">Mid</option>
+                                            <option value="team_leader">Team Leader</option>
+                                            <option value="senior">Senior</option>
+                                            <option value="principal">Principal</option>
+                                            <option value="cto">CTO</option>
+                                        </select>
+
+                                        {errors.seniority && (
+                                            <div className="text-danger">{errors.seniority}</div>
+                                        )}
+                                    </div>
+
+                                    <h3>Изберете диапазон на желаното възнаграждение</h3>
+
+                                    <DoubleRangeSlider
+                                        min={620}
+                                        max={10000}
+                                        from={candidateData.min_salary ?? 620}
+                                        to={candidateData.max_salary ?? 10000}
+                                        numberOfSections={10}
+                                        separator=","
+
+                                        postfix=" EUR"
+                                        valuesSeparator='-'
+                                        onFinish={({ from, to }) => {
+                                            setExpectedMinPay(from);
+                                            setExpectedMaxPay(to);
+                                        }}
+                                    />
+
+                                    {/* Hidden inputs for backend */}
+                                    <input
+                                        type="hidden"
+                                        name="min_salary"
+                                        value={expectedMinPay}
+                                    />
+
+                                    <input
+                                        type="hidden"
+                                        name="max_salary"
+                                        value={expectedMaxPay}
+                                    />
+
+                                    {errors.min_salary && (
+                                        <div className="text-danger">{errors.min_salary}</div>
+                                    )}
+
+                                    {errors.max_salary && (
+                                        <div className="text-danger">{errors.max_salary}</div>
+                                    )}
+                                    <hr />
+                                    {/* Work model */}
+                                    <div className="col-xl-12 mb-3">
+                                        <h3>Изберете предпочитан модел на работа:</h3>
+
+                                        <div className="radio-group">
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="work_model[]"
+                                                    value="on_site"
+                                                    defaultChecked={isChecked(candidateData.work_model, 'on_site')}
+                                                />
+                                                <span>Работа на място</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="work_model[]"
+                                                    value="hybrid"
+                                                    defaultChecked={isChecked(candidateData.work_model, 'hybrid')}
+                                                />
+                                                <span>Хибридна работа</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="work_model[]"
+                                                    value="remote"
+                                                    defaultChecked={isChecked(candidateData.work_model, 'remote')}
+                                                />
+                                                <span>Дистанционна работа</span>
+                                            </label>
+
+                                        </div>
+
+                                        {errors.work_model && (
+                                            <div className="text-danger">{errors.work_model}</div>
+                                        )}
+                                    </div>
+
+                                    <hr />
+
+
+
+                                    {/* Skills */}
+                                    <div className="col-xl-12 mb-3">
+                                        <h3>Ключови умения:</h3>
+
+                                        <div className="radio-group">
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="communication"
+                                                    defaultChecked={isChecked(candidateData.skills, 'communication')}
+                                                />
+                                                <span>Комуникация</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="teamwork"
+                                                    defaultChecked={isChecked(candidateData.skills, 'teamwork')}
+                                                />
+                                                <span>Работа в екип</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="problem_solving"
+                                                    defaultChecked={isChecked(candidateData.skills, 'problem_solving')}
+                                                />
+                                                <span>Решаване на проблеми</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="adaptability"
+                                                    defaultChecked={isChecked(candidateData.skills, 'adaptability')}
+                                                />
+                                                <span>Адаптивност</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="organization"
+                                                    defaultChecked={isChecked(candidateData.skills, 'organization')}
+                                                />
+                                                <span>Организираност</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="time_management"
+                                                    defaultChecked={isChecked(candidateData.skills, 'time_management')}
+                                                />
+                                                <span>Управление на времето</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="critical_thinking"
+                                                    defaultChecked={isChecked(candidateData.skills, 'critical_thinking')}
+                                                />
+                                                <span>Критично мислене</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="analytical_thinking"
+                                                    defaultChecked={isChecked(candidateData.skills, 'analytical_thinking')}
+                                                />
+                                                <span>Аналитично мислене</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="independence"
+                                                    defaultChecked={isChecked(candidateData.skills, 'independence')}
+                                                />
+                                                <span>Самостоятелност</span>
+                                            </label>
+
+                                            <label className="radio-card">
+                                                <input
+                                                    type="checkbox"
+                                                    name="skills[]"
+                                                    value="work_under_pressure"
+                                                    defaultChecked={isChecked(candidateData.skills, 'work_under_pressure')}
+                                                />
+                                                <span>Работа под напрежение</span>
+                                            </label>
+
+                                        </div>
+
+                                        {errors.skills && (
+                                            <div className="text-danger">{errors.skills}</div>
+                                        )}
+                                    </div>
+
+                                    <hr />
+
+                                    {/* About me */}
+                                    <div className="col-xl-12 col-lg-12 col-md-12">
+                                        <div className="form-group">
+                                            <label className='mb-2'>
+                                                <strong>Кратко представяне</strong> - Представете себе си, уменията си, технологиите с които сте работили и всичко което смятате за релевантно пред потенциални работодатели.
+                                            </label>
+                                            <TinyMCETextEditor
+                                                value={aboutContent}
+                                                onChange={setAboutContent}
+                                                initialValue={candidateData.about_me || ''}
+                                            />
+                                            <input
+                                                type="hidden"
+                                                name="about_me"
+                                                value={aboutContent || candidateData.about_me || ''}
+                                            />
+                                            {errors.about_me && (
+                                                <div className="text-danger">{errors.about_me}</div>
+                                            )}
                                         </div>
                                     </div>
 
-                                    <div className="col-lg-12 col-md-12">
-                                        <div className="text-left">
-                                            <button type="submit" className="site-button">
-                                                Запази промените
-                                            </button>
-                                        </div>
+                                    <div className="text-left">
+                                        <button type="submit" className="site-button">
+                                            Запази промените
+                                        </button>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
+
                     </Form>
 
+                    <WorkExperience
+                        months={months}
+                        cities={cities}
+                        years={years}></WorkExperience>
 
+                    <Education
+                        months={months}
+                        cities={cities}
+                        years={years}
+                    ></Education>
 
-                    {/* Форма за смяна на парола */}
                     <div className="panel panel-default">
+
                         <div className="panel-heading wt-panel-heading p-a20">
-                            <h4 className="panel-tittle m-a0">Смяна на парола</h4>
+                            <h4 className="panel-tittle m-a0">
+                                Добавете CV (PDF <i className="fa-regular fa-file-pdf"></i>)
+                            </h4>
                         </div>
 
-                        <div className="panel-body wt-panel-body p-a20 m-b30">
-                            <Form
-                                method="put"
-                                action={route('password.update')}
-                                resetOnSuccess
-                                options={{ preserveScroll: true }}
-                            >
-                                <input type="hidden" name="_token" value={csrf_token} />
+                        {/* UPLOAD */}
+                        <label className="custum-file-upload" htmlFor="file">
+                            <div className="icon">
+                                <i className="fa-regular fa-file-pdf"></i>
+                            </div>
 
-                                <div className="row">
-                                    <div className="col-xl-4 col-lg-6 col-md-12">
-                                        <div className="form-group">
-                                            <label className="form-label" htmlFor="current_password">
-                                                Въведете сегашната си парола
-                                            </label>
-                                            <input
-                                                className="form-control"
-                                                id="current_password"
-                                                type="password"
-                                                name="current_password"
-                                            />
-                                            {errors.current_password && (
-                                                <p className="text-danger mt-1">{errors.current_password}</p>
-                                            )}
-                                        </div>
-                                    </div>
+                            <div className="text">
+                                <span>Прикачете файл</span>
+                            </div>
 
-                                    <div className="col-xl-4 col-lg-6 col-md-12">
-                                        <div className="form-group">
-                                            <label className="form-label" htmlFor="password">
-                                                Въведете новата си парола
-                                            </label>
-                                            <input
-                                                className="form-control"
-                                                id="password"
-                                                type="password"
-                                                name="password"
-                                            />
-                                            {errors.password && (
-                                                <p className="text-danger mt-1">{errors.password}</p>
-                                            )}
-                                        </div>
-                                    </div>
+                            <input
+                                type="file"
+                                id="file"
+                                name="cv_upload"
+                                accept="application/pdf"
+                                onChange={(e) => {
+                                    const file = e.target.files[0];
+                                    if (!file) return;
 
-                                    <div className="col-xl-4 col-lg-6 col-md-12">
-                                        <div className="form-group">
-                                            <label className="form-label" htmlFor="password_confirmation">
-                                                Повторете новата парола
-                                            </label>
-                                            <input
-                                                className="form-control"
-                                                id="password_confirmation"
-                                                type="password"
-                                                name="password_confirmation"
-                                            />
-                                            {errors.password_confirmation && (
-                                                <p className="text-danger mt-1">{errors.password_confirmation}</p>
-                                            )}
-                                        </div>
-                                    </div>
+                                    const formData = new FormData();
+                                    formData.append('cv_upload', file);
 
-                                    <div className="col-lg-12 col-md-12">
-                                        <div className="text-left">
-                                            <button type="submit" className="site-button">
-                                                Запази новата парола
-                                            </button>
+                                    router.post(route('upload.cv'), formData, {
+                                        preserveScroll: true,
+                                        onFinish: () => {
+                                            e.target.value = null;
+                                        }
+                                    });
+                                }}
+                            />
+                        </label>
+
+                        {/* ERROR */}
+                        {errors.cv_upload && (
+                            <div className="text-danger mt-2">
+                                {errors.cv_upload}
+                            </div>
+                        )}
+
+                        <hr className='mb-0' />
+
+                        {/* CV LIST */}
+                        <div className="panel-body wt-panel-body p-a20 m-b30 bg-white d-flex flex-wrap gap-3">
+
+                            {candidate?.c_vs && candidate.c_vs.length > 0 ? (
+                                candidate.c_vs.map((cv) => (
+                                    <div
+                                        key={cv.id}
+                                        className="cv-card custum-file-upload position-relative"
+                                    >
+
+                                        {/* DELETE BUTTON */}
+                                        <button
+                                            type="button"
+                                            className="cv-delete-btn"
+                                            onClick={() => {
+                                                setShowDeleteCVModal(true);
+                                                setCVId(cv.id)
+                                            }}
+                                        >
+                                            Изтрий файла
+                                        </button>
+
+                                        {/* ICON */}
+                                        <div className="icon">
+                                            <i className="fa-regular fa-file-pdf"></i>
                                         </div>
+
+                                        {/* FILE NAME */}
+                                        <div className="text">
+                                            <span>{cv.file_name}</span>
+                                        </div>
+                                        <hr className='w-100 mt-0 mb-0' />
+                                        <a className='pdfDownload' download href={`/assets/pdfs/${cv.file_name}`}>Свали файл</a>
+
                                     </div>
-                                </div>
-                            </Form>
+                                ))
+                            ) : (
+                                <p>Нямате качени CV файлове.</p>
+                            )}
+
                         </div>
                     </div>
+
+
 
                 </div>
             </div>
 
-            {flash.editSuccess && (
-                <div
-                    className="alert alert-success animate__animated animate__fadeInUp">
-                    {flash.editSuccess}
+            <Modal
+                show={showDeleteCVModal}
+                method="delete"
+                action={route("delete.cv")}
+                onSuccess={() => setShowDeleteCVModal(false)}
+                onClose={() => setShowDeleteCVModal(false)}
+            >
+                <div className="modal-header">
+                    <h3 className="modal-title mb-0">Внимание!</h3>
+                </div>
+
+                <div className="modal-body text-center">
+                    <p>
+                        Сигурни ли сте, че искате да изтриете този PDF Файл? <br />
+                    </p>
+                </div>
+
+                <div className="modal-footer">
+
+                    <button type="submit" className="site-button bg-danger">
+                        Потвърди изтриването
+                    </button>
+
+                    <button
+                        type="button"
+                        className="site-button"
+                        onClick={() => setShowDeleteCVModal(false)}
+                    >
+                        Затвори
+                    </button>
+                </div>
+                <input name="CVid" value={CVId} type="hidden" />
+            </Modal>
+
+
+            {flash?.successUpdateCandidate && (
+                <div className="alert alert-success animate__animated animate__fadeInUp">
+                    {flash.successUpdateCandidate}
                 </div>
             )}
 
-            {flash.successPasswordChange && (
-                <div
-                    className="alert alert-success animate__animated animate__fadeInUp">
-                    {flash.successPasswordChange}
+            {/* Flash Messages */}
+            {flash?.successUploadCV && (
+                <div className="alert alert-success animate__animated animate__fadeInUp">
+                    {flash.successUploadCV}
+                </div>
+            )}
+
+            {flash?.successDeletingCV && (
+                <div className="alert alert-success animate__animated animate__fadeInUp">
+                    {flash.successDeletingCV}
+                </div>
+            )}
+
+            {flash?.CVAlreadyExists && (
+                <div className="alert alert-danger animate__animated animate__fadeInUp">
+                    {flash.CVAlreadyExists}
+                </div>
+            )}
+
+            {flash?.errorDeletingCV && (
+                <div className="alert alert-danger animate__animated animate__fadeInUp">
+                    {flash.errorDeletingCV}
                 </div>
             )}
         </>
     );
 }
 
-DocumentCV.layout = page => <DashboardLayout children={page} />;
+Candidate.layout = page => <DashboardLayout children={page} />;

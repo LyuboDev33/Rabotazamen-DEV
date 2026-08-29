@@ -41,7 +41,7 @@ class LoginRequest extends FormRequest
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
-    
+
         $user = User::where('email', $this->email)->first();
 
         if (!$user) {
@@ -49,6 +49,13 @@ class LoginRequest extends FormRequest
 
             throw ValidationException::withMessages([
                 'email' => trans('auth.user_not_found'),
+            ]);
+        }
+
+        /** Check if a user has registered with Google */
+        if (empty($user->password) && !empty($user->google_id)) {
+            throw ValidationException::withMessages([
+                'google_login' => trans('auth.google_login'),
             ]);
         }
 

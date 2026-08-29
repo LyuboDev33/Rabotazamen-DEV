@@ -54,14 +54,15 @@ export default function Sidebar() {
                                 </Link>
                             </li>
 
-                            <li className={isActive('/dashboard/admin/cities', true) ? 'active' : ''}>
-                                <Link href="/dashboard/admin/cities">
-                                    <i className="fa fa-city" />
+                            <li className={isActive('/dashboard/admin/languages', true) ? 'active' : ''}>
+                                <Link href="/dashboard/admin/languages">
+                                    <i className="fa fa-language" />
                                     <span className="admin-nav-text">
-                                       Градове
+                                        Езици
                                     </span>
                                 </Link>
                             </li>
+
 
                             <li className={isActive('/dashboard/admin/roles') ? 'active' : ''}>
                                 <Link href="/dashboard/admin/roles">
@@ -84,13 +85,22 @@ export default function Sidebar() {
                                 </Link>
                             </li>
 
-                              <li className={isActive('/dashboard/admin/job-categories') ||
-                              isActive('/dashboard/admin/job-category/edit')
+                            <li className={isActive('/dashboard/admin/companies') ? 'active' : ''}>
+                                <Link href="/dashboard/admin/companies">
+                                    <i className="fa-solid fa-building"></i>
+                                    <span className="admin-nav-text">
+                                        Фирми
+                                    </span>
+                                </Link>
+                            </li>
+
+                            <li className={isActive('/dashboard/admin/job-categories') ||
+                                isActive('/dashboard/admin/job-category/edit')
                                 ? 'active' : ''}>
                                 <Link href="/dashboard/admin/job-categories">
                                     <i className="fa fa-briefcase" />
                                     <span className="admin-nav-text">
-                                        Категории професии
+                                        Индустрии + професии
                                     </span>
                                 </Link>
                             </li>
@@ -127,6 +137,15 @@ export default function Sidebar() {
                                 <i className="fa fa-home" />
                                 <span className="admin-nav-text">
                                     Табло за управление
+                                </span>
+                            </Link>
+                        </li>
+
+                        <li className={isActive('/subscriptions') ? 'active' : ''}>
+                            <Link href="/subscriptions">
+                                    <i className="fa-brands fa-cc-stripe"></i>
+                                <span className="admin-nav-text">
+                                    Абонаменти
                                 </span>
                             </Link>
                         </li>
@@ -169,7 +188,7 @@ export default function Sidebar() {
                                 <li className={isActive('/dashboard/candidate/cv-documents') ? 'active' : ''}>
                                     <Link href="/dashboard/candidate/cv-documents">
                                         <i className="fa fa-file-alt" />
-                                        <span className="admin-nav-text">CV и документи</span>
+                                        <span className="admin-nav-text">CV и Документи</span>
                                     </Link>
                                 </li>
 
@@ -253,13 +272,7 @@ export default function Sidebar() {
                                 <hr />
                                 <p className="mb-0">Работодател</p>
 
-                                <li className={isActive('/dashboard/employer', true) ? 'active' : ''}>
-                                    <Link href="/dashboard/employer">
-                                        <i className="fa fa-home" />
-                                        <span className="admin-nav-text">Табло</span>
-                                    </Link>
-                                </li>
-
+                    
                                 <li className={isActive('/dashboard/employer/jobs') ? 'active' : ''}>
                                     <Link href="/dashboard/employer/jobs">
                                         <i className="fa fa-briefcase" />
@@ -302,8 +315,8 @@ export default function Sidebar() {
                                     </Link>
                                 </li>
 
-                                <li className={isActive('/dashboard/employer/company') ? 'active' : ''}>
-                                    <Link href="/dashboard/employer/company">
+                                <li className={isActive('/dashboard/employer/company-details') ? 'active' : ''}>
+                                    <Link href="/dashboard/employer/company-details">
                                         <i className="fa fa-building" />
                                         <span className="admin-nav-text">Компания</span>
                                     </Link>

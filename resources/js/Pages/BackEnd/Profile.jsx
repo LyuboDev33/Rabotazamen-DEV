@@ -1,13 +1,13 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import { Head, usePage, Form } from '@inertiajs/react';
 import { useState } from 'react';
+import Modal from '@/Components/Modal';
 
-export default function Profile() {
+export default function Profile({ requiresCurrentPassword }) {
     const [file, setFile] = useState(null);
     const { csrf_token, auth, errors } = usePage().props;
-    const [flashKey, setFlashKey] = useState(Date.now());
     const { flash } = usePage();
-
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const profilePic = auth.profilePic;
 
     function handleChange(e) {
@@ -46,7 +46,7 @@ export default function Profile() {
                                 <div className="dashboard-profile-section clearfix">
                                     <div className="dashboard-profile-pic d-flex gap-4">
                                         <div className="dashboard-profile-photo">
-                                            <img src={profilePic} alt="" />
+                                            <img src={profilePic} alt="Профилна снимка" />
 
                                             <div className="upload-btn-wrapper">
                                                 <div id="upload-image-grid" />
@@ -218,22 +218,27 @@ export default function Profile() {
                                 <input type="hidden" name="_token" value={csrf_token} />
 
                                 <div className="row">
-                                    <div className="col-xl-4 col-lg-6 col-md-12">
-                                        <div className="form-group">
-                                            <label className="form-label" htmlFor="current_password">
-                                                Въведете сегашната си парола
-                                            </label>
-                                            <input
-                                                className="form-control"
-                                                id="current_password"
-                                                type="password"
-                                                name="current_password"
-                                            />
-                                            {errors.current_password && (
-                                                <p className="text-danger mt-1">{errors.current_password}</p>
-                                            )}
+                                    {/* If a user is registered with Google, this field should not be required */}
+                                    {requiresCurrentPassword && (
+                                        <div className="col-xl-4 col-lg-6 col-md-12">
+                                            <div className="form-group">
+                                                <label className="form-label" htmlFor="current_password">
+                                                    Въведете сегашната си парола
+                                                </label>
+
+                                                <input
+                                                    className="form-control"
+                                                    id="current_password"
+                                                    type="password"
+                                                    name="current_password"
+                                                />
+
+                                                {errors.current_password && (
+                                                    <p className="text-danger mt-1">{errors.current_password}</p>
+                                                )}
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
 
                                     <div className="col-xl-4 col-lg-6 col-md-12">
                                         <div className="form-group">
@@ -281,12 +286,68 @@ export default function Profile() {
                         </div>
                     </div>
 
+                    <div className="panel panel-default">
+                        <div className="panel-heading wt-panel-heading p-a20">
+                            <h4 className="panel-tittle m-a0 text-danger">
+                                Изтрий акаунт
+                            </h4>
+                        </div>
+
+                        <div className="panel-body wt-panel-body p-a20 m-b30">
+                            <p className="text-muted">
+                                Това действие е необратимо. Моля, потвърдете паролата си,
+                                за да изтриете акаунта.
+                            </p>
+
+                            <button
+                                className="site-button bg-danger"
+                                onClick={() => setShowDeleteModal(true)}
+                            >
+                                Изтрий акаунта
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
+            {/* Modal */}
+            <Modal
+                show={showDeleteModal}
+                method="delete"
+                action={route("profile.destroy")}
+                onSuccess={() => setShowDeleteModal(false)}
+                onClose={() => setShowDeleteModal(false)}
+            >
+                <div className="modal-header">
+                    <h3 className="modal-title mb-0">Внимание!</h3>
+                </div>
+
+                <div className="modal-body text-center">
+                    <p>
+                        С изтриването на акаунта си, ще загубите всичко до него? <br />
+                        Сигурни ли сте, че искате да го изтриете?
+                    </p>
+                </div>
+
+                <div className="modal-footer">
+
+                    <button type="submit" className="site-button bg-danger">
+                        Потвърди изтриването
+                    </button>
+
+                    <button
+                        type="button"
+                        className="site-button"
+                        onClick={() => setShowDeleteModal(false)}
+                    >
+                        Затвори
+                    </button>
+                </div>
+            </Modal>
+
             {flash.editSuccess && (
                 <div
-                    key={flashKey}
                     className="alert alert-success animate__animated animate__fadeInUp">
                     {flash.editSuccess}
                 </div>
@@ -294,7 +355,6 @@ export default function Profile() {
 
             {flash.successPasswordChange && (
                 <div
-                    key={flashKey}
                     className="alert alert-success animate__animated animate__fadeInUp">
                     {flash.successPasswordChange}
                 </div>

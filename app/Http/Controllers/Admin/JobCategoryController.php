@@ -56,9 +56,8 @@ class JobCategoryController extends Controller
     {
 
         $validated = $request->validate([
-            'job_category_name' => ['required', 'regex:/^[\p{L}]+$/u', 'unique:job_categories,name']
+            'job_category_name' => ['required', 'unique:job_categories,name']
         ], [
-            'job_category_name.regex' => 'Позволение са само букви!',
             'job_category_name.unique' => 'Тази категория вече съществува'
         ]);
 
@@ -75,6 +74,21 @@ class JobCategoryController extends Controller
     }
 
     /**
+     * @param JobCategory
+     * @return RedirectResponse
+     */
+    public function deleteCategory(JobCategory $category)
+    {
+        $category->delete();
+
+        Inertia::flash([
+            'successDeletingCategory' => 'Успешно изтрихте индустрията.'
+        ]);
+
+        return redirect(route('job.categories.index'));
+    }
+
+    /**
      * Create a Job role
      * @param Request
      * @return RedirectResponse
@@ -82,10 +96,9 @@ class JobCategoryController extends Controller
     public function createJobRole(Request $request, JobCategory $category)
     {
         $validated = $request->validate([
-            'name_create_role' => ['required', 'regex:/^[\p{L}\s]+$/u', 'unique:job_roles,name'],
+            'name_create_role' => ['required', 'unique:job_roles,name'],
         ], [
             'name_create_role.required' => 'Името е задължително',
-            'name_create_role.regex' => 'Позволени са само букви!',
             'name_create_role.unique' => 'Тази роля вече съществува'
         ]);
 
@@ -110,10 +123,9 @@ class JobCategoryController extends Controller
     {
 
         $validated = $request->validate([
-            'name' => ['required', 'regex:/^[\p{L}\s]+$/u', 'unique:job_roles,name,' . $request->role_id],
+            'name' => ['required', 'unique:job_roles,name,' . $request->role_id],
         ], [
             'name.required' => 'Името е задължително',
-            'name.regex' => 'Позволени са само букви!',
             'name.unique' => 'Тази роля вече съществува'
         ]);
 

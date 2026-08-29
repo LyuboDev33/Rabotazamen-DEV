@@ -4,8 +4,24 @@ import { Head, Link, usePage } from "@inertiajs/react";
 
 export default function SupportTicket() {
 
+    const { flash } = usePage();
     const { supportTickets } = usePage().props;
-    const { flash  } = usePage();
+
+    const renderStatus = (status) => {
+        switch (status) {
+            case 'open':
+                return <span className="badge bg-success rounded-pill p-2">Отворен</span>;
+
+            case 'pending':
+                return <span className="badge bg-warning text-dark rounded-pill p-2">В изчакване</span>;
+
+            case 'closed':
+                return <span className="badge bg-danger rounded-pill p-2">Затворен</span>;
+
+            default:
+                return <span className="badge bg-secondary rounded-pill p-2">Неизвестен</span>;
+        }
+    };
 
     return (
         <>
@@ -18,11 +34,16 @@ export default function SupportTicket() {
                 <div className="panel panel-default site-bg-white">
                     <div className="panel-heading wt-panel-heading p-a20 d-flex justify-content-between">
                         <h4 className="panel-tittle m-a0">
-                            <i className="fa fa-suitcase"></i> Вашите тикети
+                            <i className="fa fa-ticket-alt me-2"></i>
+                            Вашите тикети
                         </h4>
+
                         <Link
-                            className='btn btn-info text-white rounded-pill'
-                            href='/support/tickets/create-ticket'> Създай тикет</Link>
+                            className="btn btn-info text-white rounded-pill"
+                            href="/support/ticket/create-ticket"
+                        >
+                            Създай тикет
+                        </Link>
                     </div>
 
                     <div className="panel-body wt-panel-body">
@@ -50,17 +71,15 @@ export default function SupportTicket() {
                                                 <td>#{ticket.id}</td>
 
                                                 <td>
-                                                    <a className="site-text-primary">
+                                                    <span className="site-text-primary">
                                                         {ticket.ticket_name}
-                                                    </a>
+                                                    </span>
                                                 </td>
 
                                                 <td>{ticket.ticket_reason}</td>
 
                                                 <td>
-                                                    <span className="text-clr-green2">
-                                                        {ticket.status}
-                                                    </span>
+                                                    {renderStatus(ticket.status)}
                                                 </td>
 
                                                 <td>
@@ -80,7 +99,7 @@ export default function SupportTicket() {
                                         ))
                                     ) : (
                                         <tr>
-                                            <td colSpan="6">
+                                            <td colSpan="6" className="text-center">
                                                 Нямате създадени тикети.
                                             </td>
                                         </tr>
@@ -96,7 +115,6 @@ export default function SupportTicket() {
                 </div>
 
             </div>
-
 
             {flash.ticketSuccesCreation && (
                 <div className="alert alert-success animate__animated animate__fadeInUp">

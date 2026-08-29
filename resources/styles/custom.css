@@ -2,6 +2,14 @@
     margin: 0 auto;
 }
 
+input:focus,
+input:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border-color: inherit;
+    background-color: inherit;
+}
+
 .banner-style-home22 .inner-box {
     background-color: rgba(236, 237, 242, .4);
     border-radius: 12px;
@@ -47,6 +55,8 @@
     border-radius: 8px;
     font-weight: 400;
     padding: 14px 35px;
+    display: block;
+    width: fit-content;
 }
 
 .banner-style-two.-type-2 .inner-box,
@@ -55,18 +65,22 @@
     background-repeat: no-repeat;
 }
 
+.-type-2 h2 {
+    font-size: 36px;
+}
+
 .banner-style-two .inner-box {
     position: relative;
     /* background: rgba(217, 48, 37, 0.6); */
     /* background: #b7e9ff; */
-        background: #e0eeff;
+    /* background: #e0eeff; */
 
     border-radius: 30px;
     padding: 45px 60px;
-    /* background: url("/assets/images/bg-2.png"); */
+    background: url("/assets/images/bg-2.png");
 }
 
- .text-p {
+.text-p {
     font-size: 16px;
     color: #4d4c9c !important;
 }
@@ -88,12 +102,7 @@
     margin-bottom: 0;
 }
 
-.banner-style-one .image {
-    position: absolute;
-    left: 30px;
-    bottom: 0;
-    margin-bottom: 0;
-}
+
 
 /* .banner-style-one .content {
     position: relative;
@@ -105,19 +114,364 @@
     padding-right: 165px;
 }
 
-.banner-style-one .content {
-    position: relative;
-    padding-left: 195px;
+
+/* .grecaptcha-badge {
+    display: none !important;
+} */
+
+.single-user-com-pic img {
+    height: 75px;
 }
 
-.grecaptcha-badge {
-    display: none !important;
+.react-datepicker__current-month {
+    text-transform: capitalize !important;
+}
+
+.react-datepicker__day-name {
+    text-transform: uppercase !important;
+    font-weight: 600;
+}
+
+/* =========================
+   INPUT
+========================= */
+.react-datepicker__input-container input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+    background: #fff;
+    color: #111827;
+    outline: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.react-datepicker__input-container input:hover {
+    border-color: #cbd5e1;
+}
+
+.react-datepicker__input-container input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* =========================
+   CALENDAR WRAPPER
+========================= */
+.react-datepicker {
+    border: none !important;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    padding: 12px;
+    font-family: inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+.react-datepicker__header {
+    background: transparent !important;
+    border-bottom: 1px solid #f1f5f9;
+    padding-top: 12px;
+    padding-bottom: 10px;
+}
+
+.react-datepicker__current-month {
+    text-transform: capitalize !important;
+    font-weight: 700;
+    font-size: 15px;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.react-datepicker__day-name {
+    text-transform: uppercase !important;
+    font-weight: 600;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+/* =========================
+   DAYS
+========================= */
+.react-datepicker__day {
+    width: 2.2rem;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    border-radius: 10px;
+    margin: 2px;
+    font-size: 13px;
+    color: #111827;
+    transition: all 0.15s ease;
+}
+
+.react-datepicker__day:hover {
+    background: #f3f4f6;
+    cursor: pointer;
+}
+
+.react-datepicker__day--selected {
+    background: #3b82f6 !important;
+    color: #fff !important;
+    border-radius: 10px;
+    font-weight: 600;
+    box-shadow: 0 6px 14px rgba(59, 130, 246, 0.25);
+}
+
+.react-datepicker__day--keyboard-selected {
+    background: #dbeafe;
+    color: #1d4ed8;
+    border-radius: 10px;
+}
+
+.react-datepicker__day--today {
+    font-weight: 700;
+    border: 1px solid #93c5fd;
+    border-radius: 10px;
+}
+
+.react-datepicker__day--outside-month {
+    color: #cbd5e1;
+    opacity: 0.6;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+.react-datepicker__navigation {
+    top: 14px;
+}
+
+.react-datepicker__navigation-icon::before {
+    border-color: #6b7280;
+    border-width: 2px 2px 0 0;
+}
+
+.react-datepicker__navigation:hover *::before {
+    border-color: #111827;
+}
+
+/* =========================
+   POPPER
+========================= */
+.react-datepicker-popper {
+    z-index: 9999;
+}
+
+/* =========================
+   YOUR CUSTOM OVERRIDES
+========================= */
+.react-datepicker__current-month {
+    text-transform: capitalize !important;
+}
+
+.react-datepicker__day-name {
+    text-transform: uppercase !important;
+    font-weight: 600;
+}
+
+.closeWorkExperience {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: fit-content;
+    font-size: 16px;
+}
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.radio-card {
+    position: relative;
+    cursor: pointer;
+    padding: 12px 18px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.radio-card input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.radio-card:hover {
+    border-color: #007bff;
+}
+
+.radio-card input:checked+span {
+    font-weight: 600;
+}
+
+.radio-card input:checked~span,
+.radio-card input:checked+span {
+    color: #007bff;
+}
+
+.radio-card input:checked {}
+
+.radio-card:has(input:checked) {
+    border-color: #007bff;
+    background: #f0f7ff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+/* From Uiverse.io by Yaya12085 */
+.custum-file-upload {
+    padding: 15px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+    margin-left: 15px;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #cacaca;
+    background-color: rgba(255, 255, 255, 1);
+    /* padding: 1.5rem; */
+    border-radius: 10px;
+    box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
+}
+
+.custum-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custum-file-upload .icon svg {
+    height: 80px;
+    fill: rgba(75, 85, 99, 1);
+}
+
+.custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custum-file-upload .text span {
+    font-weight: 400;
+    color: rgba(75, 85, 99, 1);
+}
+
+.custum-file-upload input {
+    display: none;
+}
+
+.custum-file-upload .fa-file-pdf {
+    font-size: 35px;
+    color: red;
+}
+
+.workExperiencePanel,
+.educationPanel {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.cv-card {
+    position: relative;
+    min-width: 150px;
+}
+
+/* DELETE BUTTON */
+.cv-delete-btn {
+    position: absolute;
+    top: -15px;
+    right: -21px;
+    border-radius: 36px;
+    border: none;
+    background: #ff4d4f;
+    color: white;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.cv-delete-btn:hover {
+    background: #d9363e;
+    transform: scale(1.1);
+}
+
+.pdfDownload {
+    border-radius: 38px;
+    border: none;
+    background: #ff4d4f;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+}
+
+.pdfDownload:hover {
+    color: white;
+    transition: 0.5s;
+    transform: scale(1.1);
+    background-color: #d9363e;
+}
+
+.pdfDownload:not(:hover) {
+    transition: 0.5s;
+}
+
+@media (min-width: 1366px) {
+    .banner-style-one .image {
+        position: absolute;
+        left: 20px;
+        bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .banner-style-one .content {
+        position: relative;
+        padding-left: 190px;
+    }
+
+
+
 }
 
 @media only screen and (max-width: 1366px) {
 
-    .banner-style-two .content,
     .banner-style-one .content {
+        position: relative;
+        padding-left: 100px;
+    }
+
+
+    .banner-style-one .image {
+        position: absolute;
+        left: -70px;
+        bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .banner-style-two .content {
         padding-right: 100px;
     }
 
@@ -251,7 +605,7 @@
 }
 
 .table-bordered {
-        border-radius: 15px;
+    border-radius: 15px;
     overflow: hidden;
     border: 1px solid;
 }
@@ -273,8 +627,12 @@
     height: 30px;
 }
 
-.wt-panel-body  .alert-info {
-    max-width: 600px;
+.wt-panel-body .alert-info {
+    max-width: 650px;
+}
+
+.panel-body {
+    border-radius: 10px;
 }
 
 .downloadXMLBtn {
@@ -283,41 +641,197 @@
 
 /* Chrome, Safari, Edge */
 ::-webkit-scrollbar {
-  display: none !important;
+    display: none !important;
 }
 
 .max-w-464-px {
     max-width: 494px;
 }
 
+.max-w-650-px {
+    max-width: 650px;
+}
+
 .welcome-effect {
-    width: 50%;
+    width: 70%;
     color: white;
     font-size: 18px;
 }
 
+
+
 .split-box a {
-        background: #e0eeff;
+    background: #e0eeff;
     color: black ! IMPORTANT;
 }
 
+.split-box a:hover {
+    color: white;
+}
+
+.edit-work-experience button {
+    z-index: 999999;
+}
+
+.rrsa-max,
+.rrsa-min {
+    font-size: 15px !important;
+    color: black !important;
+}
+
+.rrsa-from,
+.rrsa-max,
+.rrsa-min,
+.rrsa-single,
+.rrsa-to {
+    font-size: 14px !important;
+}
+
+.szh-accordion__item-btn {
+    padding: 10px;
+}
+
+.szh-accordion__item-btn {
+    border-radius: 20px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: rgb(215, 215, 215);
+    padding: 22px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #111827;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        padding 0.3s ease;
+}
+
+/* Hover */
+.szh-accordion__item-btn:hover {
+    background: #f5f7fa;
+    color: #000;
+}
+
+/* Active/Open state */
+.szh-accordion__item--expanded .szh-accordion__item-btn {
+    background: #111827;
+    color: #fff;
+}
+
+/* Arrow icon */
+.szh-accordion__item-btn::after {
+    content: '+';
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 300;
+    background: rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+/* Open arrow */
+.szh-accordion__item--expanded .szh-accordion__item-btn::after {
+    content: '−';
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    transform: rotate(180deg);
+}
+
+/* Focus accessibility */
+.szh-accordion__item-btn:focus-visible {
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .szh-accordion__item-btn {
+        padding: 18px 20px;
+        font-size: 16px;
+    }
+
+}
+
 @media screen and (min-width: 767px) {
+
+    .edit-work-experience {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
     .go-back-button {
         position: fixed;
         top: 10px;
         left: 10px;
     }
+
+    .left-box {
+        padding-right: 40px;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        text-align: left;
+    }
 }
 
 @media only screen and (max-width: 767px) {
 
+    .left-box {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        text-align: left;
+        margin-bottom: 25px;
+    }
+
+    .welcome-effect {
+        width: 100%;
+        text-align: center !important;
+    }
+
+    .-type-2 h2,
+    .text-p {
+        text-align: center !important;
+    }
+
+    .btn-style-five {
+        margin: 0 auto;
+    }
+
     .page-content.small-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 100px;
-}
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 100px;
+    }
+
+    .image {
+        display: none;
+    }
+
+    .content {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
 
 
     .login-application {
@@ -372,4 +886,9 @@
     .edit-blog {
         width: 300px;
     }
+
+    .banner-style-two {
+        margin-top: 20px;
+    }
 }
+
