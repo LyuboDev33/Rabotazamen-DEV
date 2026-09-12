@@ -106,6 +106,7 @@ class HandleInertiaRequests extends Middleware
     /**
      * Check if the company profile is fully completed
      * based on all required (non-nullable) fields.
+     * @param Company $company
      */
     private static function isCompanyComplete($company): bool
     {
@@ -152,6 +153,84 @@ class HandleInertiaRequests extends Middleware
     }
 
     /**
+     * Check candidate profile status.
+     *
+     * @return array|null
+     */
+    private static function candidateStatus(): array|null
+    {
+        $user = request()->user();
+
+        if (!$user) {
+            return null;
+        }
+
+        $candidate = $user->candidate()
+            ->with([
+                'cvs',
+                'workExperience',
+                'education',
+            ])
+            ->first();
+
+        if (!$candidate) {
+            return [
+                'candidateId'     => null,
+                'isCandidate'     => false,
+                'profileComplete' => false,
+                'cvs'             => [],
+            ];
+        }
+
+        $requiredFields = [
+            'professional_title',
+            'phone',
+            'location',
+            'work_status',
+            'years_experience',
+            'seniority',
+            'min_salary',
+            'max_salary',
+            'about_me',
+        ];
+
+        $profileComplete = true;
+
+        foreach ($requiredFields as $field) {
+            if (blank($candidate->{$field})) {
+                $profileComplete = false;
+                break;
+            }
+        }
+
+        if (
+            empty($candidate->skills) ||
+            empty($candidate->work_model)
+        ) {
+            $profileComplete = false;
+        }
+
+        if ($candidate->cvs->isEmpty()) {
+            $profileComplete = false;
+        }
+
+        if ($candidate->workExperience->isEmpty()) {
+            $profileComplete = false;
+        }
+
+        if ($candidate->education->isEmpty()) {
+            $profileComplete = false;
+        }
+
+        return [
+            'candidateId'     => $candidate->id,
+            'isCandidate'     => true,
+            'profileComplete' => $profileComplete,
+            'cvs'             => $candidate->cvs,
+        ];
+    }
+
+    /**
      * Check if user has uploaded a Profile Picture
      * @return string
      */
@@ -160,14 +239,14 @@ class HandleInertiaRequests extends Middleware
         $user = Auth::user();
 
         if (empty($user->profile_pic)) {
-            return asset('/assets_dashboard/images/default-avatar.png');
+            return asset('/assets_dashboard/images/profile_pics/default-avatar.png');
         }
 
         $path = public_path('/assets_dashboard/images/profile_pics/' . $user->profile_pic);
 
         return file_exists($path)
             ? asset('/assets_dashboard/images/profile_pics/' . $user->profile_pic)
-            : asset('/assets_dashboard/default-avatar.png');
+            : asset('/assets_dashboard/images/profile_pics/default-avatar.png');
     }
 
     /**
@@ -206,6 +285,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'stripe'     => static::stripe(),
             'companyStatus'    => static::companyStatus(),
+            'candidateStatus'  => static::candidateStatus(),
             'recaptchaSiteKey' => config('services.google_recaptcha.site_key'),
             'csrf_token'       => csrf_token(),
         ];

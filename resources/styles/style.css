@@ -7164,6 +7164,9 @@ button.scroltop span {
 /*Side bar tags*/
 .tw-sidebar-tags-wrap .tagcloud {
     margin-top: -10px;
+        display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .tw-sidebar-tags-wrap .tagcloud a {
@@ -11724,7 +11727,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 
 .twm-job-self-wrap .twm-job-self-info .twm-job-self-bottom {
     position: absolute;
-    top: 20px;
+    top: 5px;
     right: 0px;
 }
 

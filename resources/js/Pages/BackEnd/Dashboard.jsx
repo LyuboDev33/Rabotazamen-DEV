@@ -4,6 +4,9 @@ import { Head, usePage } from '@inertiajs/react';
 export default function Dashboard() {
     const { auth, companyStatus } = usePage().props;
 
+   const props = usePage().props;
+
+
     const renderEmployerStatus = () => {
         switch (companyStatus) {
             case 'no_company':
@@ -187,7 +190,7 @@ export default function Dashboard() {
                                             <div className="alert-info p-3 rounded-5">
                                                 <i className="fas fa-info-circle me-2"></i>
                                                 <strong>Следващи стъпки: </strong>
-                                                Вие сте регистрират в платформата като Кандидат!
+                                                Вие сте регистриран в платформата като Кандидат!
                                                 <hr />
                                                 Това означава, че ще можете да създадете или прикачите
                                                 вашето CV и да кандидатствате за работа спрямо вашите
@@ -195,23 +198,46 @@ export default function Dashboard() {
                                                 Локация, Квалификации, Препоръки и др.
                                             </div>
 
-                                            <div className="alert-danger p-3 rounded-5 align-self-start max-w-650-px">
-                                                <i className="fas fa-info-circle me-2"></i>
-                                                <strong>Статус на профила: Необходимо действие</strong>
-                                                <p>За да можете да кандидатствате е нужно да попълните вашия профил.</p>
-                                                <p>
-                                                    Моля отидете в секция{' '}
-                                                    <strong>
-                                                        <a href="/dashboard/candidate/cv-documents">
-                                                            <u>"CV и Документи"</u>
-                                                        </a>
-                                                    </strong>
-                                                    , където ще получите необходимата информация за завършване на вашия профил.
-                                                </p>
-                                                <p>
-                                                    Веднъж завършен, това съобщение ще изчезне и ще можете да кандидатствате за различни обяви за работа. Успех!
-                                                </p>
-                                            </div>
+                                            {props.candidateStatus?.profileComplete ? (
+                                                <div className="alert-success p-3 rounded-5 align-self-start max-w-650-px">
+                                                    <i className="fas fa-check-circle me-2"></i>
+                                                    <strong>Статус на профила: Завършен</strong>
+
+                                                    <p className="mt-2 mb-2">
+                                                        Вашият кандидатски профил е успешно завършен!
+                                                    </p>
+
+                                                    <p className="mb-0">
+                                                        Вече можете да кандидатствате за обяви за работа
+                                                        и да използвате всички възможности, достъпни за кандидатите
+                                                        в платформата. Желаем ви успех!
+                                                    </p>
+                                                </div>
+                                            ) : (
+                                                <div className="alert-danger p-3 rounded-5 align-self-start max-w-650-px">
+                                                    <i className="fas fa-info-circle me-2"></i>
+                                                    <strong>Статус на профила: Необходимо действие</strong>
+
+                                                    <p>
+                                                        За да можете да кандидатствате е нужно да попълните вашия профил.
+                                                    </p>
+
+                                                    <p>
+                                                        Моля отидете в секция{' '}
+                                                        <strong>
+                                                            <a href="/dashboard/candidate/cv-documents">
+                                                                <u>"CV и Документи"</u>
+                                                            </a>
+                                                        </strong>
+                                                        , където ще получите необходимата информация за завършване на вашия профил.
+                                                    </p>
+
+                                                    <p>
+                                                        Веднъж завършен, това съобщение ще изчезне и ще можете
+                                                        да кандидатствате за различни обяви за работа. Успех!
+                                                    </p>
+                                                </div>
+                                            )}
                                         </div>
                                     ) : ''}
 

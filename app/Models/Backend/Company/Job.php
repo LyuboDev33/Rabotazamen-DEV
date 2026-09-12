@@ -3,6 +3,7 @@
 namespace App\Models\Backend\Company;
 
 use App\Models\Admin\Language;
+use App\Models\Backend\Application;
 use App\Models\Backend\Company;
 use App\Models\City;
 use App\Models\JobCategory;
@@ -11,6 +12,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Job extends Model
 {
@@ -97,5 +99,13 @@ class Job extends Model
     public function publisher()
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    /**
+     * Get all applications for the job.
+     */
+    public function applications(): HasMany
+    {
+        return $this->hasMany(Application::class, 'job_id');
     }
 }

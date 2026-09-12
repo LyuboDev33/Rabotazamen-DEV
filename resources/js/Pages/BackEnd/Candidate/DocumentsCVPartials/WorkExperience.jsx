@@ -283,11 +283,12 @@ export default function WorkExperience({ years, months, cities }) {
                 <div className="twm-timing-list-wrap m-3">
                     <h3 className="p-3">Сегашен изглед</h3>
 
-                    {candidate.work_experience.length < 1 ?
+                    {(!candidate?.work_experience || candidate.work_experience.length < 1) ? (
                         <p>Нямате добавен работен опит</p>
-                    :''}
+                    ) : null}
 
-                    {candidate.work_experience.map((exp) => (
+
+                    {candidate?.work_experience.map((exp) => (
                         <Form
                             className='mb-4'
                             options={{ preserveScroll: true }}

@@ -31,6 +31,34 @@ namespace App\Models\Admin{
 namespace App\Models\Backend{
 /**
  * @property int $id
+ * @property int $candidate_id
+ * @property int $job_id
+ * @property int|null $candidate_cv_id
+ * @property string|null $message
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Backend\Candidate $candidate
+ * @property-read \App\Models\Backend\Candidate\CandidateCV|null $candidateCv
+ * @property-read \App\Models\Backend\Company\Job $job
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereCandidateCvId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereCandidateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereJobId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereUpdatedAt($value)
+ */
+	class Application extends \Eloquent {}
+}
+
+namespace App\Models\Backend{
+/**
+ * @property int $id
  * @property int|null $user_id
  * @property string|null $professional_title
  * @property string|null $phone
@@ -213,6 +241,70 @@ namespace App\Models\Backend{
 	class Company extends \Eloquent {}
 }
 
+namespace App\Models\Backend\Company{
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property int $company_id
+ * @property string $reference_number
+ * @property int $is_active
+ * @property string $title
+ * @property string $description
+ * @property int|null $category_id
+ * @property int|null $job_role_id
+ * @property int $min_salary
+ * @property int $max_salary
+ * @property int $number_of_views
+ * @property string $work_type
+ * @property string $employment_type
+ * @property string $position_level
+ * @property string $remote_option
+ * @property int|null $city_id
+ * @property string $address
+ * @property int|null $annual_leave
+ * @property int $open_positions
+ * @property string $job_end_date
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Backend\Application> $applications
+ * @property-read int|null $applications_count
+ * @property-read \App\Models\JobCategory|null $category
+ * @property-read \App\Models\City|null $city
+ * @property-read \App\Models\JobRole|null $jobRole
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\Language> $languages
+ * @property-read int|null $languages_count
+ * @property-read \App\Models\Backend\Company $publisher
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereAnnualLeave($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereCityId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereCompanyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereEmploymentType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereJobEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereJobRoleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereMaxSalary($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereMinSalary($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereNumberOfViews($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereOpenPositions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job wherePositionLevel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereReferenceNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereRemoteOption($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Job whereWorkType($value)
+ */
+	class Job extends \Eloquent {}
+}
+
 namespace App\Models{
 /**
  * @property int $id
@@ -243,12 +335,14 @@ namespace App\Models{
 /**
  * @property int $id
  * @property string $city_name
+ * @property string $city_slug
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City whereCityName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|City whereCitySlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City whereUpdatedAt($value)
@@ -260,6 +354,7 @@ namespace App\Models{
 /**
  * @property int $id
  * @property string $name
+ * @property string $slug
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobRole> $job_roles
@@ -270,6 +365,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobCategory whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobCategory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobCategory whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobCategory whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobCategory whereUpdatedAt($value)
  */
 	class JobCategory extends \Eloquent {}
@@ -294,10 +390,10 @@ namespace App\Models{
 /**
  * @property int $id
  * @property string $name
+ * @property string $slug
  * @property int $category_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\JobCategory $category
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobRole newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobRole newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobRole query()
@@ -305,6 +401,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobRole whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobRole whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobRole whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobRole whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobRole whereUpdatedAt($value)
  */
 	class JobRole extends \Eloquent {}
@@ -329,6 +426,33 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Permission whereUpdatedAt($value)
  */
 	class Permission extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
+ * @property int|null $reviewer_candidate_id
+ * @property int|null $reviewer_company_id
+ * @property int|null $reviewed_candidate_id
+ * @property int|null $reviewed_company_id
+ * @property int $rating
+ * @property string|null $comment
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereReviewedCandidateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereReviewedCompanyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereReviewerCandidateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereReviewerCompanyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereUpdatedAt($value)
+ */
+	class Review extends \Eloquent {}
 }
 
 namespace App\Models{

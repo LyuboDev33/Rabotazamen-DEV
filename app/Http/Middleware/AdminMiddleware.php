@@ -18,7 +18,6 @@ class AdminMiddleware
     {
         $user = Auth::user();
 
-
         // Check if the user has a role named 'super_admin' and 'admin';
         $isAdmin = $user->roles->contains('role_name', 'admin');
         $isSuperAdmin = $user->roles->contains('role_name', 'super_admin');

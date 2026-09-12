@@ -171,8 +171,11 @@ class CandidateController extends Controller
             ]);
         }
 
+        // Get the candidate belonging to the authenticated user
+        $candidate = Auth::user()->candidate;
+
         CandidateWorkExperience::create([
-            'candidate_id'    => Auth::id(),
+            'candidate_id'    => $candidate->id,
             'position'        => $validated['position'],
             'company'         => $validated['company'],
             'location'        => $validated['work_experience_location'] ?? null,
@@ -188,11 +191,12 @@ class CandidateController extends Controller
         ]);
 
         Inertia::flash([
-            'successCreateWorkExperience' =>  'Успешно добавихте работен опит'
+            'successCreateWorkExperience' => 'Успешно добавихте работен опит'
         ]);
 
         return back();
     }
+
 
     /** Update the work experience
      * @param Request $request
@@ -242,8 +246,6 @@ class CandidateController extends Controller
         $endTimestamp   = strtotime($validated['update_year_end_to'] . ' ' . $endMonthEn);
 
 
-
-
         if ($endTimestamp < $startTimestamp) {
             return back()->withErrors([
                 'update_month_end_to' => 'Датата на приключване не може да бъде преди годината на започване.',
@@ -267,7 +269,7 @@ class CandidateController extends Controller
         ]);
 
         Inertia::flash([
-            'successUpdateWorkExperience' =>  'Промените бяха запазени'
+            'successUpdateWorkExperience' => 'Промените бяха запазени'
         ]);
 
         return back();
@@ -355,9 +357,10 @@ class CandidateController extends Controller
             $file->move(public_path('/assets_dashboard/images/candidate/education'), $certificateName);
         }
 
+        $candidate = Auth::user()->candidate;
 
         CandidateEducation::create([
-            'candidate_id'       => Auth::id(),
+            'candidate_id'       => $candidate->id,
             'institution'        => $validated['institution'],
             'specialty'          => $validated['specialty'],
             'degree'             => $validated['degree'],
@@ -523,7 +526,9 @@ class CandidateController extends Controller
         $file = $request->file('cv_upload');
         $fileName = preg_replace('/\s+/', '', $file->getClientOriginalName());
 
-        $PDFfileExists = CandidateCV::where('file_name', $fileName)->first();
+        $PDFfileExists = CandidateCV::where('file_name', $fileName)
+                        ->where('candidate_id', $candidate->id)
+                        ->first();
 
         if ($PDFfileExists) {
             Inertia::flash([

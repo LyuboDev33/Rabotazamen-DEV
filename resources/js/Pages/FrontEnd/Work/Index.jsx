@@ -2,7 +2,15 @@ import React from "react";
 import FrontEndLayout from "@/Layouts/FrontEndLayout";
 import { Head, Link } from "@inertiajs/react";
 
-export default function Work ({ jobs }) {
+export default function Work({ jobs, filters }) {
+
+    const params = new URLSearchParams(window.location.search);
+
+    const selectedCategory = params.get('category') ?? '';
+    const selectedCity = params.get('city') ?? '';
+    const selectedJobRole = params.get('job_role') ?? '';
+    const selectedMinSalary = params.get('min_salary') ?? '';
+    const selectedMaxSalary = params.get('max_salary') ?? '';
 
     return (
         <>
@@ -37,9 +45,126 @@ export default function Work ({ jobs }) {
 
 
             {/* YOUR SEARCH/FILTER SECTION HERE */}
+            <section className="page-title style-three">
+                <form method="GET" className="auto-container">
+                    {/* Job Search Form */}
+                    <div className="job-search-form">
+                        <div>
+                            <div className="row">
+
+                                {/* Form Group */}
+                                <div className="form-group col-lg-4 col-md-12 col-sm-12">
+                                    <span className="icon flaticon-search-1" />
+
+                                    <select name="category" className="chosen-select" defaultValue={selectedCategory}>
+                                        <option value="">Изберете категория</option>
+
+                                        {filters.jobCategories.map((category) => (
+                                            <option key={category.id} value={category.slug}>
+                                                {category.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                {/* Form Group */}
+                                <div className="form-group col-lg-3 col-md-12 col-sm-12 location">
+                                    <span className="icon flaticon-map-locator" />
+
+                                    <select name="city" className="chosen-select" defaultValue={selectedCity}>
+                                        <option value="">Изберете град</option>
+
+                                        {filters.jobCities.map((city) => (
+                                            <option key={city.id} value={city.city_slug}>
+                                                {city.city_name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                {/* Form Group */}
+                                <div className="form-group col-lg-3 col-md-12 col-sm-12 category">
+                                    <span className="icon flaticon-briefcase" />
+
+                                    <select name="job_role" className="chosen-select" defaultValue={selectedJobRole}>
+                                        <option value="">Изберете позиция</option>
+
+                                        {filters.jobRoles.map((jobRole) => (
+                                            <option key={jobRole.id} value={jobRole.slug}>
+                                                {jobRole.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                {/* Form Group */}
+                                <div className="form-group col-lg-2 col-md-12 col-sm-12 text-right">
+                                    <button type="submit" className="theme-btn btn-style-one">
+                                        Търси
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {/* Job Search Form */}
+
+                    <div className="top-filters">
+
+                        <div className="form-group">
+                            <select name="min_salary" className="chosen-select" defaultValue={selectedMinSalary}>
+                                <option value="">Минимална заплата</option>
+                                <option value="1200">1200</option>
+                                <option value="1500">1500</option>
+                                <option value="1800">1800</option>
+                                <option value="2000">2000</option>
+                                <option value="2500">2500</option>
+                                <option value="3000">3000</option>
+                            </select>
+                        </div>
+
+                        <div className="form-group">
+                            <select name="max_salary" className="chosen-select" defaultValue={selectedMaxSalary}>
+                                <option value="">Максимална заплата</option>
+                                <option value="1500">1500</option>
+                                <option value="1800">1800</option>
+                                <option value="2000">2000</option>
+                                <option value="2500">2500</option>
+                                <option value="3000">3000</option>
+                                <option value="4000">4000</option>
+                            </select>
+                        </div>
+
+                        <div className="form-group">
+                            <select className="chosen-select">
+                                <option>Experience Level</option>
+                                <option>New Jobs</option>
+                                <option>Freelance</option>
+                                <option>Full Time</option>
+                                <option>Internship</option>
+                                <option>Part Time</option>
+                                <option>Temporary</option>
+                            </select>
+                        </div>
+
+                        <div className="form-group">
+                            <select className="chosen-select">
+                                <option>Salary estimate</option>
+                                <option>New Jobs</option>
+                                <option>Freelance</option>
+                                <option>Full Time</option>
+                                <option>Internship</option>
+                                <option>Part Time</option>
+                                <option>Temporary</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </form>
+            </section>
 
 
-            <div className="section-full p-t120 p-b90 site-bg-white">
+            <div className="section-full p-t50 p-b90 site-bg-white">
 
                 <div className="container">
 
@@ -126,11 +251,11 @@ export default function Work ({ jobs }) {
 
                                                             <strong>
                                                                 {job.publisher.company_name} {job.address && (
-                                                            <>
-                                                                {job.city?.city_name && ', '}
-                                                                {job.address}
-                                                            </>
-                                                        )}
+                                                                    <>
+                                                                        {job.city?.city_name && ', '}
+                                                                        {job.address}
+                                                                    </>
+                                                                )}
                                                             </strong>
 
                                                         </div>
@@ -160,9 +285,9 @@ export default function Work ({ jobs }) {
                                                         <i className="fa-solid fa-clock me-2" />
 
                                                         {job.employment_type === 'full_time'
-                                                            ? 'Пълен работен ден'  : job.employment_type === 'part_time'
-                                                            ? 'Непълен работен ден' : job.employment_type
-                                                            ? 'flexible' : 'Гъвкаво работно време'
+                                                            ? 'Пълен работен ден' : job.employment_type === 'part_time'
+                                                                ? 'Непълен работен ден' : job.employment_type
+                                                                    ? 'flexible' : 'Гъвкаво работно време'
                                                         }
 
                                                     </p>
@@ -175,8 +300,8 @@ export default function Work ({ jobs }) {
 
                                                         {job.remote_option === 'office'
                                                             ? 'Работа от офис' : job.remote_option === 'hybrid'
-                                                            ? 'Хибридна работа' : job.remote_option === 'remote'
-                                                            ? 'Дистанционна работа' : job.remote_option}
+                                                                ? 'Хибридна работа' : job.remote_option === 'remote'
+                                                                    ? 'Дистанционна работа' : job.remote_option}
 
                                                     </p>
 
@@ -197,11 +322,11 @@ export default function Work ({ jobs }) {
 
                                                     </div>
 
-                                                    <Link
+                                                    <a
                                                         href={`/jobs/show/${job.id}`}
                                                         className="twm-jobs-browse site-text-primary">
                                                         Виж обявата
-                                                    </Link>
+                                                    </a>
 
                                                 </div>
 
@@ -216,7 +341,7 @@ export default function Work ({ jobs }) {
                                     <div className="col-12">
 
                                         <div className="alert-info p-3 rounded-3 text-center">
-                                            В момента няма налични обяви за работа.
+                                            Няма резултати с избраните филтри.
                                         </div>
 
                                     </div>

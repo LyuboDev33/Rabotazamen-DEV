@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('job_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
 
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')

@@ -1,21 +1,24 @@
 <?php
 
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Backend\ApplicationsController;
 use App\Http\Controllers\Backend\CandidateController;
 use App\Http\Controllers\Backend\Employer\JobsEmployerController;
 use App\Http\Controllers\Backend\EmployerController;
 use App\Http\Controllers\Backend\SupportTicketController;
-
 use App\Http\Controllers\Frontend\WorkController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\OnlinePaymentsController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 Route::fallback(function () {
     return Inertia::render('404');
 });
+
 
 
 Route::get('/auth/redirect/{access?}',  [GoogleAuthController::class, 'index'])->name('google.auth.register');
@@ -34,12 +37,22 @@ Route::get('/learning',         [FrontendController::class, 'learning']);
 Route::get('/platform/employer', [FrontendController::class, 'employer']);
 Route::get('/platform/candidate',[FrontendController::class, 'candidate']);
 
-Route::get('/user/{id}', [WorkController::class, 'user'])->name('user.show');
+Route::get('/candidates', [WorkController::class, 'allCandidates'])->name('candidates.all');
+Route::get('/candidate/{id}', [WorkController::class, 'user'])->name('user.show');
 
 Route::prefix('/jobs')->group(function () {
     Route::get('/', [WorkController::class, 'index'])->name('find-work.index');
     Route::get('/show/{id}', [WorkController::class, 'show'])->name('find-work.show');
+    Route::post('/application-apply/{job}/{candidate}', [ApplicationsController::class, 'apply'])->name('application.apply');
 });
+
+Route::prefix('/companies')->group(function () {
+    Route::get('/', [WorkController::class, 'companies'])->name('comapnies.index');
+    Route::get('/show/{id}', [WorkController::class, 'companyShow'])->name('comapnies.show');
+});
+
+Route::post('/reviews/company/{company}', [WorkController::class, 'storeCompanyReview'])->name('reviews.company.store');
+Route::post('/reviews/candidate/{candidate}', [WorkController::class, 'storeCandidateReview'])->name('reviews.candidate.store');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -83,7 +96,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->prefix('dashboard/candidate')
         ->group(function () {
 
-            Route::get('/cv-documents', [CandidateController::class, 'documentsCV']);
+            Route::get('/cv-documents', [CandidateController::class, 'documentsCV'])->name('candidate.profile');
             Route::patch('/populate-candidate', [CandidateController::class, 'populateCandidate'])->name('populate.candidate');
 
             /** Work experience  */
@@ -127,6 +140,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
                 Route::delete('/delete',                    [JobsEmployerController::class, 'delete'])->name('job.delete');
             });
+
+            Route::prefix('/applications')->group(function () {
+                Route::get('/show/{job_id}', [ApplicationsController::class, 'applicants'])->name('applications.show');
+            });
+
         });
 });
 

@@ -294,11 +294,11 @@ export default function Education({ years, months, cities }) {
                 <div className="twm-timing-list-wrap m-3">
                     <h3 className="p-3">Сегашен изглед</h3>
 
-                    {candidate.education.length < 1 ?
+                    {candidate?.education.length < 1 ?
                         <p>Нямате добавено образование</p>
                         : ''}
 
-                    {candidate.education.map((edu) => (
+                    {candidate?.education.map((edu) => (
                         <Form
                             className='mb-4'
                             options={{ preserveScroll: true }}

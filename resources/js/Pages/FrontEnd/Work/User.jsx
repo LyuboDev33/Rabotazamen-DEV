@@ -1,11 +1,38 @@
 import React from "react";
 import FrontEndLayout from "@/Layouts/FrontEndLayout";
-import { Head, usePage } from "@inertiajs/react";
+import { Head, usePage, Form } from "@inertiajs/react";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 
-export default function User({ candidate }) {
+export default function User({ candidate, profileLogo }) {
+
+    const approvedReviews =
+        candidate?.reviews?.filter((review) => review.is_approved === "approved") || [];
+
+    const reviewSettings = {
+        type: "slide",
+        perPage: 3,
+        perMove: 1,
+        gap: "20px",
+        speed: 500,
+        arrows: true,
+        pagination: false,
+        rewind: false,
+
+        breakpoints: {
+            1024: {
+                perPage: 2,
+                perMove: 1,
+                gap: "15px",
+            },
+            600: {
+                perPage: 1,
+                perMove: 1,
+                gap: "10px",
+            },
+        },
+    };
 
     const candidateData = candidate || {};
-    const profilePicture = usePage().props.auth.profilePic;
 
     const months = [
         "Януари",
@@ -102,6 +129,11 @@ export default function User({ candidate }) {
         return start || end || "Не е посочено";
     };
 
+    const props = usePage().props;
+
+    const isLoggedIn = !!props.auth?.user;
+    const isCandidate = props.auth?.isCandidate === true;
+    const isEmployer = props.auth?.isEmployer === true;
 
 
     return (
@@ -138,7 +170,7 @@ export default function User({ candidate }) {
                                             }}
                                         >
 
-                                            <div className="overlay-main site-bg-primary opacity-01" />
+                                            <div className="overlay-main site-bg-primary " />
 
                                             <div className="twm-candi-self-info">
 
@@ -157,7 +189,7 @@ export default function User({ candidate }) {
 
                                                     <div className="twm-media">
                                                         <img
-                                                            src={profilePicture}
+                                                            src={`/assets_dashboard/images/profile_pics/${profileLogo}`}
                                                             alt={
                                                                 candidateData.professional_title ||
                                                                 "Кандидат"
@@ -167,10 +199,12 @@ export default function User({ candidate }) {
 
                                                     <div className="twm-mid-content">
 
-                                                        <h4 className="twm-job-title">
+                                                        <h3 className="text-white">{candidateData.user.first_name + " " + candidateData.user.last_name}</h3>
+
+                                                        <h5 className="twm-job-title">
                                                             {candidateData.professional_title ||
                                                                 "Кандидат"}
-                                                        </h4>
+                                                        </h5>
 
                                                         {candidateData.seniority && (
                                                             <p>
@@ -470,6 +504,110 @@ export default function User({ candidate }) {
 
                                     </div>
 
+                                    {approvedReviews.length > 0 && (
+                                        <Splide
+                                            options={reviewSettings}
+                                            className="company-reviews-splide"
+                                        >
+                                            {approvedReviews.map((review) => {
+                                                const reviewerCandidate = review.reviewer_candidate;
+                                                const reviewerCompany = review.reviewer_company;
+
+                                                let reviewerName = "Потребител";
+                                                let reviewerImage = "/assets_dashboard/images/profile_pics/default-avatar.png";
+                                                let reviewerType = "Потребител";
+
+                                                if (reviewerCandidate) {
+                                                    reviewerName =
+                                                        `${reviewerCandidate.user?.first_name ?? ""} ${reviewerCandidate.user?.last_name ?? ""}`.trim()
+                                                        || "Кандидат";
+
+                                                    reviewerImage = reviewerCandidate.user?.profile_pic
+                                                        ? `/assets_dashboard/images/profile_pics/${reviewerCandidate.user.profile_pic}`
+                                                        : "/assets_dashboard/images/profile_pics/default-avatar.png";
+
+                                                    reviewerType = "Кандидат";
+                                                } else if (reviewerCompany) {
+                                                    reviewerName =
+                                                        reviewerCompany.company_name || "Компания";
+
+                                                    reviewerImage = reviewerCompany.company_logo
+                                                        ? `/assets/images/company_profile_pictures/${reviewerCompany.company_logo}`
+                                                        : "/assets_dashboard/images/profile_pics/default-avatar.png";
+
+                                                    reviewerType = "Компания";
+                                                }
+
+                                                return (
+                                                    <SplideSlide key={review.id}>
+                                                        <div className="review-card">
+                                                            <div className="review-card-top">
+                                                                <div className="review-user">
+                                                                    <div className="review-user-image">
+                                                                        <img
+                                                                            src={reviewerImage}
+                                                                            alt={reviewerName}
+                                                                        />
+                                                                    </div>
+
+                                                                    <div className="review-user-info">
+                                                                        <h5>{reviewerName}</h5>
+                                                                        <span>{reviewerType}</span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="review-quote">
+                                                                    <i className="fas fa-quote-right"></i>
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="review-rating">
+                                                                {[1, 2, 3, 4, 5].map((star) => (
+                                                                    <i
+                                                                        key={star}
+                                                                        className={
+                                                                            star <= review.rating
+                                                                                ? "fas fa-star"
+                                                                                : "far fa-star"
+                                                                        }
+                                                                    ></i>
+                                                                ))}
+
+                                                                <span>{review.rating}/5</span>
+                                                            </div>
+
+                                                            {review.comment && (
+                                                                <p className="review-comment">
+                                                                    {review.comment}
+                                                                </p>
+                                                            )}
+
+                                                            <div className="review-card-footer">
+                                                                <span>
+                                                                    <i className="far fa-calendar-alt me-2"></i>
+
+                                                                    {new Date(review.created_at).toLocaleDateString(
+                                                                        "bg-BG",
+                                                                        {
+                                                                            day: "2-digit",
+                                                                            month: "long",
+                                                                            year: "numeric",
+                                                                        }
+                                                                    )}
+                                                                </span>
+
+                                                                <span className="review-approved">
+                                                                    <i className="fas fa-check-circle"></i>
+                                                                    Одобрено мнение
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </SplideSlide>
+                                                );
+                                            })}
+                                        </Splide>
+                                    )}
+
                                 </div>
 
 
@@ -699,6 +837,89 @@ export default function User({ candidate }) {
                                                 </div>
 
                                             )}
+
+                                        <div className="twm-s-info3">
+
+                                            <h4 className="twm-title mb-4">
+                                                Оставете ревю
+                                            </h4>
+
+                                            {!isLoggedIn && (
+                                                <div className="alert-info mb-0 p-3 rounded-4">
+                                                    Трябва да сте влезли в профила си, за да оставите ревю.
+                                                </div>
+                                            )}
+
+                                            {isLoggedIn && (isCandidate || isEmployer) && (
+                                                <Form
+                                                    options={{ preserveScroll: true }}
+                                                    action={route('reviews.candidate.store', candidate.id)}
+                                                    method="POST"
+                                                    resetOnSuccess
+                                                >
+                                                    {({ errors, processing }) => (
+                                                        <>
+
+                                                            <div className="form-group mb-4">
+                                                                <label className="form-label fw-semibold">
+                                                                    Оценка
+                                                                </label>
+
+                                                                <select
+                                                                    name="rating"
+                                                                    className={`form-control ${errors.rating ? 'is-invalid' : ''}`}
+                                                                    defaultValue=""
+                                                                >
+                                                                    <option value="" disabled>
+                                                                        Изберете оценка
+                                                                    </option>
+                                                                    <option value="1">1 звезда</option>
+                                                                    <option value="2">2 звезди</option>
+                                                                    <option value="3">3 звезди</option>
+                                                                    <option value="4">4 звезди</option>
+                                                                    <option value="5">5 звезди</option>
+                                                                </select>
+
+                                                                {errors.rating && (
+                                                                    <div className="text-danger mt-2">
+                                                                        {errors.rating}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+
+                                                            <div className="form-group mb-4">
+                                                                <label className="form-label fw-semibold">
+                                                                    Коментар
+                                                                </label>
+
+                                                                <textarea
+                                                                    name="comment"
+                                                                    className={`form-control ${errors.comment ? 'is-invalid' : ''}`}
+                                                                    rows="5"
+                                                                    placeholder="Напишете вашето мнение за кандидата..."
+                                                                />
+
+                                                                {errors.comment && (
+                                                                    <div className="text-danger mt-2">
+                                                                        {errors.comment}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+
+                                                            <button
+                                                                type="submit"
+                                                                className="site-button"
+                                                                disabled={processing}
+                                                            >
+                                                                {processing ? 'Изпращане...' : 'Изпрати ревю'}
+                                                            </button>
+
+                                                        </>
+                                                    )}
+                                                </Form>
+                                            )}
+
+                                        </div>
 
                                     </div>
 

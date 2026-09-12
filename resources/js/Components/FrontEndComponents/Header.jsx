@@ -65,7 +65,7 @@ export default function Header() {
                                         </li>
 
                                         <li className="has-child">
-                                            <Link href="/platform">Платформа</Link>
+                                            <a>Платформа</a>
                                             <ul className="sub-menu">
                                                 <li>
                                                     <Link href="/platform/employer">За работодатели</Link>
@@ -84,12 +84,13 @@ export default function Header() {
                                         </li> */}
 
                                         <li>
-                                            <Link href="/">Обучения</Link>
+                                            <Link href="/companies">Фирми</Link>
                                         </li>
 
                                         <li>
-                                            <Link href="/learning">Обучения</Link>
+                                            <Link href="/candidates">Кандидати</Link>
                                         </li>
+
 
                                         <li>
                                             <Link href="/services">Услуги</Link>

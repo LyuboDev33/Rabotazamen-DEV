@@ -247,6 +247,34 @@ export default function Show({
 
                         </div>
 
+                        <div className='col-xl-4'>
+                            <div className="form-group">
+                                <label>
+                                    Статус на обявата
+                                </label>
+
+                                <select
+                                    className="form-control"
+                                    name='is_active'
+                                    value={job.is_active === 1 ? '1' : '0'}
+                                    onChange={(e) => {
+                                        router.put(route('job.change.status', job.reference_number),
+                                            {
+                                                is_active: e.target.value
+                                            },
+                                            {
+                                                preserveScroll: true
+                                            }
+                                        );
+                                    }}
+                                >
+                                    <option value="1">Активна</option>
+                                    <option value="0">Неактивна</option>
+                                </select>
+                            </div>
+                        </div>
+
+
                         <div className="col-xl-8">
 
                             <label>
@@ -295,32 +323,6 @@ export default function Show({
 
                         </div>
 
-                        <div className='col-xl-4'>
-                            <div className="form-group">
-                                <label>
-                                    Статус на обявата
-                                </label>
-
-                                <select
-                                    className="form-control"
-                                    name='is_active'
-                                    value={job.is_active === 1 ? '1' : '0'}
-                                    onChange={(e) => {
-                                        router.put(route('job.change.status', job.reference_number),
-                                            {
-                                                is_active: e.target.value
-                                            },
-                                            {
-                                                preserveScroll: true
-                                            }
-                                        );
-                                    }}
-                                >
-                                    <option value="1">Активна</option>
-                                    <option value="0">Неактивна</option>
-                                </select>
-                            </div>
-                        </div>
 
 
                         {/* Description */}

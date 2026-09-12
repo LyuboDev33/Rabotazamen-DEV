@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ReviewsController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Backend\CompaniesController;
@@ -32,6 +33,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
                 /** Download XML file */
                 Route::get('/downloadXML', [ProfileController::class, 'downloadStaticXML'])->name('downloadStaticXML');
+
+                Route::prefix('/reviews')->group(function  () {
+                    Route::get('/', [ReviewsController::class, 'index'])->name('super_admin.reviews.index');
+                    Route::patch('/{review}/status', [ReviewsController::class, 'updateStatus'])->name('super_admin.reviews.status');
+
+                });
 
                 /** All Users routes for Super Admins */
                 Route::get('/access', [UsersController::class, 'grantAccess']);

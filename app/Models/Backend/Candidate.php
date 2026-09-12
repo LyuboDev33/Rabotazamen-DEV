@@ -5,9 +5,11 @@ namespace App\Models\Backend;
 use App\Models\Backend\Candidate\CandidateCV;
 use App\Models\Backend\Candidate\CandidateEducation;
 use App\Models\Backend\Candidate\CandidateWorkExperience;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Candidate extends Model
 {
@@ -68,5 +70,15 @@ class Candidate extends Model
     {
         return $this->hasMany(CandidateEducation::class)
             ->orderByDesc('id');
+    }
+
+    /**
+     * Get all approved reviews written for this candidate.
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'reviewed_candidate_id')
+            ->where('is_approved', Review::APPROVED)
+            ->latest();
     }
 }

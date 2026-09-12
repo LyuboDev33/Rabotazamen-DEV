@@ -2,9 +2,11 @@
 
 namespace App\Models\Backend;
 
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Company extends Model
 {
@@ -57,5 +59,13 @@ class Company extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    /**
+     * Get all reviews written for this company.
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'reviewed_company_id');
     }
 }

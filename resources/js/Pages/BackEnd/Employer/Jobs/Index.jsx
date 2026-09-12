@@ -60,12 +60,13 @@ export default function Jobs({ jobs }) {
                                 <thead>
 
                                     <tr>
-                                        <th>#</th>
                                         <th>Реф. номер</th>
                                         <th>Длъжност</th>
-                                        <th>Езици</th>
                                         <th>Статус</th>
-                                        <th>Дата</th>
+                                        <th>Кандидатури</th>
+                                        <th>Преглеждания</th>
+                                        <th>Крайна дата</th>
+
                                         <th className="last-td-action">
                                             Действия
                                         </th>
@@ -82,51 +83,22 @@ export default function Jobs({ jobs }) {
 
                                             <tr key={job.id}>
 
-                                                <td>
-                                                    {index + 1}
-                                                </td>
-
 
                                                 <td>
-                                                    <strong>
-                                                        {job.reference_number}
-                                                    </strong>
+                                                    <a target='_blank' href={route('find-work.show', job.id)}>
+                                                        <strong>
+                                                            {job.reference_number}
+                                                        </strong>
+                                                    </a>
                                                 </td>
-
 
                                                 <td>
                                                     {job.title}
                                                 </td>
 
 
-                                                <td>
 
-                                                    {job.languages && job.languages.length > 0 ? (
 
-                                                        <div className="d-flex flex-wrap gap-1">
-
-                                                            {job.languages.map((language) => (
-
-                                                                <span
-                                                                    key={language.id}
-                                                                    className="badge bg-light text-dark border"
-                                                                >
-                                                                    {language.language_name}
-                                                                </span>
-
-                                                            ))}
-
-                                                        </div>
-
-                                                    ) : (
-
-                                                        <span className="text-muted">
-                                                            Няма
-                                                        </span>
-
-                                                    )}
-
-                                                </td>
 
                                                 <td>
 
@@ -147,8 +119,48 @@ export default function Jobs({ jobs }) {
                                                 </td>
 
 
+                                                {/* Applications */}
                                                 <td>
-                                                    {new Date(job.created_at).toLocaleDateString('bg-BG')}
+
+                                                    <span className="badge bg-info text-white">
+
+                                                        <i className="fa-solid fa-users me-1"></i>
+
+                                                        {job.applications_count ?? 0}
+
+                                                    </span>
+                                                    <a className='badge bg-info mt-2'
+                                                       href={route(`applications.show`, job.id)}
+                                                       >
+                                                        Виж кандидати
+                                                    </a>
+                                                </td>
+
+
+                                                {/* Views */}
+                                                <td>
+
+                                                    <span className="badge bg-light text-dark border">
+
+                                                        <i className="fa-solid fa-eye me-1"></i>
+
+                                                        {job.number_of_views ?? 0}
+
+                                                    </span>
+
+                                                </td>
+
+
+                                                {/* Job End Date */}
+                                                <td>
+
+                                                    <i className="fa-regular fa-calendar me-2"></i>
+
+                                                    {job.job_end_date
+                                                        ? new Date(job.job_end_date).toLocaleDateString('bg-BG')
+                                                        : 'Няма'
+                                                    }
+
                                                 </td>
 
 
@@ -191,7 +203,7 @@ export default function Jobs({ jobs }) {
                                         <tr>
 
                                             <td
-                                                colSpan="8"
+                                                colSpan="9"
                                                 className="text-center"
                                             >
                                                 Няма добавени обяви за работа

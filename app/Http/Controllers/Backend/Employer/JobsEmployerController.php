@@ -23,6 +23,7 @@ class JobsEmployerController extends Controller
     public function index()
     {
         $jobs = Job::with('languages')
+            ->withCount('applications')
             ->where('user_id', Auth::id())
             ->get();
 
@@ -58,6 +59,10 @@ class JobsEmployerController extends Controller
             ->where('reference_number', $reference_number)
             ->where('user_id', Auth::id())
             ->firstOrFail();
+
+        if ($job->user_id !== Auth::id()) {
+            abort(403, 'Нямате достъп до тази обява.');
+        }
 
         $jobRoles = JobRole::query()
             ->where('category_id', $job->category_id)
@@ -301,6 +306,4 @@ class JobsEmployerController extends Controller
             'Статусът на обявата беше променен успешно.'
         );
     }
-
-    
 }

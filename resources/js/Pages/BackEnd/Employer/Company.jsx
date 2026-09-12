@@ -342,7 +342,7 @@ export default function Company({ company, cities, jobCategories }) {
                                             <div className="ls-inputicon-box">
 
                                                 <TinyMCETextEditor
-                                                    initialValue={companyDescription}
+                                                    initialValue={company?.company_full_description}
                                                     onChange={setCompanyDescription}
                                                 />
                                                 <input type="hidden" name="company_full_description" value={companyDescription} />
